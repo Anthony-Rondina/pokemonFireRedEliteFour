@@ -9,6 +9,7 @@ class Player {
         this.img = "img.src"
         this.item = ''
         this.target = "Lorelei"
+        this.targetTeam = ''
         this.attackChoice = ''
         this.fullRestore = 10
         this.revives = 10
@@ -22,8 +23,8 @@ class Player {
             name: "Charizard",
             cry: "sound.wav",
             type: ["fire", "flying"],
-            weakness: ["rock", "rock", "water"],
-            resist: ["fire"],
+            weakness: ["rock", "electric", "rock", "water"],
+            resist: ["bug", "grass", "bug", "grass", "fairy", "fire", "fighting", "ground", "steel",],
             img = "img.src",
             tinyPic = "img.src",
             fainted: false,
@@ -88,8 +89,8 @@ class Player {
             name: "Venusaur",
             type: "grass",
             cry: "sound.wav",
-            weakness: ["fire"],
-            resist: ["grass", "water"],
+            weakness: ["fire", "flying", "ice", "psychic",],
+            resist: ["grass", "water", "fighting", "fairy", "electric",],
             img = "img.src",
             tinyPic = "img.src",
             fainted: false,
@@ -117,7 +118,7 @@ class Player {
                 accuracy: 95
             },
             {
-                name: "poison Powder",
+                name: "Poison Powder",
                 type: "poison",
                 physical: false,
                 special: false,
@@ -155,6 +156,8 @@ class Player {
             cry: "sound.wav",
             img = "img.src",
             tinyPic = "img.src",
+            weakness: ["electric", "grass",],
+            resist: ["fire", "ice", "steel", "water"],
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -217,6 +220,8 @@ class Player {
             cry: "sound.wav",
             img = "img.src",
             tinyPic = "img.src",
+            weakness: ["bug", "dark", "ghost"],
+            resist: ["fighting", "psychic"],
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -280,6 +285,8 @@ class Player {
             cry: "sound.wav",
             img = "img.src",
             tinyPic = "img.src",
+            weakness: ["electric", "fighting", "grass", "rock",],
+            resist: ["ice", "water"],
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -370,6 +377,7 @@ class Player {
         }
     }
     useItem(item, pokemon) {
+
         switch (item) {
             case "antidote":
                 if (this.antidote === 0) {
@@ -489,16 +497,16 @@ class Player {
         let superEffectiveDamageMultiplyer = 1
         switch (this.target) {
             case "Lorelei":
-                targetPokemon = Lorelei.team[0]
+                this.targetTeam = Lorelei.team[0]
                 break;
             case "Bruno":
-                targetPokemon = Bruno.team[0]
+                this.targetTeam = Bruno.team[0]
                 break;
             case "Agatha":
-                targetPokemon = Agatha.team[0]
+                this.targetTeam = Agatha.team[0]
                 break;
             case "Lance":
-                targetPokemon = Lance.team[0]
+                this.targetTeam = Lance.team[0]
                 break;
         }
         if (chosenAttack.power === 0) {
@@ -512,12 +520,12 @@ class Player {
             }
         }
 
-        //set damage if physical
+        //set damage if move is physical
         if (chosenAttack.physical) {
-            // damage = Math.floor((this.team[0].level / 5) + 2 * (this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50)
-            //set damage if special
+            damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+            //set damage if move is special
         } else if (chosenAttack.special) {
-            // damage = Math.floor((this.team[0].level / 5) + 2 * (this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50)
+            damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
         }
 
         //check if move hits
@@ -528,13 +536,13 @@ class Player {
                 damage *= 1.5
             }
             //Check if target pokemon is weak or resistant to attack type
-            targetPokemon.weakness.forEach((type) => {
-                if (targetPokemon.weakness[type].includes(chosenAttack.type)) {
+            this.targetTeam.weakness.forEach((type) => {
+                if (this.targetTeam.weakness[type].includes(chosenAttack.type)) {
                     superEffectiveDamageMultiplyer += 2
                 }
             })
-            targetPokemon.resist.forEach((type) => {
-                if (targetPokemon.weakness[type].includes(chosenAttack.type)) {
+            this.targetTeam.resist.forEach((type) => {
+                if (this.targetTeam.resists[type].includes(chosenAttack.type)) {
                     superEffectiveDamageMultiplyer /= 2
                 }
             })
@@ -555,7 +563,7 @@ class Player {
             }
 
             //apply damage  
-            targetPokemon.hp -= damage
+            this.targetTeam.hp -= damage
             console.log(damage)
 
         } else {
