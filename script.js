@@ -9,7 +9,7 @@ class Player {
         this.img = "img.src"
         this.item = ''
         this.target = "Lorelei"
-        this.targetTeam = ''
+        this.targetTeam = Lorelei.team[0]
         this.attackChoice = ''
         this.fullRestore = 10
         this.revives = 10
@@ -386,7 +386,7 @@ class Player {
                     pokemon.poisoned = false
                     console.log("you are no longer poisoned!")
                     this.antidote--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "fullRestore":
@@ -396,7 +396,7 @@ class Player {
                     pokemon.hp = this.team[0].totalHP
                     console.log("you are healed!")
                     this.fullRestore--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "revive":
@@ -407,7 +407,7 @@ class Player {
                     pokemon.hp = (this.team[0].totalHP / 2)
                     console.log("you are no longer poisoned!")
                     this.revives--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "parHeal":
@@ -417,7 +417,7 @@ class Player {
                     pokemon.paralyzed = false
                     console.log("you are healed!")
                     this.parHeal--
-                    //switch to enemy turn              
+                    this.target.attack(this.team[0])
                 } break;
             case "burnHeal":
                 if (this.burnHeal === 0) {
@@ -426,7 +426,7 @@ class Player {
                     pokemon.burned = false
                     console.log("you are healed!")
                     this.burnHeal--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "unfreeze":
@@ -436,7 +436,7 @@ class Player {
                     pokemon.frozen = false
                     console.log("you are healed!")
                     this.unfreeze--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "awaken":
@@ -446,7 +446,7 @@ class Player {
                     pokemon.asleep = false
                     console.log("you are healed!")
                     this.awaken--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
             case "confuseHeal":
@@ -456,7 +456,7 @@ class Player {
                     pokemon.confused = 0
                     console.log("you are healed!")
                     this.confuseHeal--
-                    //switch to enemy turn
+                    this.target.attack(this.team[0])
                 }
                 break;
         }
@@ -465,7 +465,7 @@ class Player {
         //Check if confused
         if (yourPokemon.confused) {
             //hit yourself
-            //switch to computer turn
+            this.target.attack(this.team[0])
             this.attack(this.attackChoice, enemy.team[0])
         } else if (yourPokemon.asleep > 0) { //check if asleep
             yourPokemon.asleep--
@@ -474,7 +474,7 @@ class Player {
                 this.attack(this.attackChoice, enemy.team[0])
             } else {
                 console.log(`${this.team[0].name} is fast asleep!`)
-                //switch to computer turn
+                this.target.attack(this.team[0])
             }
         } else if (yourPokemon.frozen > 0) {
             yourPokemon.frozen--
@@ -483,11 +483,11 @@ class Player {
                 this.attack(this.attackChoice, enemy.team[0])
             } else {
                 console.log(`${this.team[0].name} is frozen solid!`)
-                //switch to computer turn
+                this.target.attack(this.team[0])
             }
         } else if (yourPokemon.paralyzed) { //check if paralyzed
             //get chance for paralyzed chance
-            //switch to computer turn
+            this.target.attack(this.team[0])
             this.attack(this.attackChoice, enemy.team[0])
         }
     }
@@ -495,27 +495,14 @@ class Player {
     attack(chosenAttack, targetPokemon) {
         let attack = 0
         let superEffectiveDamageMultiplyer = 1
-        switch (this.target) {
-            case "Lorelei":
-                this.targetTeam = Lorelei.team[0]
-                break;
-            case "Bruno":
-                this.targetTeam = Bruno.team[0]
-                break;
-            case "Agatha":
-                this.targetTeam = Agatha.team[0]
-                break;
-            case "Lance":
-                this.targetTeam = Lance.team[0]
-                break;
-        }
+
         if (chosenAttack.power === 0) {
             //use a switch to go through each move
             switch (chosenAttack.name) {
                 case "rest":
                     this.team[0].asleep = Math.floor(Math.random() * 3)
                     this.team[0].hp += this.team[0].totalHP
-                    //computer turn
+                    this.target.attack(this.team[0])
                     break;
             }
         }
@@ -565,27 +552,33 @@ class Player {
             //apply damage  
             this.targetTeam.hp -= damage
             console.log(damage)
+            //code chosenmove here
+            this.applyStatus(chosenAttack)
+
 
         } else {
             console.log('you missed!')
-            //end player turn
+            this.target.attack(this.team[0])
         }
     }
     applyStatus(chosenMove) {
-        switch (chosenMove.statusType) {
-            case "frozen":
-                this.target.frozen = true
-                break;
-            case "confusion":
-                this.target.confused = true
-                break;
-            case "sleep":
-                this.target.asleep = true
-                break;
-            case "poisoned":
-                this.target.poisoned = true
-                break;
+        if (chosenAttack.status) {
+            switch (chosenMove.statusType) {
+                case "frozen":
+                    this.targetTeam.frozen = true
+                    break;
+                case "confusion":
+                    this.targetTeam.confused = true
+                    break;
+                case "sleep":
+                    this.targetTeam.asleep = true
+                    break;
+                case "poisoned":
+                    this.targetTeam.poisoned = true
+                    break;
+            }
         }
+        this.postCheckTheirStatus(this.team[0])
     }
     postCheckYourStatus(yourPokemon) {
         //check your pokemon first
@@ -616,12 +609,15 @@ class Player {
         switch (this.target) {
             case "Lorelei":
                 this.target = "Bruno"
+                this.targetTeam = Bruno.team[0]
                 break;
             case "Bruno":
                 this.target = "Agatha"
+                this.targetTeam = Agatha.team[0]
                 break;
             case "Agatha":
                 this.target = "Lance"
+                this.targetTeam = Lance.team[0]
                 break;
         }
     }

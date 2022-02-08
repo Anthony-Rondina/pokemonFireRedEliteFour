@@ -1,4 +1,113 @@
 @font-face {
-    font-family: pokemon;
-    src: url(pokemon_fire_red.ttf);
+    font-family: 'Pokemon';
+    src: url('pokemon_fire_red.ttf');
+}
+.nameAndLevel > span {
+    font-size: 2.8em;
+    font-family: 'Pokemon';
+    color: #34421c;
+}
+
+body{
+    background-image: url(image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* .controlBar{
+    background-color: #24282b;
+    width: 100%;
+    height: 221px; */
+/* } */
+.playerHpBar{
+    width: 340px;
+    height: 10px;
+    background-color: green;
+    border: white 2px solid;
+    border-radius: 6%;
+    margin-left: 5px;
+    display: inline-block
+}
+.hpBackground {
+    border-radius: 13%;
+    background-color: #4d6152;
+    width: 400px;
+}
+.hpBackground > span {
+    margin-left: 10px;
+    color: orange;
+    font-size: 1.6em;
+}
+.hpNumbers{
+    font-size: 1.8em;
+    margin-top: 5px;
+}
+.nameAndLevel{
+    display: flex;
+    justify-content: space-between;
+}
+.moveStatus {
+    margin-top: -200px;
+    margin-left: 850px;
+    width: 400px;
+    height: 180px;
+    border: #66617a  10px solid;
+    border-radius: 2%;
+    background-color: #d4d1d2;
+}
+.hpAndNumbersDiv{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.moveBar{
+    margin-top: 15px;
+    margin-left: 10px;
+    width: 815px;
+    height: 180px;
+    border: #66617a  10px solid;
+    border-radius: 2%;
+    background-color: #d4d1d2;
+}
+.currentPokemonInfo{
+    background-color: #d2d2bb;
+    width: 470px;
+    height: 125px;
+    border: solid 8px #3b4621;
+    border-radius: 4%;
+    padding: 10px;
+    margin-top: 335px;
+    margin-left: 720px;
+}
+.outerWrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.screen {
+    border: solid black 10px;
+    background-image: url(Pokemon\ FIre\ Red\ UI.png);
+    height: 720px;
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 1280px;
+    max-height: 720px;
+}
+.leftController{
+    background-image: url(left\ controller.png);
+    border:black 3px solid;
+    max-width: 200px;
+    min-width: 200px;
+}
+.rightController{
+    background-image: url(right_controller.png);
+    border:black 3px solid;
+    max-width: 200px;
+    min-width: 200px;
 }
