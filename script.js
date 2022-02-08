@@ -22,9 +22,10 @@ class Player {
             name: "Charizard",
             cry: "sound.wav",
             type: ["fire", "flying"],
-            weakness: ["rock", "water"],
+            weakness: ["rock", "rock", "water"],
             resist: ["fire"],
             img = "img.src",
+            tinyPic = "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -90,6 +91,7 @@ class Player {
             weakness: ["fire"],
             resist: ["grass", "water"],
             img = "img.src",
+            tinyPic = "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -152,6 +154,7 @@ class Player {
             type: "water",
             cry: "sound.wav",
             img = "img.src",
+            tinyPic = "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -213,6 +216,7 @@ class Player {
             type: "psychic",
             cry: "sound.wav",
             img = "img.src",
+            tinyPic = "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -275,6 +279,7 @@ class Player {
             type: ["water", "ice"],
             cry: "sound.wav",
             img = "img.src",
+            tinyPic = "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -481,22 +486,19 @@ class Player {
     //method to switch to next elite 4 member when previous is defeated
     attack(chosenAttack, targetPokemon) {
         let attack = 0
+        let superEffectiveDamageMultiplyer = 1
         switch (this.target) {
             case "Lorelei":
                 targetPokemon = Lorelei.team[0]
-                this.target = Lorelei.team[0]
                 break;
             case "Bruno":
                 targetPokemon = Bruno.team[0]
-                this.target = Bruno.team[0]
                 break;
             case "Agatha":
                 targetPokemon = Agatha.team[0]
-                this.target = Agatha.team[0]
                 break;
             case "Lance":
                 targetPokemon = Lance.team[0]
-                this.target = Lance.team[0]
                 break;
         }
         if (chosenAttack.power === 0) {
@@ -505,7 +507,7 @@ class Player {
                 case "rest":
                     this.team[0].asleep = Math.floor(Math.random() * 3)
                     this.team[0].hp += this.team[0].totalHP
-                    this.checkStatus(this.team[0])
+                    //computer turn
                     break;
             }
         }
@@ -523,23 +525,35 @@ class Player {
         if (index > chosenAttack.accuracy) {
             //check if move is Same Type Attack Bonus
             if (chosenAttack.type.includes(this.team[0].type)) {
-                console.log("this move is STAB and gets a 50% damage bonus")
-                chosenAttack.power += (chosenAttack.power / 2)
+                damage *= 1.5
             }
             //Check if target pokemon is weak or resistant to attack type
-            if (targetPokemon.weakness.includes(chosenAttack.type)) {
-                console.log("It's super effective!")
-                damage *= 2
-            } else if (targetPokemon.resist.includes(chosenAttack.type)) {
-                console.log("It's not very effective.")
-                damage /= 2
-            }
+            targetPokemon.weakness.forEach((type) => {
+                if (targetPokemon.weakness[type].includes(chosenAttack.type)) {
+                    superEffectiveDamageMultiplyer += 2
+                }
+            })
+            targetPokemon.resist.forEach((type) => {
+                if (targetPokemon.weakness[type].includes(chosenAttack.type)) {
+                    superEffectiveDamageMultiplyer /= 2
+                }
+            })
 
             //Crit Chance is 6.25
-            let index = Math.random()
-            if (index > .93) {
+            let critIndex = Math.random()
+            if (critIndex > .92) {
                 damage *= 2
             }
+
+            //apply super type damage
+            if (superEffectiveDamageMultiplyer > 1) {
+                damage * superEffectiveDamageMultiplyer
+                console.log("It's super effective!")
+            } else if (superEffectiveDamageMultiplyer < 1) {
+                damage / superEffectiveDamageMultiplyer
+                console.log("It's not very effective.")
+            }
+
             //apply damage  
             targetPokemon.hp -= damage
             console.log(damage)
