@@ -6,7 +6,7 @@ class Player {
         this.name = name;
         this.boy = true
         this.girl = false
-        this.img = "img.src"
+        this.img = "charizard.png"
         this.item = ''
         this.target = "Lorelei"
         this.targetTeam = Lorelei.team[0]
@@ -346,6 +346,73 @@ class Player {
                 power: 110,
                 accuracy: .75,
             }]
+        }, {
+            name: "Rhydon",
+            type: ["water", "ice"],
+            cry: "sound.wav",
+            img = "img.src",
+            tinyPic = "img.src",
+            weakness: ["electric", "fighting", "grass", "rock",],
+            resist: ["ice", "water"],
+            fainted: false,
+            poisoned: false,
+            paralyzed: false,
+            burned: false,
+            frozen: 0,
+            confused: 0,
+            asleep: 0,
+            hp: 209,
+            totalHP: 209,
+            level: 51,
+            attack: 117,
+            specialAttack: 96,
+            defense: 102,
+            specialDefense: 117,
+            speed: 82,
+            moves: [{
+                name: "Ice Beam",
+                type: "ice",
+                physical: false,
+                special: true,
+                status: true,
+                statusType: "frozen",
+                pp: 10,
+                power: 90,
+                accuracy: 1
+            },
+            {
+                name: "Sing",
+                type: "normal",
+                physical: false,
+                special: false,
+                status: true,
+                statusType: "sleep",
+                pp: 15,
+                power: 0,
+                accuracy: 1,
+            },
+            {
+                name: "Surf",
+                type: "water",
+                physical: false,
+                special: true,
+                status: true,
+                pp: 5,
+                power: 95,
+                accuracy: 1,
+            },
+            {
+                name: "Blizzard",
+                type: "ice",
+                physical: false,
+                special: true,
+                status: true,
+                statusType: "frozen",
+                loseTurn: false,
+                pp: 5,
+                power: 110,
+                accuracy: .75,
+            }]
         }]
     }
     chooseItem(evt) {
@@ -620,5 +687,116 @@ class Player {
                 this.targetTeam = Lance.team[0]
                 break;
         }
+    }
+}
+
+let codeTime = true
+let codeCheck = 0
+const cheatCode = (evt) => {
+    if (codeTime) {
+        switch (codeCheck) {
+            case 0:
+                if (evt.textContent === "u") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 1:
+                if (evt.textContent === "u") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 2:
+                if (evt.textContent === "d") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 3:
+                if (evt.textContent === "d") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 4:
+                if (evt.textContent === "l") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 5:
+                if (evt.textContent === "r") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 6:
+                if (evt.textContent === "l") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 7:
+                if (evt.textContent === "r") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 8:
+                if (evt.textContent === "b") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 9:
+                if (evt.textContent === "a") {
+                    codeCheck++
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+            case 10:
+                if (evt.textContent === "s") {
+                    // specialUnlock()
+                    //update lock on DOM
+                } else {
+                    //update lock on DOM
+                    codeCheck = 0
+                }
+                break;
+        }
+    } else {
+        console.log("must restart game to enter a code!")
+        return
     }
 }

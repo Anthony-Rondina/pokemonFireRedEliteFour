@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script defer src="js/script.js"></script>
+    <script defer src="js/Lorelei.js"></script>
+    <script defer src="js/Bruno.js"></script>
+    <script defer src="js/Agatha.js"></script>
+    <script defer src="js/Lance.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>PkMn Fire Red</title>
 </head>
@@ -16,10 +20,24 @@
             <img class="logo" src="logo.png" alt="">
         </div>
         <div class="wrapper">
-            <div class="leftController"></div>
+            <div class="leftController">
+                <button class="up">u</button>
+                <button class="down">d</button>
+                <button class="left">l</button>
+                <button class="right">r</button>
+                <button class="start">s</button>
+            </div>
             <div class="screen">
+                <!-- <div class="light"></div> -->
+                <div class="playerpics">
+                    <img src="charizard.png" alt="" class="pokemon">
+                    <!-- <img src="" alt="" class="trainer"> -->
+                </div>
                 <div class="enemyPokemon">
-                    <div class="enemyNameAndLevel"></div>
+                    <div class="enemyNameAndLevel">
+                        <span class="enemyName">Pidgey</span>
+                        <span class="enemyLvl">Lv51</span>
+                    </div>
                     <div class="enemyHPAndNubersDiv">
                         <div class="enemyHPBackground">
                             <span class="enemyHPText">HP</span>
@@ -47,7 +65,10 @@
                     <div class="moveStatus"></div>
                 </div>
             </div>
-            <div class="rightController"></div>
+            <div class="rightController">
+                <button class="buttonA">a</button>
+                <button class="buttonB">b</button>
+            </div>
         </div>
     </div>
 </body>

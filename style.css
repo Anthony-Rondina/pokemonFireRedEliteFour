@@ -7,11 +7,16 @@
     font-family: 'Pokemon';
     color: #34421c;
 }
+.enemyNameAndLevel > span {
+    font-size: 2em;
+    font-family: 'Pokemon';
+    color: #34421c;
+}
 
 body{
-    /* background-image: url(image.png); */
-    background-color: red;
-    background-repeat: no-repeat;
+    background-image: url(WallpaperDog-17152677.jpg);
+    /* background-color: red; */
+    /* background-repeat: no-repeat; */
     background-size: cover;
 }
 /* .controlBar{
@@ -41,10 +46,29 @@ body{
     margin-left: 5px;
     display: inline-block
 }
+.enemyHPBar{
+    width: 340px;
+    height: 10px;
+    background-color: green;
+    border: white 2px solid;
+    border-radius: 6%;
+    margin-left: 5px;
+    display: inline-block
+}
 .hpBackground {
     border-radius: 13%;
     background-color: #4d6152;
     width: 400px;
+}
+.enemyHPBackground {
+    border-radius: 13%;
+    background-color: #4d6152;
+    width: 400px;
+}
+.enemyHPBackground > span {
+    margin-left: 10px;
+    color: orange;
+    font-size: 1.6em;
 }
 .hpBackground > span {
     margin-left: 10px;
@@ -56,6 +80,10 @@ body{
     margin-top: 5px;
 }
 .nameAndLevel{
+    display: flex;
+    justify-content: space-between;
+}
+.enemyNameAndLevel{
     display: flex;
     justify-content: space-between;
 }
@@ -74,6 +102,12 @@ body{
     flex-direction: column;
     align-items: flex-end;
 }
+.enemyHPAndNubersDiv{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 .moveBar{
     margin-top: 15px;
     margin-left: 10px;
@@ -84,13 +118,14 @@ body{
     background-color: #d4d1d2;
 }
 .currentPokemonInfo{
+    z-index: 4;
     background-color: #d2d2bb;
     width: 470px;
     height: 125px;
     border: solid 8px #3b4621;
     border-radius: 4%;
     padding: 10px;
-    margin-top: 250px;
+    margin-top: 195px;
     margin-left: 720px;
 }
 .outerWrapper{
@@ -99,6 +134,10 @@ body{
     flex-direction: column;
     align-items: center;
     height: 100vh;
+}
+.pokemon{
+    z-index: 3;
+    position: absolute;
 }
 .wrapper {
     display: flex;
@@ -125,4 +164,93 @@ body{
     border:black 3px solid;
     max-width: 200px;
     min-width: 200px;
+}
+button{
+    cursor: pointer;
+}
+.up {
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    margin-top: 318px;
+    margin-left: 76px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+}
+.down {
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    margin-top: 425px;
+    margin-left: 76px;
+    border: none;
+    background-color: black;
+}
+.left {
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    margin-top: 373px;
+    margin-left: 23px;
+    border: none;
+    background-color: black;
+}
+.right {
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    margin-top: 373px;
+    margin-left: 128px;
+    border: none;
+    background-color: black;
+}
+.buttonA {
+    position:absolute;
+    border: #771b46 solid 1px;
+    border-radius: 50%;
+    color: #771b46;
+    width: 60px;
+    height: 60px;
+    margin-top: 338px;
+    margin-left: 112px;
+    border: none;
+    background-color: #771b46;
+}
+.buttonB {
+    position:absolute;
+    border: #771b46 solid 1px;
+    border-radius: 50%;
+    color: #771b46;
+    width: 60px;
+    height: 60px;
+    margin-top: 382px;
+    margin-left: 15px;
+    border: none;
+    background-color: #771b46;
+}
+.start {
+    position:absolute;
+    border: #6d6a73 solid 1px;
+    border-radius: 25%;
+    transform: rotate(64deg);
+    color: #6d6a73;
+    width: 15px;
+    height: 63px;
+    margin-top: 579px;
+    margin-left:135px;
+    border: none;
+    background-color: #6d6a73;
+}
+.light {
+    position:absolute;
+    height: 300px;
+    width: 300px;
+    z-index: 5;
+    margin-top: 300px;
+    margin-left: 250px;
+    border: white solid;
+    border-radius: 50%;
+    background-color: white;
+    filter: blur(2.3rem);
 }
