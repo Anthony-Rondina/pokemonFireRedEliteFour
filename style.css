@@ -1,19 +1,16 @@
-@font-face {
-    font-family: 'Pokemon';
-    src: url('pokemon_fire_red.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Poiret+One&family=Press+Start+2P&family=Source+Sans+Pro:wght@200&display=swap');
+
 .nameAndLevel > span {
-    font-size: 2.8em;
-    font-family: 'Pokemon';
+    font-size: 2em;
     color: #34421c;
 }
 .enemyNameAndLevel > span {
-    font-size: 2em;
-    font-family: 'Pokemon';
+    font-size: 1.5em;
     color: #34421c;
 }
 
 body{
+    font-family: 'Press Start 2P';
     background-image: url(WallpaperDog-17152677.jpg);
     /* background-color: red; */
     /* background-repeat: no-repeat; */
@@ -40,27 +37,63 @@ body{
 .playerHpBar{
     width: 340px;
     height: 10px;
+    margin-top: 6px;
+    background-color: white;
+    border: white 3px solid;
+    border-radius: 6%;
+    margin-left: 5px;
+    display: inline-block;
+}
+.enemyHPanimated{
+    position: absolute;
+    width: 330px;
+    height: 10px;
+    margin-top: 6px;
     background-color: green;
     border: white 2px solid;
     border-radius: 6%;
-    margin-left: 5px;
-    display: inline-block
+    margin-left: 222px;
+    margin-top: 107px;
+    display: inline-block;
+    z-index: 5; 
+}
+.hpLimitBox{
+    position: absolute;
+    width: 330px;
+    height: 10px;
+    margin-left: 875px;
+    margin-top: 407px;
+}
+.playerHPanimated{
+    width: 100%;
+    height: 10px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    display: inline-block;
+    transition-property: width;
+    transition-duration: 1.5s;;
 }
 .enemyHPBar{
     width: 340px;
     height: 10px;
-    background-color: green;
+    margin-top: 6px;
+    background-color: white;
     border: white 2px solid;
     border-radius: 6%;
     margin-left: 5px;
     display: inline-block
 }
 .hpBackground {
+    display: flex;
+    flex-direction: row;
     border-radius: 13%;
     background-color: #4d6152;
     width: 400px;
 }
 .enemyHPBackground {
+    display: flex;
+    flex-direction: row;
     border-radius: 13%;
     background-color: #4d6152;
     width: 400px;
@@ -77,7 +110,7 @@ body{
 }
 .hpNumbers{
     font-size: 1.8em;
-    margin-top: 5px;
+    margin-top: 25px;
 }
 .nameAndLevel{
     display: flex;
@@ -97,7 +130,7 @@ body{
     background-color: #d4d1d2;
 }
 .hpAndNumbersDiv{
-    margin-top: 10px;
+    margin-top: 19px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -125,7 +158,7 @@ body{
     border: solid 8px #3b4621;
     border-radius: 4%;
     padding: 10px;
-    margin-top: 195px;
+    margin-top: 207px;
     margin-left: 720px;
 }
 .outerWrapper{
@@ -253,4 +286,39 @@ button{
     border-radius: 50%;
     background-color: white;
     filter: blur(2.3rem);
+}
+.intro {
+    font-size: 3em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.introButtons {
+    margin-top: 25px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.combat {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.nameInput {
+    text-align: center;
+}
+.combatBackground {
+    width: 100%;
+    height: 100%;
+}
+div > span {
+    font-size: 1.2em;
 }

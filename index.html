@@ -28,41 +28,66 @@
                 <button class="start">s</button>
             </div>
             <div class="screen">
+                <div class="hpLimitBox">
+                    <div class="playerHPanimated"></div>
+                </div>
+                <div class="enemyHPanimated"></div>
+                <div class="intro hidden">
+                    <span class="introMessage">What is your name?</span>
+                    <div class="introButtons">
+                        <input class="nameInput" type="text" placeholder="Enter Your Name">
+                        <button class="continueButton">Continue</button>
+                        <button class="boy hidden">Boy</button>
+                        <button class="girl hidden">Girl</button>
+                    </div>
+                </div>
+                <div class="team hidden">
+
+                </div>
                 <!-- <div class="light"></div> -->
-                <div class="playerpics">
-                    <img src="charizard.png" alt="" class="pokemon">
-                    <!-- <img src="" alt="" class="trainer"> -->
-                </div>
-                <div class="enemyPokemon">
-                    <div class="enemyNameAndLevel">
-                        <span class="enemyName">Pidgey</span>
-                        <span class="enemyLvl">Lv51</span>
+                <div class="combat ">
+                    <div class="playerpics">
+                        <img src="charizard.png" alt="" class="pokemon">
+                        <!-- <img src="" alt="" class="trainer"> -->
                     </div>
-                    <div class="enemyHPAndNubersDiv">
-                        <div class="enemyHPBackground">
-                            <span class="enemyHPText">HP</span>
-                            <div class="enemyHPBar"></div>
+                    <div class="enemyPokemon">
+                        <div class="enemyNameAndLevel">
+                            <span class="enemyName">Pidgey</span>
+                            <span class="enemyLvl">Lv51</span>
+                        </div>
+                        <div class="enemyHPAndNubersDiv">
+                            <div class="enemyHPBackground">
+                                <span class="enemyHPText">HP</span>
+                                <div class="enemyHPBar"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="currentPokemonInfo">
-                    <div class="nameAndLevelDiv">
-                        <div class="nameAndLevel">
-                            <span class="myName">Charizard</span>
-                            <span class="myLvl">Lv51</span>
+                    <div class="currentPokemonInfo">
+                        <div class="nameAndLevelDiv">
+                            <div class="nameAndLevel">
+                                <span class="myName">Charizard</span>
+                                <span class="myLvl">Lv51</span>
+                            </div>
+                        </div>
+                        <div class="hpAndNumbersDiv">
+                            <div class="hpBackground">
+                                <span class="hpText">HP</span>
+                                <div class="playerHpBar"></div>
+                                <div class="playerHPBarBackground"></div>
+                            </div>
+                            <div class="hpNumbers">
+                                <span class="inputHPNumbers">199</span>
+                                <span class="staticHPNumbers">/ 199</span></div>
                         </div>
                     </div>
-                    <div class="hpAndNumbersDiv">
-                        <div class="hpBackground">
-                            <span class="hpText">HP</span>
-                            <div class="playerHpBar"></div>
+                    <div class="controlBar">
+                        <div class="moveBar">
+                            <span>A wild Pidgey appeared!</span>
                         </div>
-                        <div class="hpNumbers">119/119</div>
+                        <div class="moveStatus">
+                            <span>Do you want to continue?</span>
+                        </div>
                     </div>
-                </div>
-                <div class="controlBar">
-                    <div class="moveBar"></div>
-                    <div class="moveStatus"></div>
                 </div>
             </div>
             <div class="rightController">

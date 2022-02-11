@@ -9,7 +9,8 @@ class Player {
         this.img = "charizard.png"
         this.item = ''
         this.target = "Lorelei"
-        this.targetTeam = Lorelei.team[0]
+        this.targetPokemon = 0
+        this.opponenet = "Lorelei"
         this.attackChoice = ''
         this.fullRestore = 10
         this.revives = 10
@@ -25,8 +26,8 @@ class Player {
             type: ["fire", "flying"],
             weakness: ["rock", "electric", "rock", "water"],
             resist: ["bug", "grass", "bug", "grass", "fairy", "fire", "fighting", "ground", "steel",],
-            img = "img.src",
-            tinyPic = "img.src",
+            img: "img.src",
+            tinyPic: "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -91,8 +92,8 @@ class Player {
             cry: "sound.wav",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
-            img = "img.src",
-            tinyPic = "img.src",
+            img: "img.src",
+            tinyPic: "img.src",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -154,8 +155,8 @@ class Player {
             name: "Blastoise",
             type: "water",
             cry: "sound.wav",
-            img = "img.src",
-            tinyPic = "img.src",
+            img: "img.src",
+            tinyPic: "img.src",
             weakness: ["electric", "grass",],
             resist: ["fire", "ice", "steel", "water"],
             fainted: false,
@@ -218,8 +219,8 @@ class Player {
             name: "Alakazam",
             type: "psychic",
             cry: "sound.wav",
-            img = "img.src",
-            tinyPic = "img.src",
+            img: "img.src",
+            tinyPic: "img.src",
             weakness: ["bug", "dark", "ghost"],
             resist: ["fighting", "psychic"],
             fainted: false,
@@ -283,8 +284,75 @@ class Player {
             name: "Lapras",
             type: ["water", "ice"],
             cry: "sound.wav",
-            img = "img.src",
-            tinyPic = "img.src",
+            img: "img.src",
+            tinyPic: "img.src",
+            weakness: ["electric", "fighting", "grass", "rock",],
+            resist: ["ice", "water"],
+            fainted: false,
+            poisoned: false,
+            paralyzed: false,
+            burned: false,
+            frozen: 0,
+            confused: 0,
+            asleep: 0,
+            hp: 209,
+            totalHP: 209,
+            level: 51,
+            attack: 117,
+            specialAttack: 96,
+            defense: 102,
+            specialDefense: 117,
+            speed: 82,
+            moves: [{
+                name: "Ice Beam",
+                type: "ice",
+                physical: false,
+                special: true,
+                status: true,
+                statusType: "frozen",
+                pp: 10,
+                power: 90,
+                accuracy: 1
+            },
+            {
+                name: "Sing",
+                type: "normal",
+                physical: false,
+                special: false,
+                status: true,
+                statusType: "sleep",
+                pp: 15,
+                power: 0,
+                accuracy: 1,
+            },
+            {
+                name: "Surf",
+                type: "water",
+                physical: false,
+                special: true,
+                status: true,
+                pp: 5,
+                power: 95,
+                accuracy: 1,
+            },
+            {
+                name: "Blizzard",
+                type: "ice",
+                physical: false,
+                special: true,
+                status: true,
+                statusType: "frozen",
+                loseTurn: false,
+                pp: 5,
+                power: 110,
+                accuracy: .75,
+            }]
+        }, {
+            name: "Rhydon",
+            type: ["water", "ice"],
+            cry: "sound.wav",
+            img: "img.src",
+            tinyPic: "img.src",
             weakness: ["electric", "fighting", "grass", "rock",],
             resist: ["ice", "water"],
             fainted: false,
@@ -491,6 +559,13 @@ class Player {
             this.attack(this.attackChoice, enemy.team[0])
         }
     }
+    speedCheck(playerPokemon, enemyPokemon) {
+        if (playerPokemon.speed > enemyPokemon.speed) {
+            this.preCheckStatus(this.team[0])
+        } else {
+            this.opponenet.preCheckStatus(this.targetPokemon)
+        }
+    }
     //method to switch to next elite 4 member when previous is defeated
     attack(chosenAttack, targetPokemon) {
         let attack = 0
@@ -523,13 +598,13 @@ class Player {
                 damage *= 1.5
             }
             //Check if target pokemon is weak or resistant to attack type
-            this.targetTeam.weakness.forEach((type) => {
-                if (this.targetTeam.weakness[type].includes(chosenAttack.type)) {
+            this.targetPokemon.weakness.forEach((type) => {
+                if (this.targetPokemon.weakness[type].includes(chosenAttack.type)) {
                     superEffectiveDamageMultiplyer += 2
                 }
             })
-            this.targetTeam.resist.forEach((type) => {
-                if (this.targetTeam.resists[type].includes(chosenAttack.type)) {
+            this.targetPokemon.resist.forEach((type) => {
+                if (this.targetPokemon.resists[type].includes(chosenAttack.type)) {
                     superEffectiveDamageMultiplyer /= 2
                 }
             })
@@ -550,7 +625,7 @@ class Player {
             }
 
             //apply damage  
-            this.targetTeam.hp -= damage
+            this.targetPokemon.hp -= damage
             console.log(damage)
             //code chosenmove here
             this.applyStatus(chosenAttack)
@@ -565,20 +640,23 @@ class Player {
         if (chosenAttack.status) {
             switch (chosenMove.statusType) {
                 case "frozen":
-                    this.targetTeam.frozen = true
+                    this.targetPokemon.frozen = Math.floor(Math.random() * 3)
                     break;
                 case "confusion":
-                    this.targetTeam.confused = true
+                    this.targetPokemon.confused = Math.floor(Math.random() * 3)
                     break;
                 case "sleep":
-                    this.targetTeam.asleep = true
+                    this.targetPokemon.asleep = Math.floor(Math.random() * 3)
                     break;
                 case "poisoned":
-                    this.targetTeam.poisoned = true
+                    this.targetPokemon.poisoned = true
+                    break;
+                case "burn":
+                    this.targetPokemon.burned = true
                     break;
             }
         }
-        this.postCheckTheirStatus(this.team[0])
+        this.postCheckTheirStatus(this.targetPokemon)
     }
     postCheckYourStatus(yourPokemon) {
         //check your pokemon first
@@ -586,13 +664,13 @@ class Player {
             yourPokemon.hp -= (yourPokemon.totalHP * 0.0625) // 1/16th
             //CODE FOR DOM UPDATE
             setTimeout(() => {
-                this.postCheckTheirStatus()
+                this.postCheckTheirStatus(this.targetPokemon)
             }, 10000);
         } else if (yourPokemon.burned) {
             yourPokemon.hp -= (yourPokemon.totalHP * 0.0625) // 1/16th
             //CODE FOR DOM UPDATE
             setTimeout(() => {
-                this.postCheckTheirStatus()
+                this.postCheckTheirStatus(this.targetPokemon)
             }, 10000);
         }
     }
@@ -609,15 +687,15 @@ class Player {
         switch (this.target) {
             case "Lorelei":
                 this.target = "Bruno"
-                this.targetTeam = Bruno.team[0]
+                this.targetPokemon = Bruno.team[0]
                 break;
             case "Bruno":
                 this.target = "Agatha"
-                this.targetTeam = Agatha.team[0]
+                this.targetPokemon = Agatha.team[0]
                 break;
             case "Agatha":
                 this.target = "Lance"
-                this.targetTeam = Lance.team[0]
+                this.targetPokemon = Lance.team[0]
                 break;
         }
     }
@@ -728,5 +806,47 @@ const cheatCode = (evt) => {
                 }
                 break;
         }
-    } else return
+    } else {
+        console.log("must restart game to enter a code!")
+        return
+    }
 }
+player = new Player("Ant")
+
+const animateNumbers = (start, end, duration) => {
+    if (start === end) return;
+    let range = end - start;
+    let current = start;
+    let increment = end > start ? 1 : -1;
+    let stepTime = Math.abs(Math.floor(duration / range));
+    let timer = setInterval(function () {
+        current += increment;
+        hpNumbers.textContent = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+buttonA = document.querySelector('.buttonA')
+hpBar = document.querySelector('.playerHPanimated')
+hpNumbers = document.querySelector('.inputHPNumbers')
+const findPercent = () => {
+    let start = player.team[0].hp
+    player.team[0].hp = Math.floor(Math.random() * 100)
+    console.log(player.team[0].hp)
+    let end = player.team[0].hp
+    damage = Math.floor((player.team[0].hp / player.team[0].totalHP) * 100)
+    if (damage <= 50 && damage >= 21) {
+        hpBar.style.backgroundColor = "darkorange";
+    } else if (damage <= 20) {
+        hpBar.style.backgroundColor = "darkred";
+    } else {
+        hpBar.style.backgroundColor = "green";
+    }
+    console.log("damage is ", damage)
+    hpBar.style.width = damage + "%"
+    animateNumbers(start, end, 1500);
+    return damage
+}
+buttonA.onclick = findPercent
+
