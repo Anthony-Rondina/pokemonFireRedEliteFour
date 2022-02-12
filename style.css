@@ -16,12 +16,66 @@ body{
     /* background-repeat: no-repeat; */
     background-size: cover;
 }
-/* .controlBar{
+.controlBar{
     background-color: #24282b;
-    border: red 100px solid;
     width: 100%;
     height: 221px; 
- } */
+ }
+ .mainMessageBox{
+    background-color: #272f33;
+    width: 100%;
+    height: 200px; 
+    margin-top: 15px;
+    padding: 10px;
+ }
+ .yellowBG{
+     height: 98%;
+     width: 100%;
+     background-color: #bfa551;
+     border: solid #bfa551;
+     border-radius: 5%;
+
+ }
+ .msgBox {
+     z-index: 5;
+     background-color: #324f68;
+     height: 90%;
+     width: 98%;
+     border: solid 6px white;
+     border-radius: 3%;
+     margin-left: 5px;
+     margin-top: 5px;
+ }
+ .msgBoxContent{
+    margin-top: 20px;
+    margin-left: 20px;
+    color:white;
+    font-size: 1.5em;
+ }
+ .combatChoice{
+     z-index: 10;
+    position:absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+	"fight bag"
+	"pkmn run";
+    /* text-align: right; */
+    margin-top: -24px;
+    margin-left: 700px;
+    width: 550px;
+    height: 200px;
+    border: #66617a  10px solid;
+    border-radius: 2%;
+    background-color: #d4d1d2;
+ }
+ .fight, .bag, .pkmn, .run{
+     text-align: right;
+     font-size: 1.8em;
+     border: none;
+     font-family: 'Press Start 2P';
+ }
  .enemyPokemon{
     background-color: #d2d2bb;
     width: 470px;
@@ -142,6 +196,14 @@ body{
     align-items: flex-end;
 }
 .moveBar{
+    z-index: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+	"mv1 mv2"
+	"mv3 mv4";
+    border: red solid;
     margin-top: 15px;
     margin-left: 10px;
     width: 815px;
@@ -149,6 +211,25 @@ body{
     border: #66617a  10px solid;
     border-radius: 2%;
     background-color: #d4d1d2;
+}
+
+.mv1 {
+    grid-area: "mv1";
+}
+.mv2{
+    grid-area: "mv2";
+}
+.mv3{
+    grid-area: "mv3";
+}
+.mv4{
+    grid-area: "mv4";
+}
+.mv1, .mv2, .mv3, .mv4{
+    text-align: right;
+    font-size: 1.5em;
+    border: none;
+    font-family: 'Press Start 2P';
 }
 .currentPokemonInfo{
     z-index: 4;
@@ -169,8 +250,23 @@ body{
     height: 100vh;
 }
 .pokemon{
-    z-index: 3;
+    z-index: 0;
     position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    margin-top: -482px;
+    margin-left: 300px;
+}
+.pokemonHit{
+    z-index: 1;
+    margin-left: 230px;
+    position: absolute;
+}
+.faint{
+    z-index: 0;
+    position: absolute;
+    opacity: 0;
+    margin-top: -200px;
 }
 .wrapper {
     display: flex;
@@ -228,6 +324,29 @@ button{
     margin-left: 23px;
     border: none;
     background-color: black;
+}
+.ppWrapper{
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: space-between;
+}
+.menuButtonDiv{
+    position: absolute;
+    margin-top: -40px;
+}
+.menuButton{
+    position: absolute;
+   font-family: "Press Start 2P";
+   font-size: 1.2em;
+   width: 100px;
+   height: 50px;
+}
+.moveTypeWrapper {
+    margin-top: 50px;
+    margin-left: 15px;
+    font-size: 1.5em;
 }
 .right {
     position:absolute;

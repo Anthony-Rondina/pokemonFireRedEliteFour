@@ -46,10 +46,6 @@
                 </div>
                 <!-- <div class="light"></div> -->
                 <div class="combat ">
-                    <div class="playerpics">
-                        <img src="charizard.png" alt="" class="pokemon">
-                        <!-- <img src="" alt="" class="trainer"> -->
-                    </div>
                     <div class="enemyPokemon">
                         <div class="enemyNameAndLevel">
                             <span class="enemyName">Pidgey</span>
@@ -76,17 +72,54 @@
                                 <div class="playerHPBarBackground"></div>
                             </div>
                             <div class="hpNumbers">
-                                <span class="inputHPNumbers">199</span>
-                                <span class="staticHPNumbers">/ 199</span></div>
+                                <span class="inputHPNumbers"></span>
+                                <span>/</span>
+                                <span class="maxHP"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="controlBar">
+                    <div class="mainMessageBox">
+                        <div class="yellowBG">
+                            <div class="msgBox">
+                                <div class="combatChoice">
+                                    <button class="fight choiceMoves">FIGHT</button>
+                                    <button class="bag choiceMoves">BAG</button>
+                                    <button class="pkmn choiceMoves">POKEMON</button>
+                                    <button class="run choiceMoves">RUN</button>
+                                </div>
+                                <div class="msgBoxContent">
+                                    <span class ="msgBoxText"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="menuButtonDiv hidden">
+                        <button class="menuButton">MENU</button>
+                    </div>
+                    <div class="controlBar hidden">
                         <div class="moveBar">
-                            <span>A wild Pidgey appeared!</span>
+                            <button id="mv1" class="mv1 moves"></button>
+                            <button id="mv2" class="mv2 moves"></button>
+                            <button id="mv3" class="mv3 moves"></button>
+                            <button id="mv4" class="mv4 moves"></button>
                         </div>
                         <div class="moveStatus">
-                            <span>Do you want to continue?</span>
+                            <div class="ppWrapper">
+                                <span class="pp">PP</span>
+                                <span class="currentPP"></span>
+                                <span>/</span>
+                                <span class="maxPP"></span>
+                            </div>
+                            <div class="moveTypeWrapper">
+                                <span>TYPE:</span>
+                                <span class="moveType"></span>
+                            </div>
                         </div>
+                    </div>
+                    <div class="playerpics">
+                        <img src="charizard.png" alt="" class="pokemon">
+                        <!-- <img src="" alt="" class="trainer"> -->
                     </div>
                 </div>
             </div>

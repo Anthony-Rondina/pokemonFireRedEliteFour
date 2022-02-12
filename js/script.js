@@ -1,6 +1,26 @@
-myPokemonCry = document.querySelector(".pCry")
-enemyPokemonCry = document.querySelector(".eCry")
-
+const myPokemonCry = document.querySelector(".pCry")
+const enemyPokemonCry = document.querySelector(".eCry")
+const fightButton = document.querySelector(".fight")
+const bagButton = document.querySelector(".bag")
+const pokemonButton = document.querySelector(".pkmn")
+const runButton = document.querySelector(".run")
+const moveBar = document.querySelector('.controlBar')
+const combatChoice = document.querySelector('.combatChoice')
+const mainMessageBox = document.querySelector('.mainMessageBox')
+const moveOneButton = document.querySelector('.mv1')
+const moveTwoButton = document.querySelector('.mv2')
+const moveThreeButton = document.querySelector('.mv3')
+const moveFourButton = document.querySelector('.mv4')
+const movesButtons = document.querySelectorAll(".moves")
+const choiceButtons = document.querySelectorAll('.choiceMoves')
+const ppNumber = document.querySelector('.ppCount')
+const currentPP = document.querySelector('.currentPP')
+const maxPP = document.querySelector('.maxPP')
+const typeInfo = document.querySelector('.moveType')
+const menuButtonDiv = document.querySelector('.menuButtonDiv')
+const menuButton = document.querySelector('.menuButton')
+const msgBoxText = document.querySelector('.msgBoxText')
+const pokemonImage = document.querySelector('.pokemon')
 class Player {
     constructor(name) {
         this.name = name;
@@ -9,6 +29,7 @@ class Player {
         this.img = "charizard.png"
         this.item = ''
         this.target = "Lorelei"
+        this.damage = 0
         this.targetPokemon = 0
         this.opponenet = "Lorelei"
         this.attackChoice = ''
@@ -21,12 +42,12 @@ class Player {
         this.confuseHeal = 5
         this.antidote = 5
         this.team = [{
-            name: "Charizard",
+            name: "CHARIZARD",
             cry: "sound.wav",
             type: ["fire", "flying"],
             weakness: ["rock", "electric", "rock", "water"],
             resist: ["bug", "grass", "bug", "grass", "fairy", "fire", "fighting", "ground", "steel",],
-            img: "img.src",
+            img: "charizard.png",
             tinyPic: "img.src",
             fainted: false,
             poisoned: false,
@@ -44,55 +65,59 @@ class Player {
             specialDefense: 107,
             speed: 122,
             moves: [{
-                name: "FlameThrower",
-                type: "fire",
+                name: "FLAMETHROWER",
+                type: "FIRE",
                 physical: false,
                 special: true,
                 status: true,
                 statusType: "burn",
                 pp: 20,
+                maxPP: 20,
                 power: 90,
                 accuracy: 1
             },
             {
-                name: "Wing Attack",
-                type: "flying",
+                name: "WING ATTACK",
+                type: "FLYING",
                 physical: true,
                 special: false,
                 status: false,
                 pp: 35,
+                maxPP: 35,
                 power: 60,
                 accuracy: 1,
             },
             {
-                name: "Fire Blast",
-                type: "fire",
+                name: "FIRE BLAST",
+                type: "FIRE",
                 physical: false,
                 special: true,
                 status: true,
                 statusType: "burn",
                 pp: 5,
+                maxPP: 5,
                 power: 120,
                 accuracy: .85,
             },
             {
-                name: "Aerial Ace",
-                type: "flying",
+                name: "AERIAL ACE",
+                type: "FLYING",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 20,
+                maxPP: 20,
                 power: 60,
                 accuracy: 1,
             }]
         },
         {
-            name: "Venusaur",
-            type: "grass",
+            name: "VENUSAUR",
+            type: "GRASS",
             cry: "sound.wav",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
-            img: "img.src",
+            img: "venusaur.png",
             tinyPic: "img.src",
             fainted: false,
             poisoned: false,
@@ -110,52 +135,57 @@ class Player {
             specialDefense: 122,
             speed: 102,
             moves: [{
-                name: "Razor Leaf",
+                name: "RAZOR LEAF",
+                type: "GRASS",
                 physical: true,
                 special: false,
                 status: false,
                 pp: 25,
+                maxPP: 25,
                 power: 55,
                 accuracy: 95
             },
             {
-                name: "Poison Powder",
-                type: "poison",
+                name: "POISON POWDER",
+                type: "POISON",
                 physical: false,
                 special: false,
                 status: true,
                 statusType: "poison",
                 pp: 35,
+                maxPP: 35,
                 power: 0,
                 accuracy: .75,
             },
             {
-                name: "Leech Seed",
-                type: "grass",
+                name: "LEECH SEED",
+                type: "GRASS",
                 physical: false,
                 special: false,
                 status: true,
                 pp: 10,
+                maxPP: 10,
                 power: 0,
                 accuracy: .9,
             },
             {
-                name: "Vine Whip",
-                type: "grass",
+                name: "VINE WHIP",
+                type: "GRASS",
                 physical: true,
                 special: false,
                 status: false,
                 loseTurn: false,
                 pp: 25,
+                maxPP: 25,
                 power: 45,
                 accuracy: 1,
             }]
         },
         {
-            name: "Blastoise",
-            type: "water",
+            name: "BLASTOISE",
+            type: "WATER",
             cry: "sound.wav",
-            img: "img.src",
+            img: "blastoise.png",
             tinyPic: "img.src",
             weakness: ["electric", "grass",],
             resist: ["fire", "ice", "steel", "water"],
@@ -175,51 +205,55 @@ class Player {
             specialDefense: 127,
             speed: 100,
             moves: [{
-                name: "Hydro Pump",
-                type: "water",
+                name: "HYDRO PUMP",
+                type: "WATER",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 5,
+                maxPP: 5,
                 power: 120,
                 accuracy: .8
             },
             {
-                name: "Surf",
-                type: "water",
+                name: "SURF",
+                type: "WATER",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 15,
+                maxPP: 15,
                 power: 90,
                 accuracy: 1,
             },
             {
-                name: "Earthquake",
-                type: "ground",
+                name: "EARTHQUAKE",
+                type: "GROUND",
                 physical: true,
                 special: false,
                 status: false,
                 pp: 10,
+                maxPP: 10,
                 power: 100,
                 accuracy: 1,
             },
             {
-                name: "Water Gun",
-                type: "water",
+                name: "WATER GUN",
+                type: "WATER",
                 physical: false,
                 special: true,
                 status: false,
                 loseTurn: false,
                 pp: 25,
+                maxPP: 25,
                 power: 40,
                 accuracy: 1,
             }]
         }, {
-            name: "Alakazam",
-            type: "psychic",
+            name: "ALAKAZAM",
+            type: "PSYCHIC",
             cry: "sound.wav",
-            img: "img.src",
+            img: "alakazam.png",
             tinyPic: "img.src",
             weakness: ["bug", "dark", "ghost"],
             resist: ["fighting", "psychic"],
@@ -239,52 +273,57 @@ class Player {
             specialDefense: 117,
             speed: 143,
             moves: [{
-                name: "Psychic",
-                type: "psychic",
+                name: "PSYCHIC",
+                type: "PSYCHIC",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 10,
+                maxPP: 10,
                 power: 90,
                 accuracy: 1
             },
             {
-                name: "Psybeam",
-                type: "psychic",
+                name: "PSYBEAM",
+                type: "PSYCHIC",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 20,
+                maxPP: 20,
+                maxPP: 20,
                 power: 65,
                 accuracy: 1,
             },
             {
-                name: "Confusion",
-                type: "psychic",
+                name: "CONFUSION",
+                type: "PSYCHIC",
                 physical: false,
                 special: true,
                 status: true,
                 statusType: "confusion",
                 pp: 20,
+                maxPP: 20,
                 power: 50,
                 accuracy: 1,
             },
             {
-                name: "Recover",
-                type: "psychic",
+                name: "RECOVER",
+                type: "PSYCHIC",
                 physical: false,
                 special: false,
                 status: true,
                 loseTurn: false,
                 pp: 10,
+                maxPP: 10,
                 power: 0,
                 accuracy: 1,
             }]
         }, {
-            name: "Lapras",
-            type: ["water", "ice"],
+            name: "LAPRAS",
+            type: ["WATER", "ICE"],
             cry: "sound.wav",
-            img: "img.src",
+            img: "lapras.png",
             tinyPic: "img.src",
             weakness: ["electric", "fighting", "grass", "rock",],
             resist: ["ice", "water"],
@@ -304,54 +343,58 @@ class Player {
             specialDefense: 117,
             speed: 82,
             moves: [{
-                name: "Ice Beam",
-                type: "ice",
+                name: "ICE BEAM",
+                type: "ICE",
                 physical: false,
                 special: true,
                 status: true,
                 statusType: "frozen",
                 pp: 10,
+                maxPP: 10,
                 power: 90,
                 accuracy: 1
             },
             {
-                name: "Sing",
-                type: "normal",
+                name: "SING",
+                type: "NORMAL",
                 physical: false,
                 special: false,
                 status: true,
                 statusType: "sleep",
                 pp: 15,
+                maxPP: 15,
                 power: 0,
                 accuracy: 1,
             },
             {
-                name: "Surf",
-                type: "water",
+                name: "SURF",
+                type: "WATER",
                 physical: false,
                 special: true,
                 status: true,
                 pp: 5,
+                maxPP: 5,
                 power: 95,
                 accuracy: 1,
             },
             {
-                name: "Blizzard",
-                type: "ice",
+                name: "BLIZZARD",
+                type: "ICE",
                 physical: false,
                 special: true,
                 status: true,
                 statusType: "frozen",
                 loseTurn: false,
                 pp: 5,
+                maxPP: 5,
                 power: 110,
                 accuracy: .75,
             }]
         }, {
-            name: "Rhydon",
+            name: "RHYDON",
             type: ["water", "ice"],
             cry: "sound.wav",
-            img: "img.src",
+            img: "rhydon.png",
             tinyPic: "img.src",
             weakness: ["electric", "fighting", "grass", "rock",],
             resist: ["ice", "water"],
@@ -378,6 +421,7 @@ class Player {
                 status: true,
                 statusType: "frozen",
                 pp: 10,
+                maxPP: 15,
                 power: 90,
                 accuracy: 1
             },
@@ -389,6 +433,7 @@ class Player {
                 status: true,
                 statusType: "sleep",
                 pp: 15,
+                maxPP: 15,
                 power: 0,
                 accuracy: 1,
             },
@@ -399,6 +444,7 @@ class Player {
                 special: true,
                 status: true,
                 pp: 5,
+                maxPP: 15,
                 power: 95,
                 accuracy: 1,
             },
@@ -411,6 +457,7 @@ class Player {
                 statusType: "frozen",
                 loseTurn: false,
                 pp: 5,
+                maxPP: 15,
                 power: 110,
                 accuracy: .75,
             }]
@@ -460,9 +507,12 @@ class Player {
             case "fullRestore":
                 if (this.fullRestore === 0) {
                     console.log('none')
+                } else if (pokemon.hp === this.team[0].totalHP) {
+                    console.log('you are already full HP')
                 } else {
                     pokemon.hp = this.team[0].totalHP
                     console.log("you are healed!")
+                    playerPercent(pokemon.hp, this.team[0].totalHP)
                     this.fullRestore--
                     this.target.attack(this.team[0])
                 }
@@ -584,10 +634,10 @@ class Player {
 
         //set damage if move is physical
         if (chosenAttack.physical) {
-            damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+            this.damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
             //set damage if move is special
         } else if (chosenAttack.special) {
-            damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+            this.damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
         }
 
         //check if move hits
@@ -595,7 +645,7 @@ class Player {
         if (index > chosenAttack.accuracy) {
             //check if move is Same Type Attack Bonus
             if (chosenAttack.type.includes(this.team[0].type)) {
-                damage *= 1.5
+                this.damage *= 1.5
             }
             //Check if target pokemon is weak or resistant to attack type
             this.targetPokemon.weakness.forEach((type) => {
@@ -612,21 +662,21 @@ class Player {
             //Crit Chance is 6.25
             let critIndex = Math.random()
             if (critIndex > .92) {
-                damage *= 2
+                this.damage *= 2
             }
 
             //apply super type damage
             if (superEffectiveDamageMultiplyer > 1) {
-                damage * superEffectiveDamageMultiplyer
+                this.damage * superEffectiveDamageMultiplyer
                 console.log("It's super effective!")
             } else if (superEffectiveDamageMultiplyer < 1) {
-                damage / superEffectiveDamageMultiplyer
+                this.damage / superEffectiveDamageMultiplyer
                 console.log("It's not very effective.")
             }
 
             //apply damage  
-            this.targetPokemon.hp -= damage
-            console.log(damage)
+            this.targetPokemon.hp -= this.damage
+            console.log(this.damage)
             //code chosenmove here
             this.applyStatus(chosenAttack)
 
@@ -699,6 +749,23 @@ class Player {
                 break;
         }
     }
+}
+player = new Player("Ant")
+
+const swapPokemon = () => {
+    pokemonImage.classList.add('faint')
+    setTimeout(() => {
+        pokemonImage.classList.remove('faint')
+        pokemonImage.src = player.team[0].img
+    }, 1000);
+    let swap = {}
+    let replace = {}
+    let choice = Math.floor(Math.random() * 6)
+    swap = player.team[0]
+    replace = player.team[choice]
+    player.team[0] = replace
+    player.team[choice] = swap
+    msgBoxText.textContent = `What will ${player.team[0].name} do?`
 }
 
 let codeTime = true
@@ -811,7 +878,7 @@ const cheatCode = (evt) => {
         return
     }
 }
-player = new Player("Ant")
+
 
 const animateNumbers = (start, end, duration) => {
     if (start === end) return;
@@ -830,23 +897,116 @@ const animateNumbers = (start, end, duration) => {
 buttonA = document.querySelector('.buttonA')
 hpBar = document.querySelector('.playerHPanimated')
 hpNumbers = document.querySelector('.inputHPNumbers')
-const findPercent = () => {
+currentPokemon = document.querySelector('.pokemon')
+maxHP = document.querySelector('.maxHP')
+hpNumbers.textContent = player.team[0].hp
+maxHP.textContent = player.team[0].totalHP
+
+
+
+const playerPercent = (endPoint) => {
     let start = player.team[0].hp
     player.team[0].hp = Math.floor(Math.random() * 100)
-    console.log(player.team[0].hp)
     let end = player.team[0].hp
     damage = Math.floor((player.team[0].hp / player.team[0].totalHP) * 100)
-    if (damage <= 50 && damage >= 21) {
-        hpBar.style.backgroundColor = "darkorange";
-    } else if (damage <= 20) {
-        hpBar.style.backgroundColor = "darkred";
-    } else {
-        hpBar.style.backgroundColor = "green";
-    }
-    console.log("damage is ", damage)
-    hpBar.style.width = damage + "%"
-    animateNumbers(start, end, 1500);
-    return damage
+    currentPokemon.classList.add("pokemonHit")
+    setTimeout(() => {
+        currentPokemon.classList.remove("pokemonHit")
+    }, 750);
+    setTimeout(() => {
+        if (damage <= 50 && damage >= 21) {
+            hpBar.style.backgroundColor = "darkorange";
+        } else if (damage <= 20) {
+            hpBar.style.backgroundColor = "darkred";
+        } else {
+            hpBar.style.backgroundColor = "green";
+        }
+        hpBar.style.width = damage + "%"
+        animateNumbers(start, end, 1500);
+    }, 1000);
 }
-buttonA.onclick = findPercent
+const playerFaint = () => {
+    setTimeout(() => {
+        currentPokemon.classList.add("faint")
+    }, 1500);
+}
+const fightMenu = () => {
+    moveBar.classList.remove("hidden")
+    combatChoice.classList.add('hidden')
+    mainMessageBox.classList.add('hidden')
+    moveOneButton.textContent = player.team[0].moves[0].name
+    moveTwoButton.textContent = player.team[0].moves[1].name
+    moveThreeButton.textContent = player.team[0].moves[2].name
+    moveFourButton.textContent = player.team[0].moves[3].name
+}
 
+
+choiceButtons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+        let after = button.textContent
+        button.textContent = `> ${after}`
+    })
+})
+choiceButtons.forEach((button) => {
+    button.addEventListener('mouseout', () => {
+        let after = button.textContent
+        button.textContent = after.substring(2)
+    })
+})
+
+movesButtons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+        switch (button.id) {
+            case "mv1":
+                button.textContent = `> ${player.team[0].moves[0].name}`
+                currentPP.textContent = `${player.team[0].moves[0].pp}`
+                maxPP.textContent = `${player.team[0].moves[0].maxPP}`
+                typeInfo.textContent = `${player.team[0].moves[0].type}`
+                break;
+            case "mv2":
+                button.textContent = `> ${player.team[0].moves[1].name}`
+                currentPP.textContent = `${player.team[0].moves[1].pp}`
+                maxPP.textContent = `${player.team[0].moves[1].maxPP}`
+                typeInfo.textContent = `${player.team[0].moves[1].type}`
+                break;
+            case "mv3":
+                button.textContent = `> ${player.team[0].moves[2].name}`
+                currentPP.textContent = `${player.team[0].moves[2].pp}`
+                maxPP.textContent = `${player.team[0].moves[2].maxPP}`
+                typeInfo.textContent = `${player.team[0].moves[2].type}`
+                break;
+            case "mv4":
+                button.textContent = `> ${player.team[0].moves[3].name}`
+                currentPP.textContent = `${player.team[0].moves[3].pp}`
+                maxPP.textContent = `${player.team[0].moves[3].maxPP}`
+                typeInfo.textContent = `${player.team[0].moves[3].type}`
+                break;
+        }
+    })
+})
+movesButtons.forEach((button) => {
+    button.addEventListener('mouseout', () => {
+        let after = button.textContent
+        button.textContent = after.substring(2)
+    })
+})
+
+menuButton.addEventListener('click', (evt) => {
+    moveBar.classList.add("hidden")
+    combatChoice.classList.remove('hidden')
+    mainMessageBox.classList.remove('hidden')
+    menuButtonDiv.classList.add('hidden')
+})
+runButton.addEventListener('click', (evt) => {
+    msgBoxText.textContent = "Can't Escape!"
+    setTimeout(() => {
+        msgBoxText.textContent = `What will ${player.team[0].name} do?`
+    }, 1500);
+})
+
+fightButton.addEventListener('click', (evt) => {
+    fightMenu()
+    menuButtonDiv.classList.remove('hidden')
+})
+buttonA.onclick = playerPercent
+pokemonButton.onclick = swapPokemon
