@@ -1,4 +1,6 @@
 const myPokemonCry = document.querySelector(".pCry")
+const pokemonName = document.querySelector('.myName')
+const pokemonLevel = document.querySelector('.myLvl')
 const enemyPokemonCry = document.querySelector(".eCry")
 const fightButton = document.querySelector(".fight")
 const bagButton = document.querySelector(".bag")
@@ -21,6 +23,12 @@ const menuButtonDiv = document.querySelector('.menuButtonDiv')
 const menuButton = document.querySelector('.menuButton')
 const msgBoxText = document.querySelector('.msgBoxText')
 const pokemonImage = document.querySelector('.pokemon')
+const buttonA = document.querySelector('.buttonA')
+const hpBar = document.querySelector('.playerHPanimated')
+const hpNumbers = document.querySelector('.inputHPNumbers')
+const currentPokemon = document.querySelector('.pokemon')
+const maxHP = document.querySelector('.maxHP')
+
 class Player {
     constructor(name) {
         this.name = name;
@@ -58,7 +66,7 @@ class Player {
             asleep: 0,
             hp: 156,
             totalHP: 156,
-            level: 51,
+            level: "Lv51",
             attack: 116,
             specialAttack: 117,
             defense: 100,
@@ -128,7 +136,7 @@ class Player {
             asleep: 0,
             hp: 158,
             totalHP: 158,
-            level: 51,
+            level: "Lv51",
             attack: 114,
             specialAttack: 109,
             defense: 105,
@@ -198,7 +206,7 @@ class Player {
             asleep: 0,
             hp: 157,
             totalHP: 157,
-            level: 51,
+            level: "Lv51",
             attack: 115,
             specialAttack: 96,
             defense: 122,
@@ -266,7 +274,7 @@ class Player {
             asleep: 0,
             hp: 132,
             totalHP: 132,
-            level: 51,
+            level: "Lv51",
             attack: 78,
             specialAttack: 142,
             defense: 66,
@@ -336,7 +344,7 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: 51,
+            level: "Lv51",
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -407,7 +415,7 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: 51,
+            level: "Lv51",
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -765,6 +773,10 @@ const swapPokemon = () => {
     replace = player.team[choice]
     player.team[0] = replace
     player.team[choice] = swap
+    hpNumbers.textContent = player.team[0].hp
+    maxHP.textContent = player.team[0].totalHP
+    pokemonName.textContent = player.team[0].name
+    pokemonLevel.textContent = player.team[0].level
     msgBoxText.textContent = `What will ${player.team[0].name} do?`
 }
 
@@ -894,11 +906,6 @@ const animateNumbers = (start, end, duration) => {
         }
     }, stepTime);
 }
-buttonA = document.querySelector('.buttonA')
-hpBar = document.querySelector('.playerHPanimated')
-hpNumbers = document.querySelector('.inputHPNumbers')
-currentPokemon = document.querySelector('.pokemon')
-maxHP = document.querySelector('.maxHP')
 hpNumbers.textContent = player.team[0].hp
 maxHP.textContent = player.team[0].totalHP
 
