@@ -378,7 +378,8 @@ button{
 }
 .menuButtonDiv{
     position: absolute;
-    margin-top: -40px;
+    margin-top: -58px;
+    margin-left: 620px
 }
 .menuButton{
     position: absolute;

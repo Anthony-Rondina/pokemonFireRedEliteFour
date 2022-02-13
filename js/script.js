@@ -318,7 +318,7 @@ const animateThrow = () => {
         msgBoxText.textContent = `What will ${player.team[0].name} do?`
         setTimeout(() => {
             combatChoice.classList.remove('hidden')
-        }, 1300);
+        }, 800);
     }, 2800);
     if (player.boy) {
         trainer.src = "/trainers/maleTrainer1.png"
