@@ -25,6 +25,7 @@ const msgBoxText = document.querySelector('.msgBoxText')
 const pokemonImage = document.querySelector('.pokemon')
 const buttonA = document.querySelector('.buttonA')
 const buttonB = document.querySelector('.buttonB')
+const upButton = document.querySelector('.up')
 const hpBar = document.querySelector('.playerHPanimated')
 const hpNumbers = document.querySelector('.inputHPNumbers')
 const currentPokemon = document.querySelector('.pokemon')
@@ -34,12 +35,27 @@ const pokeball = document.querySelector('.pokeball')
 const startButton = document.querySelector('.start')
 const welcomeScreen = document.querySelector('.welcome')
 const combatScreen = document.querySelector('.combat')
+const pokeBallThrown = document.querySelector('.pokeballThrown')
+const playerInput = document.querySelector('.nameInput')
+const continueButton = document.querySelector('.continueButton')
+const introScreen = document.querySelector('.intro')
+const introMessage = document.querySelector('.introMessage')
+const inputNameDiv = document.querySelector('.inputName')
+const genderChoice = document.querySelector('.genderChoice')
+const boyButton = document.querySelector('.boy')
+const girlButton = document.querySelector('.girl')
+const beginGame = document.querySelector('.beginGame')
 
-if (player.boy) {
-    trainer.src = "/trainers/maleTrainer1.png"
-} else {
-    trainer.src = "/trainers/femaleTrainer1.png"
-}
+
+
+
+//Create Global Variables
+let input = ''
+
+
+
+
+genderChoice.style.display = "none"
 
 const swapPokemon = () => {
     let swap = {}
@@ -357,19 +373,65 @@ const animateThrow = () => {
     }
 }
 
+const characterCreation = () => {
+
+}
+
 let intro = true
 if (intro) {
-    intro = false
     startButton.addEventListener('click', (evt) => {
         welcomeScreen.classList.add('hidden')
-        combatScreen.classList.remove('hidden')
-        setTimeout(() => {
-            swapPokemon()
-        }, 1000);
+        introScreen.classList.remove('hidden')
+        intro = false
     })
 } else {
     start.onclick = cheatCode
 }
+
+const moveBall = () => {
+    pokeBallThrown.classList.remove('pokeballThrown')
+    pokeballThrown.classList.add('pokeballmid')
+}
+
+const gender = () => {
+    if (playerInput.value.length > 0) {
+        player.name = playerInput.value
+    }
+    inputNameDiv.style.display = "none"
+    genderChoice.style.display = "flex"
+    introMessage.textContent = "Are you a boy or a girl?"
+}
+
+const genderDecision = (evt) => {
+    switch (evt.target.id) {
+        case "boy":
+            trainer.src = "/trainers/maleTrainer1.png"
+            player.boy = true
+            player.girl = false
+            genderChoice.style.display = "none"
+            introMessage.textContent = `You have done well trainer ${player.name}! You have traveled all over the Kanto region collecting various types of POKEMON. After defeating all the gym leaders and collecting every badge you now face the region's toughest challenge...The Elite Four! You are ready, your pokemon are ready, you step into the arena and take on your toughest foes yet...`
+            beginGame.classList.remove('hidden')
+            break;
+        case "girl":
+            trainer.src = "/trainers/femaleTrainer1.png"
+            player.boy = false
+            player.girl = true
+            genderChoice.style.display = "none"
+            introMessage.textContent = `You have done well trainer ${player.name}! You have traveled all over the Kanto region collecting various types of POKEMON. After defeating all the gym leaders and collecting every badge you now face the region's toughest challenge...The Elite Four! You are ready, your pokemon are ready, you step into the arena and take on your toughest foes yet...`
+            beginGame.classList.remove('hidden')
+    }
+}
+const beginCombat = () => {
+    introScreen.classList.add("hidden")
+    combatScreen.classList.remove("hidden")
+    swapPokemon()
+}
+
+beginGame.onclick = beginCombat
+girlButton.onclick = genderDecision
+boyButton.onclick = genderDecision
+continueButton.onclick = gender
+upButton.onclick = moveBall
 buttonA.onclick = playerPercent
 pokemonButton.onclick = swapPokemon
-buttonB.onclick = swapPokemon
+buttonB.onclick = cheatCode

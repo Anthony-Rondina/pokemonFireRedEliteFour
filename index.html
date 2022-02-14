@@ -29,7 +29,7 @@
                 <button class="start">s</button>
             </div>
             <div class="screen">
-                <div class="welcome ">
+                <div class="welcome">
                     <div class="creditBar">
                         <span>Recreated by Anthony Rondina</span>
                         <span>2022</span>
@@ -38,11 +38,16 @@
                 </div>
                 <div class="intro hidden">
                     <span class="introMessage">What is your name?</span>
+                    <button class="beginGame hidden">Begin the Gauntlet!</button>
                     <div class="introButtons">
-                        <input class="nameInput" type="text" placeholder="Enter Your Name">
-                        <button class="continueButton">Continue</button>
-                        <button class="boy hidden">Boy</button>
-                        <button class="girl hidden">Girl</button>
+                        <div class="inputName">
+                            <input class="nameInput" type="text" placeholder="Enter Your Name">
+                            <button class="continueButton">Continue</button>
+                        </div>
+                    </div>
+                    <div class="genderChoice">
+                        <button id="boy" class="boy">Boy</button>
+                        <button id="girl" class="girl">Girl</button>
                     </div>
                 </div>
                 <div class="team hidden">
@@ -50,6 +55,9 @@
                 </div>
                 <!-- <div class="light"></div> -->
                 <div class="combat hidden">
+                    <div class="throwBall">
+                        <!-- <img src="pokeball.png" alt="" class="pokeballmid"> -->
+                    </div>
                     <div class="hpLimitBox">
                         <div class="playerHPanimated"></div>
                     </div>
@@ -70,7 +78,7 @@
                     <div class="currentPokemonInfo">
                         <div class="nameAndLevelDiv">
                             <div class="nameAndLevel">
-                                <span class="myName">Charizard</span>
+                                <span class="myName"></span>
                                 <span class="myLvl">Lv</span>
                             </div>
                         </div>

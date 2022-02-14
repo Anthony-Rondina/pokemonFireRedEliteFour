@@ -468,7 +468,23 @@ button{
     width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+}
+.nameInput{
+    font-family: 'Press Start 2P';
+    width: 220px;
+    height: 30px;
+}
+.beginGame {
+    width: 490px;
+    height: 70px;
+    font-family: 'Press Start 2P';
+    font-size: .5em;
+}
+.continueButton {
+    font-family: 'Press Start 2P';
+    width: 228px;
+    height: 25px;
 }
 .combat {
     display: block;
@@ -512,4 +528,60 @@ div > span {
     font-size: 1.3em;
     transition-property: all;
     transition-duration: 1.5s;
+}
+.pokeballThrown {
+height: 50px;
+position: absolute;
+transition-property: all;
+transition-duration: 1.5s;
+margin-top: 500px;
+margin-left: 350px;
+/* opacity: 0; */
+}
+.pokeballmid {
+    opacity: 100;
+    height: 50px;
+    position: absolute;
+    transform: rotate(1925deg);
+    margin-top: 300px;
+    margin-left: 500px;
+    }
+.pokeballmid {
+    height: 50px;
+    position: absolute;
+    transition-property: all;
+    transition-duration: 1.5s;
+    transform: rotate(1925deg);
+    margin-top: 300px;
+    margin-left: 500px;
+    }
+.rotated {
+    transform: rotate(1905deg);
+}
+
+.pokeballThrownFade{
+    opacity: 0;
+}
+.genderChoice{
+    /* border: red solid; */
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    justify-content: space-around;
+    align-items: center;
+}
+.genderChoice > button {
+    height: 50px;
+    width: 180px;
+    font-size: .5em;
+    font-family: 'Press Start 2P';
+text-align: center;
+}
+.inputName{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.introMessage{
+    font-size: .6em;
 }

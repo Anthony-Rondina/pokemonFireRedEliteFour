@@ -729,4 +729,4 @@ class Player {
 }
 
 //create instance of trainer
-player = new Player("Ant")
+player = new Player("Red")
