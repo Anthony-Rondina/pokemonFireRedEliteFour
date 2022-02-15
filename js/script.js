@@ -1,7 +1,7 @@
-const myPokemonCry = document.querySelector(".pCry")
-const pokemonName = document.querySelector('.myName')
+let myPokemonCry = document.querySelector(".pCry")
+let pokemonName = document.querySelector('.myName')
 const pokemonLevel = document.querySelector('.myLvl')
-const enemyPokemonCry = document.querySelector(".eCry")
+let enemyPokemonCry = document.querySelector(".eCry")
 const fightButton = document.querySelector(".fight")
 const bagButton = document.querySelector(".bag")
 const pokemonButton = document.querySelector(".pkmn")
@@ -45,15 +45,14 @@ const genderChoice = document.querySelector('.genderChoice')
 const boyButton = document.querySelector('.boy')
 const girlButton = document.querySelector('.girl')
 const beginGame = document.querySelector('.beginGame')
+const opponent = document.querySelector('.enemyTrainer')
 
-
-
+const victoryRoadTheme = document.getElementById("road")
+const introTheme = document.getElementById('introTheme')
+const combat1Theme = document.getElementById('combat1')
 
 //Create Global Variables
 let input = ''
-
-
-
 
 genderChoice.style.display = "none"
 
@@ -314,19 +313,31 @@ const moveTrainer = () => {
     }, 650);
     animateThrow()
     setTimeout(() => {
+        moveBall()
+    }, 500);
+    setTimeout(() => {
         animateBall()
     }, 800);
     setTimeout(() => {
         pokemonImage.classList.remove('faint')
         pokemonImage.src = player.team[0].img
-    }, 900);
+    }, 1200);
 }
 const animateBall = () => {
-    pokeball.classList.remove('pokeballBlank')
+    pokeball.style.opacity = "0"
     setTimeout(() => {
-        pokeball.classList.add('pokeballBlank')
+        pokeball.style.opacity = "100"
+    }, 300);
+    setTimeout(() => {
+        pokeball.style.opacity = "0"
 
-    }, 500);
+    }, 700);
+}
+const moveBall = () => {
+    pokeBallThrown.style.marginTop = "-200px";
+    pokeBallThrown.style.marginLeft = "600px";
+    pokeBallThrown.style.transform = 'rotate(1290deg)';
+    pokeBallThrown.style.opacity = '0'
 }
 const animateThrow = () => {
     msgBoxText.textContent = `Go ${player.team[0].name}!`
@@ -344,6 +355,7 @@ const animateThrow = () => {
         setTimeout(() => {
             trainer.src = "/trainers/maleTrainer3.png"
         }, 400);
+
         setTimeout(() => {
             trainer.src = "/trainers/maleTrainer4.png"
         }, 500);
@@ -373,24 +385,16 @@ const animateThrow = () => {
     }
 }
 
-const characterCreation = () => {
-
-}
-
 let intro = true
 if (intro) {
     startButton.addEventListener('click', (evt) => {
         welcomeScreen.classList.add('hidden')
         introScreen.classList.remove('hidden')
         intro = false
+        victoryRoadTheme.play()
     })
 } else {
     start.onclick = cheatCode
-}
-
-const moveBall = () => {
-    pokeBallThrown.classList.remove('pokeballThrown')
-    pokeballThrown.classList.add('pokeballmid')
 }
 
 const gender = () => {
@@ -422,16 +426,34 @@ const genderDecision = (evt) => {
     }
 }
 const beginCombat = () => {
+    victoryRoadTheme.pause()
+    combat1Theme.play()
+    pokeBallThrown.style.opacity = '0'
+    codeTime = false
+    setTimeout(() => {
+        opponent.classList.remove("enemyTrainerLeave")
+    }, 1000);
+    setTimeout(() => {
+        trainer.classList.remove("trainerThrow")
+    }, 1000);
+    setTimeout(() => {
+        pokeBallThrown.style.opacity = '1000'
+    }, 2000);
     introScreen.classList.add("hidden")
     combatScreen.classList.remove("hidden")
-    swapPokemon()
+    setTimeout(() => {
+        msgBoxText.textContent = "Loreli: No one can best me when it comes to icy POKEMON! Are you ready?"
+    }, 2500);
+    // swapPokemon()
 }
-
+const test = () => {
+    opponent.classList.add("enemyTrainerLeave")
+}
 beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
 continueButton.onclick = gender
-upButton.onclick = moveBall
+upButton.onclick = test
 buttonA.onclick = playerPercent
 pokemonButton.onclick = swapPokemon
-buttonB.onclick = cheatCode
+buttonB.onclick = swapPokemon

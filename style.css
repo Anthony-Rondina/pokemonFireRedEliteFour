@@ -46,6 +46,9 @@ body{
      margin-left: 5px;
      margin-top: 5px;
  }
+ .msgBoxText {
+    line-height: 150%;
+ }
  .msgBoxContent{
     margin-top: 20px;
     margin-left: 20px;
@@ -76,6 +79,19 @@ body{
      border: none;
      font-family: 'Press Start 2P';
  }
+ .enemyTrainer{
+     position:absolute;
+     margin-top: -670px;
+     margin-left: 850px;
+     transition-property: all;
+    transition-duration: 1s;
+ }
+ .enemyTrainerLeave{
+    position:absolute;
+    margin-top: -670px;
+    margin-left: 1070px;
+    opacity: 0;
+}
  .enemyPokemon{
     background-color: #d2d2bb;
     width: 470px;
@@ -254,8 +270,23 @@ body{
     position: absolute;
     transition-property: all;
     transition-duration: .5s;
-    margin-top: -482px;
+    margin-top: -480px;
     margin-left: 300px;
+}
+.eTrainerPokemon{
+    z-index: 0;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    margin-top: -645px;
+    margin-left: 800px;
+}
+.eTrainerPokemonFaint{
+    z-index: 0;
+    position: absolute;
+    opacity: 0;
+    margin-top: -550px;
+    margin-left: 800px;
 }
 .pokemonHit{
     z-index: 1;
@@ -272,8 +303,8 @@ body{
     z-index: 0;
     position: absolute;
     transition-property: all;
-    transition-duration: .5s;
-    margin-top: -482px;
+    transition-duration: 1s;
+    margin-top: -478px;
     margin-left: 350px;
 }
 .trainerThrow{
@@ -296,8 +327,8 @@ body{
     border: white 2px solid;
     filter: blur(1.8rem);
     border-radius: 50%;
-    margin-top: 200px;
-    margin-left: 250px;
+    margin-top: 300px;
+    margin-left: 300px;
 }
 .pokeballBlank {
     z-index: 0;
@@ -462,6 +493,9 @@ button{
     width: 100%;
     height: 100%;
     background-color: black;
+    background-image: url(vr.png);
+    background-repeat: no-repeat;
+    background-size: 27em;
 }
 .introButtons {
     margin-top: 25px;
@@ -484,7 +518,7 @@ button{
 .continueButton {
     font-family: 'Press Start 2P';
     width: 228px;
-    height: 25px;
+    height: 35px;
 }
 .combat {
     display: block;
@@ -530,30 +564,34 @@ div > span {
     transition-duration: 1.5s;
 }
 .pokeballThrown {
-height: 50px;
-position: absolute;
-transition-property: all;
-transition-duration: 1.5s;
-margin-top: 500px;
-margin-left: 350px;
-/* opacity: 0; */
+    opacity: 100;
+    height: 50px;
+    position: absolute;
+    transition-property: all;
+    transition-duration: 1s;
+    transform: rotate(0deg);
+    margin-top: -400px;
+    margin-left: 460px;
+    z-index: 0;
 }
 .pokeballmid {
     opacity: 100;
     height: 50px;
     position: absolute;
-    transform: rotate(1925deg);
-    margin-top: 300px;
+    transition-property: all;
+    transition-duration: 1s;
+    transform: rotate(0deg);
+    margin-top: -400px;
     margin-left: 500px;
+    z-index: 0;
     }
-.pokeballmid {
+.pokeballEnd {
     height: 50px;
     position: absolute;
-    transition-property: all;
-    transition-duration: 1.5s;
     transform: rotate(1925deg);
-    margin-top: 300px;
-    margin-left: 500px;
+    margin-top: -210px;
+    margin-left: 600px;
+    opacity: 0;
     }
 .rotated {
     transform: rotate(1905deg);
@@ -584,4 +622,6 @@ text-align: center;
 }
 .introMessage{
     font-size: .6em;
+    line-height: 130%;
+    text-shadow: 5px 5px 2px black, 0 0 1em black,  0 .2em black;
 }

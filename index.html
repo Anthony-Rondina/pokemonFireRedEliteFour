@@ -55,9 +55,6 @@
                 </div>
                 <!-- <div class="light"></div> -->
                 <div class="combat hidden">
-                    <div class="throwBall">
-                        <!-- <img src="pokeball.png" alt="" class="pokeballmid"> -->
-                    </div>
                     <div class="hpLimitBox">
                         <div class="playerHPanimated"></div>
                     </div>
@@ -65,8 +62,8 @@
                     <div class="pokeball pokeballBlank"></div>
                     <div class="enemyPokemon">
                         <div class="enemyNameAndLevel">
-                            <span class="enemyName">Pidgey</span>
-                            <span class="enemyLvl">Lv51</span>
+                            <span class="enemyName"></span>
+                            <span class="enemyLvl">Lv</span>
                         </div>
                         <div class="enemyHPAndNubersDiv">
                             <div class="enemyHPBackground">
@@ -109,7 +106,9 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="throwBall">
+                            <img src="pokeball.png" alt="" class="pokeballThrown">
+                        </div>
                     </div>
                     <div class="menuButtonDiv hidden">
                         <button class="menuButton">MENU</button>
@@ -134,9 +133,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="enemyPics">
+                        <img src="elite4trainers/Loreli.png" alt="" class="enemyTrainer enemyTrainerLeave">
+                        <img src="dewgong.png" alt="" class="eTrainerPokemon eTrainerPokemonFaint">
+                    </div>
                     <div class="playerpics">
                         <img src="charizard.png" alt="" class="pokemon faint">
-                        <img src="/trainers/maleTrainer1.png" alt="" class="trainer">
+                        <img src="/trainers/maleTrainer1.png" alt="" class="trainer trainerThrow">
                     </div>
                 </div>
             </div>
@@ -146,6 +149,11 @@
             </div>
         </div>
     </div>
+    <audio src="VictoryRoad.mp3" id="road"></audio>
+    <audio src="intro.mp3" id="introTheme"></audio>
+    <audio src="combat1.mp3" id="combat1"></audio>
+
+
 </body>
 
 </html>
