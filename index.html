@@ -29,6 +29,11 @@
                 <button class="start">s</button>
             </div>
             <div class="screen">
+                <div class="powerOn">
+                    <button class="power">Power On</button>
+                </div>
+                <div class="battleIntro sendBack">
+                </div>
                 <div class="welcome">
                     <div class="creditBar">
                         <span>Recreated by Anthony Rondina</span>
@@ -59,11 +64,15 @@
                         <div class="playerHPanimated"></div>
                     </div>
                     <div class="enemyHPanimated"></div>
+                    <div class="epokeball pokeballBlank"></div>
                     <div class="pokeball pokeballBlank"></div>
                     <div class="enemyPokemon">
                         <div class="enemyNameAndLevel">
-                            <span class="enemyName"></span>
-                            <span class="enemyLvl">Lv</span>
+                            <span class="enemyName">-</span>
+                            <div class="enemyLevelDiv">
+                                <span>Lv</span>
+                                <span class="enemyLvl">-</span>
+                            </div>
                         </div>
                         <div class="enemyHPAndNubersDiv">
                             <div class="enemyHPBackground">
@@ -135,6 +144,7 @@
                     </div>
                     <div class="enemyPics">
                         <img src="elite4trainers/Loreli.png" alt="" class="enemyTrainer enemyTrainerLeave">
+                        <img src="pokeball.png" alt="" class="epokeballThrown hidden">
                         <img src="dewgong.png" alt="" class="eTrainerPokemon eTrainerPokemonFaint">
                     </div>
                     <div class="playerpics">
@@ -152,6 +162,7 @@
     <audio src="VictoryRoad.mp3" id="road"></audio>
     <audio src="intro.mp3" id="introTheme"></audio>
     <audio src="combat1.mp3" id="combat1"></audio>
+    <audio src="powerOn.mp3" id="powerOn"></audio>
 
 
 </body>

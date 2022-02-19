@@ -3,6 +3,8 @@ class Lorelei {
         this.name = Lorelei;
         this.boy = false
         this.girl = true
+        this.changePokemon = 5
+        this.defeated = false
         this.img = "elite4trainers/Loreli.png"
         this.target = player.team[0]
         this.damage = 0
@@ -25,7 +27,7 @@ class Lorelei {
             asleep: 0,
             hp: 177,
             totalHP: 177,
-            level: "Lv54",
+            level: "54",
             attack: 106,
             specialAttack: 87,
             defense: 108,
@@ -430,6 +432,23 @@ class Lorelei {
             }]
         }]
     }
+    choosePokemon() {
+        enemyPokeball.classList.remove("hidden")
+        msgBoxText.textContent = `Go ${this.team[0].name}!`
+        setTimeout(() => {
+            enemyLevel.textContent = this.team[0].level
+            enemyName.textContent = this.team[0].name
+            animateEnemyBall()
+            opponent.classList.add("enemyTrainerLeave")
+        }, 1000);
+        setTimeout(() => {
+            enemyPokeball.classList.add("hidden")
+            opponentPokemon.classList.remove("eTrainerPokemonFaint")
+            setTimeout(() => {
+                msgBoxText.textContent = ``
+            }, 2000);
+        }, 1450);
+    }
     preCheckStatus(yourPokemon) {
         //Check if confused
         if (yourPokemon.confused) {
@@ -585,3 +604,5 @@ class Lorelei {
         }
     }
 }
+
+lorelei = new Lorelei()

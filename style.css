@@ -99,7 +99,7 @@ body{
     border: solid 8px #3b4621;
     border-radius: 4%;
     padding: 10px;
-    margin-top: 49px;
+    margin-top: 50px;
     margin-left: 68px; 
     margin-bottom: -300px;
     display: inline-block;
@@ -137,6 +137,7 @@ body{
 .playerHPanimated{
     width: 100%;
     height: 10px;
+    margin-top: 6px;
     background-color: green;
     border: white 1px solid;
     border-radius: 6%;
@@ -200,7 +201,7 @@ body{
     background-color: #d4d1d2;
 }
 .hpAndNumbersDiv{
-    margin-top: 19px;
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -251,11 +252,12 @@ body{
     z-index: 4;
     background-color: #d2d2bb;
     width: 470px;
-    height: 125px;
+    height: 135px;
+    margin-bottom: -5px;
     border: solid 8px #3b4621;
     border-radius: 4%;
     padding: 10px;
-    margin-top: 207px;
+    margin-top: 200px;
     margin-left: 720px;
 }
 .outerWrapper{
@@ -330,6 +332,20 @@ body{
     margin-top: 300px;
     margin-left: 300px;
 }
+.epokeball {
+    z-index: 0;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border: white 2px solid;
+    filter: blur(1.8rem);
+    border-radius: 50%;
+    margin-top: 100px;
+    margin-left: 730px;
+}
 .pokeballBlank {
     z-index: 0;
     position: absolute;
@@ -356,6 +372,52 @@ body{
     min-height: 720px;
     max-width: 1280px;
     max-height: 720px;
+}
+.powerOn {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: black;
+    height: 720px;
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 1280px;
+    max-height: 720px;
+    transition-property: all;
+    transition-duration: 1.5s;
+}
+.team {
+    border: solid black 10px;
+    background-image: url(Pokemon\ FIre\ Red\ UI.png);
+    height: 720px;
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 1280px;
+    max-height: 720px;
+}
+.power{
+    font-size: 2.5em;
+}
+.battleIntro{
+    z-index: 10;
+    opacity: 0;
+    position: absolute;
+    background-image: url(mChallenge1.png);
+    height: 720px;
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 1280px;
+    max-height: 720px;
+    transition-property: all;
+    transition-duration: 1.5s;
+}
+.sendBack {
+    z-index: -5;
+}
+.battleIntroFade {
+    opacity: 100;
 }
 .leftController{
     background-image: url(left\ controller.png);
@@ -572,6 +634,18 @@ div > span {
     transform: rotate(0deg);
     margin-top: -400px;
     margin-left: 460px;
+    z-index: 0;
+}
+
+.epokeballThrown {
+    opacity: 100;
+    height: 50px;
+    position: absolute;
+    transition-property: all;
+    transition-duration: 1s;
+    transform: rotate(0deg);
+    margin-top: -460px;
+    margin-left: 900px;
     z-index: 0;
 }
 .pokeballmid {
