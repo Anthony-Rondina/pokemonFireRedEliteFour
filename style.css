@@ -138,6 +138,7 @@ body{
     margin-top: 407px;
 }
 .smallLevel1{
+    pointer-events: none;
     position: absolute;
     color: white;
     display: flex;
@@ -146,15 +147,150 @@ body{
     margin-left: 170px;
     font-size: 1.3em;
 }
-
+.smallLevel2{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-left: 120px;
+    font-size: 1.1em;
+}
+.smallLevel3{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-left: 120px;
+    font-size: 1.1em;
+}
+.smallLevel4{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-left: 120px;
+    font-size: 1.1em;
+}
+.smallLevel5{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-left: 120px;
+    font-size: 1.1em;
+}
+.smallLevel6{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-left: 120px;
+    font-size: 1.1em;
+}
 .poke1Name{
+    pointer-events: none;
     position: absolute;
     color: white;
     font-size: 1.8em;
     margin-left: 100px;
     margin-top: 50px;
 }
+.poke2Name{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.4em;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+.poke3Name{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.4em;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+.poke4Name{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.4em;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+.poke5Name{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.4em;
+    margin-left: 70px;
+    margin-top: 10px;
+}
+.poke6Name{
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 1.4em;
+    margin-left: 70px;
+    margin-top: 10px;
+}
 .hpText1{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.hpText2{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.hpText3{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.hpText4{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.hpText5{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.hpText6{
     position:absolute;
     color: orange;
     background-color: #4d6152;
@@ -171,13 +307,154 @@ body{
     margin-left: 115px;
     color: white;
 }
+.smallHP2{
+    display:flex;
+    flex-direction: row;
+    margin-top: 41px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
+.smallHP3{
+    display:flex;
+    flex-direction: row;
+    margin-top: 41px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
+.smallHP4{
+    display:flex;
+    flex-direction: row;
+    margin-top: 41px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
+.smallHP5{
+    display:flex;
+    flex-direction: row;
+    margin-top: 41px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
+.smallHP6{
+    display:flex;
+    flex-direction: row;
+    margin-top: 41px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
 .smallHPContainer1{
+    pointer-events: none;
     position: absolute;
     /* border: 3px solid red; */
     width: 310px;
     margin-top: 130px;
     margin-left: 70px;
     /* background-color: orange; */
+}
+.smallHPContainer2{
+    pointer-events: none;
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 230px;
+    margin-left: 170px;
+    /* background-color: orange; */
+}
+.smallHPContainer3{
+    pointer-events: none;
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 230px;
+    margin-left: 170px;
+    /* background-color: orange; */
+}
+.smallHPContainer4{
+    pointer-events: none;
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 230px;
+    margin-left: 170px;
+    /* background-color: orange; */
+}
+.smallHPContainer5{
+    pointer-events: none;
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 230px;
+    margin-left: 170px;
+    /* background-color: orange; */
+}
+.smallHPContainer6{
+    pointer-events: none;
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 230px;
+    margin-left: 170px;
+    /* background-color: orange; */
+}
+.hpBackground2{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: 220px;
+    margin-top: -225px;
+    padding: 5px;
+    background-color: #4d6152;
+}
+.hpBackground3{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: 220px;
+    margin-top: -225px;
+    padding: 5px;
+    background-color: #4d6152;
+}
+.hpBackground4{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: 220px;
+    margin-top: -225px;
+    padding: 5px;
+    background-color: #4d6152;
+}
+.hpBackground5{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: 220px;
+    margin-top: -225px;
+    padding: 5px;
+    background-color: #4d6152;
+}
+.hpBackground6{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: 220px;
+    margin-top: -225px;
+    padding: 5px;
+    background-color: #4d6152;
 }
 .hpBackground1{
     display: flex;
@@ -198,7 +475,102 @@ body{
    border: white 3px solid;
    border-radius: 6%;
 }
+.hpBar2{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
+.hpBar3{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
+.hpBar4{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
+.hpBar5{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
+.hpBar6{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
 .hp1{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
+}
+.hp2{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
+}
+.hp3{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
+}
+.hp4{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
+}
+.hp5{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
+}
+.hp6{
     margin-top: 2px;
     position: absolute;
     width: 100%;
@@ -473,17 +845,11 @@ body{
 }
 .pokemon1b{
     cursor: pointer;
-    position: absolute;
     background-color: #7ab6cb;
-    width: 400px;
-    height: 200px;
-    margin-left: 40px;
-    margin-top: 110px;
     border: 10px solid orange;
-    /* opacity: .5; */
-    border-radius: 5%;
 }
 .pokemon2{
+    cursor: pointer;
     position: absolute;
     background-color: #4581bf;
     width: 730px;
@@ -495,6 +861,7 @@ body{
     border-radius: 5%;
 }
 .pokemon3{
+    cursor: pointer;
     position: absolute;
     background-color: #4581bf;
     width: 730px;
@@ -506,6 +873,7 @@ body{
     border-radius: 5%;
 }
 .pokemon4{
+    cursor: pointer;
     position: absolute;
     background-color: #4581bf;
     width: 730px;
@@ -517,6 +885,7 @@ body{
     border-radius: 5%;
 }
 .pokemon5{
+    cursor: pointer;
     position: absolute;
     background-color: #4581bf;
     width: 730px;
@@ -528,6 +897,7 @@ body{
     border-radius: 5%;
 }
 .pokemon6{
+    cursor: pointer;
     position: absolute;
     background-color: #4581bf;
     width: 730px;
@@ -538,68 +908,85 @@ body{
     /* opacity: .5; */
     border-radius: 5%;
 }
+
+.pokemon2b{
+    background-color: #7ab6cb;
+    border: 10px solid orange;
+}
 .smallpic1{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
     margin-left: -50px;
 }
 .smallpic2{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
-    margin-left: -110px;
+    margin-left: -90px;
 }
 .smallpic3{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
     margin-left: -110px;
 }
 .smallpic4{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
     margin-left: -110px;
 }
 .smallpic5{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
     margin-left: -110px;
 }
 .smallpic6{
+    pointer-events: none;
     position: absolute;
     width: 150px;
     margin-top: -50px;
     margin-left: -110px;
 }
 .ball1{
+    pointer-events: none;
     position: absolute;
     margin-top: -30px;
     margin-left: -40px;
 }
 .ball2{
+    pointer-events: none;
     position: absolute;
     margin-top: 0px;
     margin-left: -70px;
 }
 .ball3{
+    pointer-events: none;
     position: absolute;
     margin-top: 0px;
     margin-left: -70px;
 }
 .ball4{
+    pointer-events: none;
     position: absolute;
     margin-top: 0px;
     margin-left: -70px;
 }
 .ball5{
+    pointer-events: none;
     position: absolute;
     margin-top: 0px;
     margin-left: -70px;
 }
 .ball6{
+    pointer-events: none;
     position: absolute;
     margin-top: 0px;
     margin-left: -70px;

@@ -116,6 +116,15 @@ const swapPokemon = () => {
     document.querySelector('.smallpic' + (swapChoice + 1)).src = player.team[0].tinyPic
     player.team[0] = replace
     player.team[swapChoice] = swap
+    width = Math.floor((player.team[0].hp / player.team[0].totalHP) * 100)
+    if (width <= 50 && width >= 21) {
+        hpBar.style.backgroundColor = "darkorange";
+    } else if (width <= 20) {
+        hpBar.style.backgroundColor = "darkred";
+    } else {
+        hpBar.style.backgroundColor = "green";
+    }
+    hpBar.style.width = width + "%"
     trainer.classList.remove('trainerThrow')
     teamScreen.classList.add('hidden')
     combatScreen.classList.remove("hidden")
@@ -257,11 +266,11 @@ maxHP.textContent = player.team[0].totalHP
 
 
 
-const playerPercent = (endPoint) => {
-    let start = player.team[0].hp
-    player.team[0].hp = Math.floor(Math.random() * 100)
-    let end = player.team[0].hp
-    damage = Math.floor((player.team[0].hp / player.team[0].totalHP) * 100)
+const playerPercent = (pokemon) => {
+    let start = pokemon.hp
+    pokemon.hp = Math.floor(Math.random() * pokemon.totalHP)
+    let end = pokemon.hp
+    damage = Math.floor((pokemon.hp / pokemon.totalHP) * 100)
     currentPokemon.classList.add("pokemonHit")
     setTimeout(() => {
         currentPokemon.classList.remove("pokemonHit")
@@ -552,8 +561,24 @@ const turnOn = () => {
     }, 1500);
 }
 
-
-
+const updateTeam = () => {
+    for (let i = 0; i < 6; i++) {
+        document.querySelector(`.poke${(i + 1)}Name`).textContent = player.team[i].name
+        document.querySelector(`.smallLvPrint${(i + 1)}`).textContent = player.team[i].level
+        document.querySelector(`.poke${(i + 1)}HP`).textContent = player.team[i].hp
+        document.querySelector(`.poke${(i + 1)}MaxHP`).textContent = player.team[i].totalHP
+        // playerPercent(player.team[i])
+        width = Math.floor((player.team[i].hp / player.team[i].totalHP) * 100)
+        if (width <= 50 && width >= 21) {
+            document.querySelector(`.hp${(i + 1)}`).style.backgroundColor = "darkorange";
+        } else if (width <= 20) {
+            document.querySelector(`.hp${(i + 1)}`).style.backgroundColor = "darkred";
+        } else {
+            document.querySelector(`.hp${(i + 1)}`).style.backgroundColor = "green";
+        }
+        document.querySelector(`.hp${(i + 1)}`).style.width = width + "%"
+    }
+}
 beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
@@ -566,10 +591,13 @@ teamChoice4.onclick = setChoice
 teamChoice5.onclick = setChoice
 teamChoice6.onclick = setChoice
 powerOnButton.onclick = turnOn
-buttonA.onclick = playerPercent
+buttonA.addEventListener('click', (evt) => {
+    playerPercent(player.team[0])
+})
 pokemonButton.addEventListener('click', (evt) => {
     teamScreen.classList.remove('hidden')
     combatScreen.classList.add("hidden")
+    updateTeam()
 })
 teamCancel.addEventListener('click', (evt) => {
     teamScreen.classList.add('hidden')
@@ -579,9 +607,47 @@ buttonB.onclick = swapPokemon
 
 teamChoice1.addEventListener('mouseenter', (evt) => {
     teamChoice1.classList.add("pokemon1b")
-    // teamChoice1.classList.toggle("pokemon1")
 })
 teamChoice1.addEventListener('mouseout', (evt) => {
-    // teamChoice1.classList.toggle("pokemon1")
     teamChoice1.classList.remove("pokemon1b")
+})
+teamChoice2.addEventListener('mouseenter', (evt) => {
+    teamChoice2.classList.add("pokemon2b")
+    // teamChoice2.classList.remove("pokemon1")
+})
+teamChoice2.addEventListener('mouseout', (evt) => {
+    // teamChoice2.classList.add("pokemon1")
+    teamChoice2.classList.remove("pokemon2b")
+})
+teamChoice3.addEventListener('mouseenter', (evt) => {
+    teamChoice3.classList.add("pokemon2b")
+    // teamChoice2.classList.remove("pokemon1")
+})
+teamChoice3.addEventListener('mouseout', (evt) => {
+    // teamChoice2.classList.add("pokemon1")
+    teamChoice3.classList.remove("pokemon2b")
+})
+teamChoice4.addEventListener('mouseenter', (evt) => {
+    teamChoice4.classList.add("pokemon2b")
+    // teamChoice2.classList.remove("pokemon1")
+})
+teamChoice4.addEventListener('mouseout', (evt) => {
+    // teamChoice2.classList.add("pokemon1")
+    teamChoice4.classList.remove("pokemon2b")
+})
+teamChoice5.addEventListener('mouseenter', (evt) => {
+    teamChoice5.classList.add("pokemon2b")
+    // teamChoice2.classList.remove("pokemon1")
+})
+teamChoice5.addEventListener('mouseout', (evt) => {
+    // teamChoice2.classList.add("pokemon1")
+    teamChoice5.classList.remove("pokemon2b")
+})
+teamChoice6.addEventListener('mouseenter', (evt) => {
+    teamChoice6.classList.add("pokemon2b")
+    // teamChoice2.classList.remove("pokemon1")
+})
+teamChoice6.addEventListener('mouseout', (evt) => {
+    // teamChoice2.classList.add("pokemon1")
+    teamChoice6.classList.remove("pokemon2b")
 })
