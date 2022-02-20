@@ -678,6 +678,7 @@ button{
     cursor: pointer;
 }
 .down {
+    cursor: pointer;
     position:absolute;
     width: 40px;
     height: 40px;
@@ -687,6 +688,7 @@ button{
     background-color: black;
 }
 .left {
+    cursor: pointer;
     position:absolute;
     width: 40px;
     height: 40px;

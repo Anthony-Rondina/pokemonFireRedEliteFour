@@ -1,6 +1,7 @@
 class Lorelei {
     constructor() {
         this.name = Lorelei;
+        this.pokemonChoice = 0
         this.boy = false
         this.girl = true
         this.changePokemon = 5
@@ -434,10 +435,10 @@ class Lorelei {
     }
     choosePokemon() {
         enemyPokeball.classList.remove("hidden")
-        msgBoxText.textContent = `Lorelei sent out ${this.team[0].name}!`
+        msgBoxText.textContent = `Lorelei sent out ${this.team[this.pokemonChoice].name}!`
         setTimeout(() => {
-            enemyLevel.textContent = this.team[0].level
-            enemyName.textContent = this.team[0].name
+            enemyLevel.textContent = this.team[this.pokemonChoice].level
+            enemyName.textContent = this.team[this.pokemonChoice].name
             animateEnemyBall()
             opponent.classList.add("enemyTrainerLeave")
         }, 1000);
@@ -452,6 +453,11 @@ class Lorelei {
                 combatScreen.classList.add("hidden")
             }, 3500);
         }, 1450);
+    }
+    prechange() {
+        this.pokemonChoice++
+        msgBoxText.textContent = `Lorelei is about to send out ${this.team[this.pokemonChoice].name}, do you want to change POKEMON?`
+        //remove hidden on yes or no box
     }
     preCheckStatus(yourPokemon) {
         //Check if confused
