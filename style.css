@@ -92,6 +92,9 @@ body{
     margin-left: 1070px;
     opacity: 0;
 }
+.info1{
+    position: absolute;
+}
  .enemyPokemon{
     background-color: #d2d2bb;
     width: 470px;
@@ -112,7 +115,7 @@ body{
     border: white 3px solid;
     border-radius: 6%;
     margin-left: 5px;
-    display: inline-block;
+    display: inline-block; 
 }
 .enemyHPanimated{
     position: absolute;
@@ -133,6 +136,78 @@ body{
     height: 10px;
     margin-left: 875px;
     margin-top: 407px;
+}
+.smallLevel1{
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin-top: 95px;
+    margin-left: 170px;
+    font-size: 1.3em;
+}
+
+.poke1Name{
+    position: absolute;
+    color: white;
+    font-size: 1.8em;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.hpText1{
+    position:absolute;
+    color: orange;
+    background-color: #4d6152;
+    height: 23px;
+    padding: 5px;
+    margin-top: -2px;
+    margin-left: -50px;
+}
+.smallHP1{
+    display:flex;
+    flex-direction: row;
+    margin-top: 45px;
+    font-size: 1.5em;
+    margin-left: 115px;
+    color: white;
+}
+.smallHPContainer1{
+    position: absolute;
+    /* border: 3px solid red; */
+    width: 310px;
+    margin-top: 130px;
+    margin-left: 70px;
+    /* background-color: orange; */
+}
+.hpBackground1{
+    display: flex;
+    flex-direction: row;
+    border-radius: 13%;
+    width: 320px;
+    height: 30px;
+    margin-left: -5px;
+    margin-top: -10px;
+    padding: 5px;
+    background-color: #4d6152;
+}
+.hpBar1{
+    position: absolute;
+   width: 100%;
+   height: 20px;
+   background-color: white;
+   border: white 3px solid;
+   border-radius: 6%;
+}
+.hp1{
+    margin-top: 2px;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+    border: white 1px solid;
+    border-radius: 6%;
+    transition-property: width;
+    transition-duration: 1.5s;;
 }
 .playerHPanimated{
     width: 100%;
@@ -373,6 +448,162 @@ body{
     max-width: 1280px;
     max-height: 720px;
 }
+.teamCancel{
+    cursor: pointer;
+    font-family: 'Press Start 2P';
+    position: absolute;
+    margin-top: 639px;
+    margin-left: 1090px;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1.5em;
+}
+.pokemon1{
+    cursor: pointer;
+    position: absolute;
+    background-color: #4581bf;
+    width: 400px;
+    height: 200px;
+    margin-left: 40px;
+    margin-top: 110px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon1b{
+    cursor: pointer;
+    position: absolute;
+    background-color: #7ab6cb;
+    width: 400px;
+    height: 200px;
+    margin-left: 40px;
+    margin-top: 110px;
+    border: 10px solid orange;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon2{
+    position: absolute;
+    background-color: #4581bf;
+    width: 730px;
+    height: 80px;
+    margin-left: 520px;
+    margin-top: 40px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon3{
+    position: absolute;
+    background-color: #4581bf;
+    width: 730px;
+    height: 80px;
+    margin-left: 520px;
+    margin-top: 150px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon4{
+    position: absolute;
+    background-color: #4581bf;
+    width: 730px;
+    height: 80px;
+    margin-left: 520px;
+    margin-top: 260px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon5{
+    position: absolute;
+    background-color: #4581bf;
+    width: 730px;
+    height: 80px;
+    margin-left: 520px;
+    margin-top: 370px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.pokemon6{
+    position: absolute;
+    background-color: #4581bf;
+    width: 730px;
+    height: 80px;
+    margin-left: 520px;
+    margin-top: 480px;
+    border: 10px solid #3f4057;
+    /* opacity: .5; */
+    border-radius: 5%;
+}
+.smallpic1{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+.smallpic2{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -110px;
+}
+.smallpic3{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -110px;
+}
+.smallpic4{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -110px;
+}
+.smallpic5{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -110px;
+}
+.smallpic6{
+    position: absolute;
+    width: 150px;
+    margin-top: -50px;
+    margin-left: -110px;
+}
+.ball1{
+    position: absolute;
+    margin-top: -30px;
+    margin-left: -40px;
+}
+.ball2{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -70px;
+}
+.ball3{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -70px;
+}
+.ball4{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -70px;
+}
+.ball5{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -70px;
+}
+.ball6{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -70px;
+}
 .powerOn {
     z-index: 10;
     display: flex;
@@ -383,19 +614,21 @@ body{
     height: 720px;
     min-width: 1280px;
     min-height: 720px;
-    max-width: 1280px;
+    max-width: 120px;
     max-height: 720px;
     transition-property: all;
     transition-duration: 1.5s;
 }
 .team {
     border: solid black 10px;
-    background-image: url(Pokemon\ FIre\ Red\ UI.png);
-    height: 720px;
+    background-image: url(chooseteam.png);
+    height: 700px;
     min-width: 1280px;
     min-height: 720px;
     max-width: 1280px;
     max-height: 720px;
+    margin-left: -10px;
+    margin-top: -10px;
 }
 .power{
     font-size: 2.5em;
@@ -490,8 +723,7 @@ button{
     position:absolute;
     width: 40px;
     height: 40px;
-    margin-top: 373px;
-    margin-left: 128px;
+    margin-left: 90px;
     border: none;
     background-color: black;
 }
@@ -527,8 +759,8 @@ button{
     color: #6d6a73;
     width: 15px;
     height: 63px;
-    margin-top: 579px;
-    margin-left:135px;
+    margin-top: 205px;
+    margin-left:100px;
     border: none;
     background-color: #6d6a73;
 }
@@ -600,6 +832,7 @@ button{
 }
 div > span {
     font-size: 1.2em;
+    /* color: white; */
 }
 .welcomeGif{
     height: 720px;

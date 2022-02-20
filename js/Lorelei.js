@@ -434,7 +434,7 @@ class Lorelei {
     }
     choosePokemon() {
         enemyPokeball.classList.remove("hidden")
-        msgBoxText.textContent = `Go ${this.team[0].name}!`
+        msgBoxText.textContent = `Lorelei sent out ${this.team[0].name}!`
         setTimeout(() => {
             enemyLevel.textContent = this.team[0].level
             enemyName.textContent = this.team[0].name
@@ -447,6 +447,10 @@ class Lorelei {
             setTimeout(() => {
                 msgBoxText.textContent = ``
             }, 2000);
+            setTimeout(() => {
+                teamScreen.classList.remove('hidden')
+                combatScreen.classList.add("hidden")
+            }, 3500);
         }, 1450);
     }
     preCheckStatus(yourPokemon) {

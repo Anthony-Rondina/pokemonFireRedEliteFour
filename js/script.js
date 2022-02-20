@@ -58,19 +58,33 @@ const combat1Theme = document.getElementById('combat1')
 const powerOnButton = document.querySelector('.power')
 const powerOnScreen = document.querySelector('.powerOn')
 const powerOnSound = document.getElementById('powerOn')
+const teamScreen = document.querySelector('.team')
+const teamCancel = document.querySelector('.teamCancel')
+const teamChoice1 = document.querySelector('.pokemon1')
+
 
 //Create Global Variables
 let input = ''
+let swapChoice = ''
 genderChoice.style.display = "none"
 
+const setChoice = (evt) => {
+    switch (evt.target.id) {
+        case "pokemon1":
+            swapChoice = 0
+            swapPokemon()
+            break;
+    }
+}
+
 const swapPokemon = () => {
-    let swap = {}
-    let replace = {}
-    let choice = Math.floor(Math.random() * 6)
-    swap = player.team[0]
-    replace = player.team[choice]
+    let swap = player.team[0]
+    let replace = player.team[swapChoice]
     player.team[0] = replace
-    player.team[choice] = swap
+    player.team[swapChoice] = swap
+    trainer.classList.remove('trainerThrow')
+    teamScreen.classList.add('hidden')
+    combatScreen.classList.remove("hidden")
     moveTrainer()
     hpNumbers.textContent = player.team[0].hp
     maxHP.textContent = player.team[0].totalHP
@@ -470,7 +484,7 @@ const beginCombat = () => {
     }, 3000);
 
     setTimeout(() => {
-        msgBoxText.textContent = "Loreli: No one can best me when it comes to icy POKEMON! Are you ready?"
+        msgBoxText.textContent = "Lorelei: No one can best me when it comes to icy POKEMON! Are you ready?"
     }, 5000);
     setTimeout(() => {
         msgBoxText.textContent = ''
@@ -497,12 +511,31 @@ const turnOn = () => {
     }, 1500);
 }
 
+
+
 beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
 continueButton.onclick = gender
 // upButton.onclick = 
+teamChoice1.onclick = setChoice
 powerOnButton.onclick = turnOn
 buttonA.onclick = playerPercent
-pokemonButton.onclick = swapPokemon
+pokemonButton.addEventListener('click', (evt) => {
+    teamScreen.classList.remove('hidden')
+    combatScreen.classList.add("hidden")
+})
+teamCancel.addEventListener('click', (evt) => {
+    teamScreen.classList.add('hidden')
+    combatScreen.classList.remove("hidden")
+})
 buttonB.onclick = swapPokemon
+
+teamChoice1.addEventListener('mouseenter', (evt) => {
+    teamChoice1.classList.add("pokemon1b")
+    // teamChoice1.classList.toggle("pokemon1")
+})
+teamChoice1.addEventListener('mouseout', (evt) => {
+    // teamChoice1.classList.toggle("pokemon1")
+    teamChoice1.classList.remove("pokemon1b")
+})
