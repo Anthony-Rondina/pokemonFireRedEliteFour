@@ -61,25 +61,59 @@ const powerOnSound = document.getElementById('powerOn')
 const teamScreen = document.querySelector('.team')
 const teamCancel = document.querySelector('.teamCancel')
 const teamChoice1 = document.querySelector('.pokemon1')
-
+const teamChoice2 = document.querySelector('.pokemon2')
+const teamChoice3 = document.querySelector('.pokemon3')
+const teamChoice4 = document.querySelector('.pokemon4')
+const teamChoice5 = document.querySelector('.pokemon5')
+const teamChoice6 = document.querySelector('.pokemon6')
+// const smallpic1 = document.querySelector('.smallpic1')
+// const smallpic2 = document.querySelector('.smallpic2')
+// const smallpic3 = document.querySelector('.smallpic3')
+// const smallpic4 = document.querySelector('.smallpic4')
+// const smallpic5 = document.querySelector('.smallpic5')
+// const smallpic6 = document.querySelector('.smallpic6')
 
 //Create Global Variables
 let input = ''
-let swapChoice = ''
+let swapChoice = 0
 genderChoice.style.display = "none"
 
 const setChoice = (evt) => {
+    resetBall()
     switch (evt.target.id) {
         case "pokemon1":
             swapChoice = 0
+            swapPokemon()
+            break;
+        case "pokemon2":
+            swapChoice = 1
+            swapPokemon()
+            break;
+        case "pokemon3":
+            swapChoice = 2
+            swapPokemon()
+            break;
+        case "pokemon4":
+            swapChoice = 3
+            swapPokemon()
+            break;
+        case "pokemon5":
+            swapChoice = 4
+            swapPokemon()
+            break;
+        case "pokemon6":
+            swapChoice = 5
             swapPokemon()
             break;
     }
 }
 
 const swapPokemon = () => {
+    pokemonImage.classList.add('faint')
     let swap = player.team[0]
     let replace = player.team[swapChoice]
+    document.querySelector('.smallpic1').src = player.team[swapChoice].tinyPic
+    document.querySelector('.smallpic' + (swapChoice + 1)).src = player.team[0].tinyPic
     player.team[0] = replace
     player.team[swapChoice] = swap
     trainer.classList.remove('trainerThrow')
@@ -370,6 +404,13 @@ const moveBall = () => {
     pokeBallThrown.style.transform = 'rotate(1290deg)';
     pokeBallThrown.style.opacity = '0'
 }
+const resetBall = () => {
+    pokeBallThrown.style.marginTop = "-400px";
+    pokeBallThrown.style.marginLeft = "460px";
+    pokeBallThrown.style.transform = 'rotate(0deg)';
+    pokeBallThrown.style.opacity = '100'
+
+}
 const animateThrow = () => {
     msgBoxText.textContent = `Go ${player.team[0].name}!`
     setTimeout(() => {
@@ -519,6 +560,11 @@ boyButton.onclick = genderDecision
 continueButton.onclick = gender
 // upButton.onclick = 
 teamChoice1.onclick = setChoice
+teamChoice2.onclick = setChoice
+teamChoice3.onclick = setChoice
+teamChoice4.onclick = setChoice
+teamChoice5.onclick = setChoice
+teamChoice6.onclick = setChoice
 powerOnButton.onclick = turnOn
 buttonA.onclick = playerPercent
 pokemonButton.addEventListener('click', (evt) => {
