@@ -831,6 +831,12 @@ body{
     color: white;
     font-size: 1.5em;
 }
+.teamCancel:hover{
+    border-top: white solid;
+    border-bottom: white solid;
+    padding: 5px;
+    margin-top: 634px;
+}
 .pokemon1{
     cursor: pointer;
     position: absolute;
