@@ -548,7 +548,6 @@ const beginCombat = () => {
     victoryRoadTheme.pause()
     combat1Theme.play()
     pokeBallThrown.style.opacity = '0'
-    codeTime = false
     combatIntro.style.zIndex = "10";
     combatIntro.classList.add("battleIntroFade")
     setTimeout(() => {
@@ -589,6 +588,7 @@ const battlePic = () => {
 
 const turnOn = () => {
     powerOnSound.play()
+    codeTime = false
     powerOnButton.classList.add('powermoved')
     welcomeScreen.classList.remove('hidden')
     setTimeout(() => {
@@ -637,6 +637,8 @@ pokemonButton.addEventListener('click', (evt) => {
 })
 teamCancel.addEventListener('click', (evt) => {
     updateTeam()
+    usingItem = false
+    pokeBallThrown.style.opacity = '0'
     if (player.team[0].inCombat) {
         teamScreen.classList.add('hidden')
         combatScreen.classList.remove("hidden")
