@@ -475,15 +475,17 @@ class Player {
                 this.item = "confuseHeal"
                 break;
         }
+        bagScreen.classList.add('hidden')
+        teamScreen.classList.remove('hidden')
     }
     useItem(item, pokemon) {
-
         switch (item) {
             case "antidote":
                 if (this.antidote === 0) {
                     console.log('none')
                 } else {
                     pokemon.poisoned = false
+                    updateTeam()
                     console.log("you are no longer poisoned!")
                     this.antidote--
                     this.target.attack(this.team[0])
@@ -492,13 +494,24 @@ class Player {
             case "fullRestore":
                 if (this.fullRestore === 0) {
                     console.log('none')
-                } else if (pokemon.hp === this.team[0].totalHP) {
+                } else if (pokemon.hp === this.team[swapChoice].totalHP) {
                     console.log('you are already full HP')
                 } else {
-                    pokemon.hp = this.team[0].totalHP
+                    pokemon.hp = this.team[swapChoice].totalHP
                     console.log("you are healed!")
-                    playerPercent(pokemon.hp, this.team[0].totalHP)
+                    playerPercent(pokemon.hp)
                     this.fullRestore--
+                    fullRestoreButton.textContent = `Full Restore x0${this.fullRestore}`
+                    usingItem = false
+                    updateTeam()
+                    hpBar.style.backgroundColor = "green";
+                    hpBar.style.width = "100%"
+                    hpNumbers.textContent = pokemon.hp
+                    console.log(pokemon.hp)
+                    setTimeout(() => {
+                        teamScreen.classList.add('hidden')
+                        combatScreen.classList.remove('hidden')
+                    }, 3000);
                     this.target.attack(this.team[0])
                 }
                 break;
@@ -520,6 +533,7 @@ class Player {
                     pokemon.paralyzed = false
                     console.log("you are healed!")
                     this.parHeal--
+                    updateTeam()
                     this.target.attack(this.team[0])
                 } break;
             case "burnHeal":
@@ -529,6 +543,7 @@ class Player {
                     pokemon.burned = false
                     console.log("you are healed!")
                     this.burnHeal--
+                    updateTeam()
                     this.target.attack(this.team[0])
                 }
                 break;
@@ -539,6 +554,7 @@ class Player {
                     pokemon.frozen = false
                     console.log("you are healed!")
                     this.unfreeze--
+                    updateTeam()
                     this.target.attack(this.team[0])
                 }
                 break;
@@ -549,6 +565,7 @@ class Player {
                     pokemon.asleep = false
                     console.log("you are healed!")
                     this.awaken--
+                    updateTeam()
                     this.target.attack(this.team[0])
                 }
                 break;
@@ -559,6 +576,7 @@ class Player {
                     pokemon.confused = 0
                     console.log("you are healed!")
                     this.confuseHeal--
+                    updateTeam()
                     this.target.attack(this.team[0])
                 }
                 break;

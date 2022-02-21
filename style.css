@@ -28,6 +28,14 @@ body{
     margin-top: 15px;
     padding: 10px;
  }
+ .bagMainMessageBox{
+    background-color: #272f33;
+    width: 100%;
+    height: 200px; 
+    margin-top: 510px;
+    margin-left: -08px;
+    padding: 10px; 
+ }
  .yellowBG{
      height: 98%;
      width: 100%;
@@ -35,6 +43,13 @@ body{
      border: solid #bfa551;
      border-radius: 5%;
 
+ }
+ .bagYellowBG{
+    height: 98%;
+    width: 100%;
+    background-color: #bfa551;
+    border: solid #bfa551;
+    border-radius: 5%;
  }
  .msgBox {
      z-index: 5;
@@ -46,8 +61,34 @@ body{
      margin-left: 5px;
      margin-top: 5px;
  }
+ .bagMsgBox {
+    z-index: 5;
+     background-color: #324f68;
+     height: 90%;
+     width: 98%;
+     border: solid 6px white;
+     border-radius: 3%;
+     margin-left: 5px;
+     margin-top: 5px;  
+ }
  .msgBoxText {
     line-height: 150%;
+ }
+ .bagMenu {
+     font-size: 1.3em;
+    font-family: 'Press Start 2P';
+     position: absolute;
+     margin-left: 311px;
+     margin-top: -87px;
+     width: 100px;
+     height: 60px;
+ }
+ .bagMsgBoxText{
+     margin-left: 10px;
+    /* border: solid red 1px; */
+    line-height: 160%;
+    color: white;
+    font-size: 1.7em;
  }
  .msgBoxContent{
     margin-top: 20px;
@@ -1023,8 +1064,127 @@ body{
     margin-left: -10px;
     margin-top: -10px;
 }
+.buttonDiv{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /* border: red solid 2px; */
+    width: 570px;
+    top: 200px;
+    height: 400px;
+    margin-left: 510px;
+    margin-top: -135px;
+}
+#fullRestore {
+    cursor: pointer;
+    padding: 10px;
+    text-align: right;
+    font-size: 1.7em;
+    grid-area: fullRestore;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+}
+#revive {
+    cursor: pointer;
+    font-size: 1.7em;
+    padding: 10px;
+    text-align: right;
+    grid-area: revive;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    cursor: pointer;
+}
+#parHeal {
+    cursor: pointer;
+    font-size: 1.7em;
+    padding: 10px;
+    text-align: right;
+    grid-area: parHeal;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    cursor: pointer;
+}
+#burnHeal {
+    cursor: pointer;
+    font-size: 1.7em;
+    text-align: right;
+    padding: 10px;
+    grid-area: burnHeal;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Press Start 2P';
+}
+#unfreeze {
+    cursor: pointer;
+    font-size: 1.7em;
+    text-align: right;
+    padding: 10px;
+    grid-area: unfreeze;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    cursor: pointer;
+}
+#awaken {
+    cursor: pointer;
+    font-size: 1.7em;
+    text-align: right;
+    padding: 10px;
+    grid-area: awaken;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    cursor: pointer;
+}
+#confuseHeal {
+    cursor: pointer;
+    font-size: 1.7em;
+    padding: 10px;
+    text-align: right;
+    grid-area: confuseHeal;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    cursor: pointer;
+}
+#antidote {
+    cursor: pointer;
+    font-size: 1.7em;
+    padding: 10px;
+    cursor: pointer;
+    grid-area: antidote;
+    border: none;
+    background: none;
+    font-family: 'Press Start 2P';
+    text-align: right;
+}
+.bagScreen{
+    position: absolute;
+    background-image: url(boyBag.png);
+    height: 720px;
+    min-width: 1280px;
+    min-height: 720px;
+    max-width: 120px;
+    max-height: 720px;
+}
 .power{
+    color: darkgreen;
+    font-family: 'Press Start 2P';
+    border: none;
+    border-bottom: white solid;
+    background: none;
     font-size: 2.5em;
+    transition-property: all;
+    transition-duration: 1s;
+}
+.powermoved{
+    margin-top: -700px;
+    border: none;
+    opacity: 0
 }
 .battleIntro{
     z-index: 10;
@@ -1044,6 +1204,14 @@ body{
 }
 .battleIntroFade {
     opacity: 100;
+}
+.boy{
+    background-color: blue;
+    color: white;
+}
+.girl{
+    background-color: #f200ff;
+    color: white;
 }
 .leftController{
     background-image: url(left\ controller.png);

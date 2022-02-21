@@ -451,7 +451,7 @@ class Lorelei {
             setTimeout(() => {
                 teamScreen.classList.remove('hidden')
                 combatScreen.classList.add("hidden")
-            }, 3500);
+            }, 2800);
         }, 1450);
     }
     prechange() {

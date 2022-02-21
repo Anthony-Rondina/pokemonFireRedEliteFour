@@ -66,12 +66,18 @@ const teamChoice3 = document.querySelector('.pokemon3')
 const teamChoice4 = document.querySelector('.pokemon4')
 const teamChoice5 = document.querySelector('.pokemon5')
 const teamChoice6 = document.querySelector('.pokemon6')
-// const smallpic1 = document.querySelector('.smallpic1')
-// const smallpic2 = document.querySelector('.smallpic2')
-// const smallpic3 = document.querySelector('.smallpic3')
-// const smallpic4 = document.querySelector('.smallpic4')
-// const smallpic5 = document.querySelector('.smallpic5')
-// const smallpic6 = document.querySelector('.smallpic6')
+const bagScreen = document.querySelector('.bagScreen')
+const bagMsg = document.querySelector('.bagMsgBoxText')
+const fullRestoreButton = document.getElementById('fullRestore')
+const parHealButton = document.getElementById('parHeal')
+const reviveButton = document.getElementById('revive')
+const burnHealButton = document.getElementById('burnHeal')
+const unfreezeButton = document.getElementById('unfreeze')
+const awakenButton = document.getElementById('awaken')
+const confuseHealButton = document.getElementById('confuseHeal')
+const antidoteButton = document.getElementById('antidote')
+const bagMenuButton = document.querySelector('.bagMenu')
+
 
 //Create Global Variables
 let input = ''
@@ -80,35 +86,58 @@ genderChoice.style.display = "none"
 let usingItem = false
 const setChoice = (evt) => {
     resetBall()
-    if (!usingItem) {
-        switch (evt.target.id) {
-            case "pokemon1":
-                swapChoice = 0
+    switch (evt.target.id) {
+        case "pokemon1":
+            swapChoice = 0
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-            case "pokemon2":
-                swapChoice = 1
+            }
+            break;
+        case "pokemon2":
+            swapChoice = 1
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-            case "pokemon3":
-                swapChoice = 2
+            }
+            break;
+        case "pokemon3":
+            swapChoice = 2
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-            case "pokemon4":
-                swapChoice = 3
+            }
+            break;
+        case "pokemon4":
+            swapChoice = 3
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-            case "pokemon5":
-                swapChoice = 4
+            }
+            break;
+        case "pokemon5":
+            swapChoice = 4
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-            case "pokemon6":
-                swapChoice = 5
+            }
+            break;
+        case "pokemon6":
+            swapChoice = 5
+            if (usingItem) {
+                player.useItem(player.item, player.team[swapChoice])
+            } else {
                 swapPokemon()
-                break;
-        }
+            }
+            break;
     }
 }
+
 
 const swapPokemon = () => {
     pokemonImage.classList.add('faint')
@@ -118,7 +147,6 @@ const swapPokemon = () => {
     document.querySelector('.smallpic' + (swapChoice + 1)).src = player.team[0].tinyPic
     player.team[0] = replace
     player.team[swapChoice] = swap
-    player.team[0].inCombat = true
     player.team[swapChoice].inCombat = false
     width = Math.floor((player.team[0].hp / player.team[0].totalHP) * 100)
     if (width <= 50 && width >= 21) {
@@ -137,6 +165,7 @@ const swapPokemon = () => {
     maxHP.textContent = player.team[0].totalHP
     pokemonName.textContent = player.team[0].name
     pokemonLevel.textContent = player.team[0].level
+    player.team[0].inCombat = true
 }
 
 let codeTime = true
@@ -269,10 +298,10 @@ hpNumbers.textContent = player.team[0].hp
 maxHP.textContent = player.team[0].totalHP
 
 
-
-const playerPercent = (pokemon) => {
+const playerPercent = (pokemon, damageReceived) => {
     let start = pokemon.hp
-    pokemon.hp = Math.floor(Math.random() * pokemon.totalHP)
+    pokemon.hp -= 70 //damageRecieved
+    if (pokemon.hp <= 0) pokemon.hp = 0
     let end = pokemon.hp
     damage = Math.floor((pokemon.hp / pokemon.totalHP) * 100)
     currentPokemon.classList.add("pokemonHit")
@@ -365,12 +394,14 @@ menuButton.addEventListener('click', (evt) => {
 })
 runButton.addEventListener('click', (evt) => {
     msgBoxText.textContent = "Can't Escape!"
+    updateTeam()
     setTimeout(() => {
         msgBoxText.textContent = `What will ${player.team[0].name} do?`
     }, 1500);
 })
 
 fightButton.addEventListener('click', (evt) => {
+    updateTeam()
     fightMenu()
     menuButtonDiv.classList.remove('hidden')
 })
@@ -553,13 +584,13 @@ const battlePic = () => {
         combatIntro.style.backgroundImage = "url('mChallenge1.png')";
     } else {
         combatIntro.style.backgroundImage = "url('fChallenge1.png')";
-
     }
-    console.log(player.girl)
 }
 
 const turnOn = () => {
     powerOnSound.play()
+    powerOnButton.classList.add('powermoved')
+    welcomeScreen.classList.remove('hidden')
     setTimeout(() => {
         powerOnScreen.classList.add('hidden')
         introTheme.play()
@@ -605,17 +636,79 @@ pokemonButton.addEventListener('click', (evt) => {
     updateTeam()
 })
 teamCancel.addEventListener('click', (evt) => {
-    if(player.team[0].inCombat) {
+    updateTeam()
+    if (player.team[0].inCombat) {
         teamScreen.classList.add('hidden')
         combatScreen.classList.remove("hidden")
     } else {
         console.log("no pokemon in combat!")
-    } 
+    }
+})
+bagButton.addEventListener('click', (evt) => {
+    updateTeam()
+    bagScreen.classList.remove('hidden')
+    combatScreen.classList.add('hidden')
+})
+
+const bagButtons = [fullRestoreButton, reviveButton, parHealButton, burnHealButton, unfreezeButton, awakenButton, confuseHealButton, antidoteButton]
+
+bagButtons.forEach((item) => {
+    item.addEventListener('mouseout', (evt) => {
+        bagMsg.textContent = ''
+    })
+})
+bagButtons.forEach((item) => {
+    item.addEventListener('click', (evt) => {
+        player.chooseItem(evt)
+        usingItem = true
+    })
+})
+bagButtons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+        let after = button.textContent
+        button.textContent = `> ${after}`
+    })
+    button.addEventListener('mouseout', () => {
+        let after = button.textContent
+        button.textContent = after.substring(2)
+    })
+})
+
+fullRestoreButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = "One-time-use item that cures the user of all status ailments - paralysis, poison, sleep, burn, freeze, and confusion, along with completely restoring the user's HP."
+})
+reviveButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = "A medicine that can revive fainted Pokémon. It also restores half of a fainted Pokémon's maximum HP."
+})
+parHealButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = "It can be used to cure a Pokémon from paralysis."
+})
+burnHealButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = " It heals a single Pokémon that is suffering from a burn."
+})
+unfreezeButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = " Thaws a single Pokémon that is suffering from being frozen."
+})
+awakenButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = " Wakes a single Pokémon that has fallen asleep."
+})
+confuseHealButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = " Heals a pokemon who is suffering from confusion."
+})
+antidoteButton.addEventListener('mouseenter', (evt) => {
+    bagMsg.textContent = " Heals a pokemon who is suffering from poison."
 })
 buttonB.onclick = swapPokemon
 
-const inArr = [teamChoice1,teamChoice2,teamChoice3,teamChoice4,teamChoice5,teamChoice6,]
-const outArr = [teamChoice1,teamChoice2,teamChoice3,teamChoice4,teamChoice5,teamChoice6,]
+bagMenuButton.addEventListener('click', (evt) => {
+    bagScreen.classList.add("hidden")
+    combatScreen.classList.remove('hidden')
+})
+
+
+
+const inArr = [teamChoice1, teamChoice2, teamChoice3, teamChoice4, teamChoice5, teamChoice6,]
+const outArr = [teamChoice1, teamChoice2, teamChoice3, teamChoice4, teamChoice5, teamChoice6,]
 
 inArr.forEach((item) => {
     item.addEventListener('mouseenter', (evt) => {
