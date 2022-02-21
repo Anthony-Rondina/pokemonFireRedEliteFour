@@ -140,6 +140,7 @@ const setChoice = (evt) => {
 
 
 const swapPokemon = () => {
+    pokeBallThrown.style.opacity = '100'
     pokemonImage.classList.add('faint')
     let swap = player.team[0]
     let replace = player.team[swapChoice]
@@ -166,6 +167,9 @@ const swapPokemon = () => {
     pokemonName.textContent = player.team[0].name
     pokemonLevel.textContent = player.team[0].level
     player.team[0].inCombat = true
+    setTimeout(() => {
+        pokeBallThrown.style.opacity = '0'
+    }, 6000);
 }
 
 let codeTime = true
@@ -605,7 +609,7 @@ const updateTeam = () => {
         document.querySelector(`.poke${(i + 1)}MaxHP`).textContent = player.team[i].totalHP
         // playerPercent(player.team[i])
         width = Math.floor((player.team[i].hp / player.team[i].totalHP) * 100)
-        if (width <= 50 && width >= 21) {
+        if (width < 50 && width >= 21) {
             document.querySelector(`.hp${(i + 1)}`).style.backgroundColor = "darkorange";
         } else if (width <= 20) {
             document.querySelector(`.hp${(i + 1)}`).style.backgroundColor = "darkred";

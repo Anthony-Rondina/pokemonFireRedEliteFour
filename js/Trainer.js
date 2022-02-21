@@ -520,9 +520,30 @@ class Player {
                     console.log('none')
                 } else {
                     pokemon.fainted = false
-                    pokemon.hp = (this.team[0].totalHP / 2)
+                    pokemon.hp = (this.team[swapChoice].totalHP / 2)
                     console.log("you are no longer poisoned!")
+                    playerPercent(pokemon.hp)
                     this.revives--
+                    reviveButton.textContent = `Revives x0${this.revives}`
+                    usingItem = false
+                    if (pokemon.hp >= (this.team[swapChoice].totalHP / 2)) {
+                        hpBar.style.backgroundColor = "green";
+                        console.log('picked green')
+                        document.querySelector(`.hp${(swapChoice + 1)}`).style.backgroundColor = "green";
+                    } else {
+                        console.log('picked orange')
+                        hpBar.style.backgroundColor = "darkorange";
+                        document.querySelector(`.hp${(swapChoice + 1)}`).style.backgroundColor = "darkorange";
+                    }
+                    console.log(pokemon.hp, (this.team[swapChoice].totalHP / 2))
+                    hpBar.style.width = "50%"
+                    hpNumbers.textContent = pokemon.hp
+                    console.log(pokemon.hp)
+                    updateTeam()
+                    setTimeout(() => {
+                        teamScreen.classList.add('hidden')
+                        combatScreen.classList.remove('hidden')
+                    }, 3000);
                     this.target.attack(this.team[0])
                 }
                 break;
