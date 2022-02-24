@@ -5,9 +5,10 @@ class Player {
         this.girl = false
         this.img = "charizard.png"
         this.item = ''
+        this.chosenAttack = ''
         this.target = "Lorelei"
         this.damage = 0
-        this.targetPokemon = 0
+        this.targetPokemon = Lorelei.team[0]
         this.opponenet = "Lorelei"
         this.attackChoice = ''
         this.fullRestore = 10
@@ -36,7 +37,8 @@ class Player {
             asleep: 0,
             hp: 156,
             totalHP: 156,
-            level: "51",
+            level: "Lv:51",
+            combatLvl: 60,
             attack: 116,
             specialAttack: 117,
             defense: 100,
@@ -107,7 +109,7 @@ class Player {
             asleep: 0,
             hp: 157,
             totalHP: 157,
-            level: "51",
+            level: "Lv:51",
             attack: 115,
             specialAttack: 96,
             defense: 122,
@@ -177,7 +179,7 @@ class Player {
             asleep: 0,
             hp: 158,
             totalHP: 158,
-            level: "51",
+            level: "Lv:51",
             attack: 114,
             specialAttack: 109,
             defense: 105,
@@ -248,7 +250,7 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: "51",
+            level: "Lv:51",
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -320,7 +322,7 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: "51",
+            level: "Lv:51",
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -393,7 +395,7 @@ class Player {
             asleep: 0,
             hp: 132,
             totalHP: 132,
-            level: "51",
+            level: "Lv:51",
             attack: 78,
             specialAttack: 142,
             defense: 66,
@@ -518,6 +520,8 @@ class Player {
             case "revive":
                 if (this.revives === 0) {
                     console.log('none')
+                } else if (this.team[swapChoice].hp >= 1) {
+                    console.log('your pokemon has not fainted!')
                 } else {
                     pokemon.fainted = false
                     pokemon.hp = (this.team[swapChoice].totalHP / 2)
@@ -644,7 +648,7 @@ class Player {
     attack(chosenAttack, targetPokemon) {
         let attack = 0
         let superEffectiveDamageMultiplyer = 1
-
+        console.log(chosenAttack.name)
         if (chosenAttack.power === 0) {
             //use a switch to go through each move
             switch (chosenAttack.name) {
@@ -658,28 +662,33 @@ class Player {
 
         //set damage if move is physical
         if (chosenAttack.physical) {
-            this.damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+            console.log('phsycial')
+            this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
             //set damage if move is special
         } else if (chosenAttack.special) {
-            this.damage = Math.floor((this.team[0].level / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+            console.log('special')
+            this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+            // console.log('damage is', this.damage)
         }
+        console.log('raw damage', this.damage)
 
         //check if move hits
-        index = Math.random()
-        if (index > chosenAttack.accuracy) {
+        let index = Math.random()
+        if (index < chosenAttack.accuracy) {
             //check if move is Same Type Attack Bonus
             if (chosenAttack.type.includes(this.team[0].type)) {
                 this.damage *= 1.5
             }
             //Check if target pokemon is weak or resistant to attack type
-            this.targetPokemon.weakness.forEach((type) => {
-                if (this.targetPokemon.weakness[type].includes(chosenAttack.type)) {
-                    superEffectiveDamageMultiplyer += 2
+            targetPokemon.weakness.forEach((typing) => {
+                if (typing == chosenAttack.type) {
+                    superEffectiveDamageMultiplyer += 1
                 }
             })
-            this.targetPokemon.resist.forEach((type) => {
-                if (this.targetPokemon.resists[type].includes(chosenAttack.type)) {
-                    superEffectiveDamageMultiplyer /= 2
+            console.log(targetPokemon.resist, chosenAttack.type)
+            targetPokemon.resist.forEach((typing) => {
+                if (typing === chosenAttack.type) {
+                    superEffectiveDamageMultiplyer -= 1
                 }
             })
 
@@ -688,30 +697,34 @@ class Player {
             if (critIndex > .92) {
                 this.damage *= 2
             }
-
+            console.log('multipler is at', superEffectiveDamageMultiplyer)
             //apply super type damage
             if (superEffectiveDamageMultiplyer > 1) {
-                this.damage * superEffectiveDamageMultiplyer
+                console.log('greater')
+                this.damage *= superEffectiveDamageMultiplyer
                 console.log("It's super effective!")
             } else if (superEffectiveDamageMultiplyer < 1) {
-                this.damage / superEffectiveDamageMultiplyer
+                this.damage /= superEffectiveDamageMultiplyer
                 console.log("It's not very effective.")
             }
-
+            console.log("damage is", this.damage)
+            console.log('original hp', targetPokemon.hp)
             //apply damage  
-            this.targetPokemon.hp -= this.damage
-            console.log(this.damage)
+            targetPokemon.hp -= this.damage
+            console.log('hp now', targetPokemon.hp)
             //code chosenmove here
             this.applyStatus(chosenAttack)
+            this.damage = 0
 
 
         } else {
             console.log('you missed!')
-            this.target.attack(this.team[0])
+            this.damage = 0
+            // this.target.attack(this.team[0])
         }
     }
     applyStatus(chosenMove) {
-        if (chosenAttack.status) {
+        if (chosenMove.status) {
             switch (chosenMove.statusType) {
                 case "frozen":
                     this.targetPokemon.frozen = Math.floor(Math.random() * 3)
@@ -777,3 +790,5 @@ class Player {
 
 //create instance of trainer
 player = new Player("Red")
+
+

@@ -7,7 +7,7 @@ class Lorelei {
         this.changePokemon = 5
         this.defeated = false
         this.img = "elite4trainers/Loreli.png"
-        this.target = player.team[0]
+        this.target = ''
         this.damage = 0
         this.attackChoice = ''
         this.fullRestore = 2
@@ -15,8 +15,8 @@ class Lorelei {
             name: "DEWGONG",
             cry: "sound.wav",
             type: ["water", "ice"],
-            weakness: ["fighting", "electric", "grass", "rock"],
-            resist: ["ice", "water"],
+            weakness: ["FIRE", "ELECTRIC", "GRASS", "ROCK"],
+            resist: ["ICE", "WATER"],
             img: "charizard.png",
             tinyPic: "img.src",
             fainted: false,
@@ -454,11 +454,16 @@ class Lorelei {
             }, 2800);
         }, 1450);
     }
+    chooseMove() {
+        let index = Math.floor(Math.random() * 4)
+        this.team[0].moves[index]
+    }
     prechange() {
         this.pokemonChoice++
         msgBoxText.textContent = `Lorelei is about to send out ${this.team[this.pokemonChoice].name}, do you want to change POKEMON?`
         //remove hidden on yes or no box
     }
+
     preCheckStatus(yourPokemon) {
         //Check if confused
         if (yourPokemon.confused) {
@@ -615,4 +620,4 @@ class Lorelei {
     }
 }
 
-lorelei = new Lorelei()
+Lorelei = new Lorelei()

@@ -81,6 +81,7 @@ const bagMenuButton = document.querySelector('.bagMenu')
 
 //Create Global Variables
 let input = ''
+Lorelei.target = player.team[0]
 let swapChoice = 0
 genderChoice.style.display = "none"
 let usingItem = false
@@ -579,7 +580,7 @@ const beginCombat = () => {
         msgBoxText.textContent = ''
     }, 9000);
     setTimeout(() => {
-        lorelei.choosePokemon()
+        Lorelei.choosePokemon()
     }, 10000);
 }
 const battlePic = () => {
@@ -657,7 +658,27 @@ bagButton.addEventListener('click', (evt) => {
 })
 
 const bagButtons = [fullRestoreButton, reviveButton, parHealButton, burnHealButton, unfreezeButton, awakenButton, confuseHealButton, antidoteButton]
+const moveButtons = [moveOneButton, moveTwoButton, moveThreeButton, moveFourButton]
 
+moveButtons.forEach((chosenMove) => {
+    chosenMove.addEventListener('click', (evt) => {
+        switch (evt.target.id) {
+            case "mv1":
+                player.attack(player.team[0].moves[0], player.targetPokemon)
+                console.log(player.targetPokemon)
+                break;
+            case "mv2":
+                player.attack(player.team[0].moves[1], player.targetPokemon)
+                break;
+            case "mv3":
+                player.attack(player.team[0].moves[2], player.targetPokemon)
+                break;
+            case "mv4":
+                player.attack(player.team[0].moves[3], player.targetPokemon)
+                break;
+        }
+    })
+})
 bagButtons.forEach((item) => {
     item.addEventListener('mouseout', (evt) => {
         bagMsg.textContent = ''
