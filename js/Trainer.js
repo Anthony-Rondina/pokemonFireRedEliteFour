@@ -662,12 +662,15 @@ class Player {
 
         //set damage if move is physical
         if (chosenAttack.physical) {
-            console.log('phsycial')
-            this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+            console.log('phsyical')
+            // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+            this.damage += Math.floor((((((this.team[0].combatLvl / 5) + 2) * (this.team[0].attack / targetPokemon.defense) * (chosenAttack.power) + 2) / 50) + 2));
             //set damage if move is special
         } else if (chosenAttack.special) {
-            console.log('special')
-            this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+            console.log('Specials')
+            // console.log('special')
+            // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+            this.damage += Math.floor((((((this.team[0].combatLvl / 5) + 2) * (this.team[0].specialAttack / targetPokemon.specialDefense) * (chosenAttack.power) + 2) / 50) + 2));
             // console.log('damage is', this.damage)
         }
         console.log('raw damage', this.damage)
@@ -685,16 +688,16 @@ class Player {
                     superEffectiveDamageMultiplyer += 1
                 }
             })
-            console.log(targetPokemon.resist, chosenAttack.type)
             targetPokemon.resist.forEach((typing) => {
                 if (typing === chosenAttack.type) {
-                    superEffectiveDamageMultiplyer -= 1
+                    superEffectiveDamageMultiplyer -= .5
                 }
             })
 
             //Crit Chance is 6.25
             let critIndex = Math.random()
             if (critIndex > .92) {
+                console.log('CRIT!')
                 this.damage *= 2
             }
             console.log('multipler is at', superEffectiveDamageMultiplyer)
@@ -704,18 +707,19 @@ class Player {
                 this.damage *= superEffectiveDamageMultiplyer
                 console.log("It's super effective!")
             } else if (superEffectiveDamageMultiplyer < 1) {
-                this.damage /= superEffectiveDamageMultiplyer
+                this.damage *= superEffectiveDamageMultiplyer
                 console.log("It's not very effective.")
             }
-            console.log("damage is", this.damage)
-            console.log('original hp', targetPokemon.hp)
             //apply damage  
-            targetPokemon.hp -= this.damage
+            console.log('damage is', this.damage)
+            targetPokemon.hp = Math.floor(targetPokemon.hp - this.damage)
+            if (targetPokemon.hp <= 0) {
+                targetPokemon.hp = 0
+            }
+            animateEnemyHP()
             console.log('hp now', targetPokemon.hp)
-            //code chosenmove here
-            this.applyStatus(chosenAttack)
+            // this.applyStatus(chosenAttack)
             this.damage = 0
-
 
         } else {
             console.log('you missed!')

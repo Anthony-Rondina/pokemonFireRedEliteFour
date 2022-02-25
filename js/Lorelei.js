@@ -16,7 +16,7 @@ class Lorelei {
             cry: "sound.wav",
             type: ["water", "ice"],
             weakness: ["FIRE", "ELECTRIC", "GRASS", "ROCK"],
-            resist: ["ICE", "WATER"],
+            resist: ["ICE", "FLYING"],
             img: "charizard.png",
             tinyPic: "img.src",
             fainted: false,

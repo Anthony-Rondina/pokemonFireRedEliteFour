@@ -31,6 +31,7 @@ const buttonA = document.querySelector('.buttonA')
 const buttonB = document.querySelector('.buttonB')
 const upButton = document.querySelector('.up')
 const hpBar = document.querySelector('.playerHPanimated')
+const enemyHPBar = document.querySelector('.enemyHPanimated')
 const hpNumbers = document.querySelector('.inputHPNumbers')
 const currentPokemon = document.querySelector('.pokemon')
 const maxHP = document.querySelector('.maxHP')
@@ -301,7 +302,17 @@ const animateNumbers = (start, end, duration) => {
 }
 hpNumbers.textContent = player.team[0].hp
 maxHP.textContent = player.team[0].totalHP
-
+const animateEnemyHP = () => {
+    let width = Math.floor((player.targetPokemon.hp / player.targetPokemon.totalHP) * 100)
+    if (width <= 50 && width >= 21) {
+        enemyHPBar.style.backgroundColor = "darkorange";
+    } else if (width <= 20) {
+        enemyHPBar.style.backgroundColor = "darkred";
+    } else {
+        enemyHPBar.style.backgroundColor = "green";
+    }
+    enemyHPBar.style.width = width + "%"
+}
 
 const playerPercent = (pokemon, damageReceived) => {
     let start = pokemon.hp
@@ -665,7 +676,6 @@ moveButtons.forEach((chosenMove) => {
         switch (evt.target.id) {
             case "mv1":
                 player.attack(player.team[0].moves[0], player.targetPokemon)
-                console.log(player.targetPokemon)
                 break;
             case "mv2":
                 player.attack(player.team[0].moves[1], player.targetPokemon)
