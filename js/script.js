@@ -78,11 +78,15 @@ const awakenButton = document.getElementById('awaken')
 const confuseHealButton = document.getElementById('confuseHeal')
 const antidoteButton = document.getElementById('antidote')
 const bagMenuButton = document.querySelector('.bagMenu')
-
-Lorelei.choosePokemon()
+const yesNoMenu = document.querySelector('.yesNo')
+const yesButton = document.querySelector('.yesButton')
+const noButton = document.querySelector('.noButton')
+// Lorelei.choosePokemon()
 
 
 //Create Global Variables
+let afterBattleSwap = false
+let firstTime = true
 let input = ''
 Lorelei.target = player.team[0]
 let swapChoice = 0
@@ -174,6 +178,17 @@ const swapPokemon = () => {
     setTimeout(() => {
         pokeBallThrown.style.opacity = '0'
     }, 6000);
+    if (afterBattleSwap) {
+        player.targetTrainer.choosePokemon()
+        combatChoice.classList.add('hidden')
+    } else if (firstTime) {
+        firstTime = false
+    } else {
+        setTimeout(() => {
+            enemyAttack()
+            combatChoice.classList.add('hidden')
+        }, 3000);
+    }
 }
 
 let codeTime = true
@@ -633,6 +648,19 @@ const updateTeam = () => {
         document.querySelector(`.hp${(i + 1)}`).style.width = width + "%"
     }
 }
+
+const victorySwap = () => {
+    yesNoMenu.classList.add('hidden')
+    combatScreen.classList.add('hidden')
+    teamScreen.classList.remove('hidden')
+}
+const keepPokemon = () => {
+    yesNoMenu.classList.add('hidden')
+    setTimeout(() => {
+        player.targetTrainer.choosePokemon()
+    }, 1300);
+}
+
 beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
@@ -643,6 +671,8 @@ teamChoice2.onclick = setChoice
 teamChoice3.onclick = setChoice
 teamChoice4.onclick = setChoice
 teamChoice5.onclick = setChoice
+yesButton.onclick = victorySwap
+noButton.onclick = keepPokemon
 teamChoice6.onclick = setChoice
 powerOnButton.onclick = turnOn
 buttonA.addEventListener('click', (evt) => {
@@ -733,7 +763,6 @@ const playerAttack = (chosenAttack, targetPokemon) => {
         if (superEffectiveDamageMultiplyer > 1) {
             console.log('greater')
             player.damage *= superEffectiveDamageMultiplyer
-            console.log("It's super effective!")
         } else if (superEffectiveDamageMultiplyer < 1) {
             player.damage *= superEffectiveDamageMultiplyer
             console.log("It's not very effective.")
@@ -757,14 +786,49 @@ const playerAttack = (chosenAttack, targetPokemon) => {
         }, 2000);
         setTimeout(() => {
             animateEnemyHP()
+            setTimeout(() => {
+                if (superEffectiveDamageMultiplyer > 1) {
+                    msgBoxText.textContent = "It's super effective!"
+                } else if (superEffectiveDamageMultiplyer < 1) {
+                    msgBoxText.textContent = "It's not very effective."
+                }
+            }, 200);
         }, 3000);
 
         console.log('hp now', targetPokemon.hp)
         // this.applyStatus(chosenAttack)
         player.damage = 0
 
+        if (player.targetPokemon.hp === 0) {
+            //play cry here
+            setTimeout(() => {
+                opponentPokemon.classList.add("eTrainerPokemonFaint")
+                msgBoxText.textContent = `${player.targetPokemon.name} fainted!`
+            }, 6000);
+            setTimeout(() => {
+                player.targetTrainer.preChange()
+                afterBattleSwap = true
+                yesNoMenu.classList.remove('hidden')
+            }, 9000);
+        } else {
+            if (firstAttack === "player") {
+                setTimeout(() => {
+                    enemyAttack()
+                }, 6000);
+
+            } else {
+                firstAttack = ''
+                msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+                setTimeout(() => {
+                    fightMenu()
+                }, 2050);
+
+            }
+        }
     } else {
-        console.log('you missed!')
+        setTimeout(() => {
+            msgBoxText.textContent = `${player.team[0].name} missed!`
+        }, 1500);
         player.damage = 0
         if (firstAttack === "player") {
             setTimeout(() => {
@@ -780,20 +844,6 @@ const playerAttack = (chosenAttack, targetPokemon) => {
 
 
         }
-        // this.target.attack(this.team[0])
-    }
-    if (firstAttack === "player") {
-        setTimeout(() => {
-            enemyAttack()
-        }, 6000);
-
-    } else {
-        firstAttack = ''
-        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
-        setTimeout(() => {
-            fightMenu()
-        }, 2050);
-
     }
 }
 const enemyAttack = () => {
@@ -867,6 +917,11 @@ const enemyAttack = () => {
             opponentPokemon.classList.remove("eTrainerPokemonAttack")
         }, 750);
         setTimeout(() => {
+            if (superEffectiveDamageMultiplyer > 1) {
+                msgBoxText.textContent = "It's super effective!"
+            } else if (superEffectiveDamageMultiplyer < 1) {
+                msgBoxText.textContent = "It's not very effective."
+            }
             playerPercent(player.team[0], player.targetTrainer.damage)
         }, 2000);
         console.log('hp now', player.team[0].hp)
@@ -892,14 +947,14 @@ const enemyAttack = () => {
         // }, 3000);
         // this.target.attack(this.team[0])
     }
-   
 
-    
+
+
     if (firstAttack === "opponent") {
         playerAttack(player.attackChoice, player.targetPokemon)
     } else {
         firstAttack = ''
-        msgBoxText.textContent = `${player.team[0].name} used ${computerAttack.name}!`
+        msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
         setTimeout(() => {
             moveBar.classList.add("hidden")
             combatChoice.classList.remove('hidden')
@@ -964,7 +1019,7 @@ moveButtons.forEach((chosenMove) => {
                     menuButtonDiv.classList.add('hidden')
                     firstAttack = "player"
                     setTimeout(() => {
-                        msgBoxText.textContent = `${player.team[2].name} used ${player.team[0].moves[2].name}!`
+                        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[2].name}!`
                     }, 150);
                     if (player.team[0].speed >= player.targetPokemon.speed) {
                         playerAttack(player.team[0].moves[2], player.targetPokemon)

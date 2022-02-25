@@ -435,6 +435,9 @@ class Lorelei {
         }]
     }
     choosePokemon() {
+        console.log(this.team[0].name, this.team[0].hp)
+        enemyHPBar.style.backgroundColor = "green";
+        enemyHPBar.style.width = "100%"
         enemyPokeball.classList.remove("hidden")
         msgBoxText.textContent = `Lorelei sent out ${this.team[this.pokemonChoice].name}!`
         setTimeout(() => {
@@ -449,20 +452,34 @@ class Lorelei {
             setTimeout(() => {
                 msgBoxText.textContent = ``
             }, 2000);
-            setTimeout(() => {
-                teamScreen.classList.remove('hidden')
-                combatScreen.classList.add("hidden")
-            }, 2800);
+            if (afterBattleSwap) {
+                setTimeout(() => {
+                    msgBoxText.textContent = `What will ${player.team[0].name} do?`
+                    combatChoice.classList.remove('hidden')
+                }, 1000);
+                afterBattleSwap = false
+
+            } else {
+                setTimeout(() => {
+                    teamScreen.classList.remove('hidden')
+                    combatScreen.classList.add("hidden")
+                }, 2800);
+            }
         }, 1450);
     }
     chooseMove() {
         let index = Math.floor(Math.random() * 4)
         this.team[0].moves[index]
     }
-    prechange() {
-        this.pokemonChoice++
-        msgBoxText.textContent = `Lorelei is about to send out ${this.team[this.pokemonChoice].name}, do you want to change POKEMON?`
-        //remove hidden on yes or no box
+    preChange() {
+        if (this.pokemonChoice === 5) {
+            //surrender
+        } else {
+            this.pokemonChoice++
+            this.team[0] = this.team[this.pokemonChoice]
+            msgBoxText.textContent = `Lorelei is about to send out ${this.team[this.pokemonChoice].name}, do you want to change POKEMON?`
+            //remove hidden on yes or no box
+        }
     }
 
     preCheckStatus(yourPokemon) {

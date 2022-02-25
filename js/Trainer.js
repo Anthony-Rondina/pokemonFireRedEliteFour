@@ -39,7 +39,7 @@ class Player {
             hp: 156,
             totalHP: 156,
             level: "Lv:65",
-            combatLvl: 65,
+            combatLvl: 11265,
             attack: 116,
             specialAttack: 117,
             defense: 100,
