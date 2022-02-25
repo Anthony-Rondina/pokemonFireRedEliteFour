@@ -81,7 +81,10 @@ const bagMenuButton = document.querySelector('.bagMenu')
 const yesNoMenu = document.querySelector('.yesNo')
 const yesButton = document.querySelector('.yesButton')
 const noButton = document.querySelector('.noButton')
-// Lorelei.choosePokemon()
+const endingScreen = document.querySelector('.endingScreen')
+const clickStartButton = document.querySelector('.clickStart')
+
+Lorelei.choosePokemon()
 
 
 //Create Global Variables
@@ -180,6 +183,7 @@ const swapPokemon = () => {
     }, 6000);
     if (afterBattleSwap) {
         player.targetTrainer.choosePokemon()
+        player.targetPokemon = player.targetTrainer.team[player.targetTrainer.pokemonChoice]
         combatChoice.classList.add('hidden')
     } else if (firstTime) {
         firstTime = false
@@ -189,6 +193,7 @@ const swapPokemon = () => {
             combatChoice.classList.add('hidden')
         }, 3000);
     }
+    console.log(player.team[0])
 }
 
 let codeTime = true
@@ -297,11 +302,14 @@ const cheatCode = (evt) => {
                 break;
         }
     } else {
-        console.log("must restart game to enter a code!")
-        return
+        characterCreate()
     }
 }
-
+if (codeTime) {
+    startButton.onclick = cheatCode
+} else {
+    startButton.onclick = characterCreate
+}
 
 const animateNumbers = (start, end, duration) => {
     if (start === end) return;
@@ -534,18 +542,14 @@ const animateThrow = () => {
     }
 }
 
-let intro = true
-if (intro) {
-    startButton.addEventListener('click', (evt) => {
-        introTheme.pause()
-        welcomeScreen.classList.add('hidden')
-        introScreen.classList.remove('hidden')
-        intro = false
-        victoryRoadTheme.play()
-    })
-} else {
-    start.onclick = cheatCode
+
+const characterCreate = () => {
+    introTheme.pause()
+    welcomeScreen.classList.add('hidden')
+    introScreen.classList.remove('hidden')
+    victoryRoadTheme.play()
 }
+
 
 const gender = () => {
     if (playerInput.value.length > 0) {
@@ -658,9 +662,11 @@ const keepPokemon = () => {
     yesNoMenu.classList.add('hidden')
     setTimeout(() => {
         player.targetTrainer.choosePokemon()
+        player.targetPokemon = player.targetTrainer.team[player.targetTrainer.pokemonChoice]
     }, 1300);
 }
 
+clickStartButton.onclick = characterCreate
 beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
@@ -803,12 +809,17 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             //play cry here
             setTimeout(() => {
                 opponentPokemon.classList.add("eTrainerPokemonFaint")
-                msgBoxText.textContent = `${player.targetPokemon.name} fainted!`
+                msgBoxText.textContent = `${Lorelei.team[Lorelei.pokemonChoice].name} fainted!`
             }, 6000);
             setTimeout(() => {
                 player.targetTrainer.preChange()
                 afterBattleSwap = true
-                yesNoMenu.classList.remove('hidden')
+                if (player.targetTrainer.pokemonChoice === player.targetTrainer.team.length) {
+                    yesNoMenu.classList.add('hidden')
+                } else {
+                    console.log('popping up menu')
+                    yesNoMenu.classList.remove('hidden')
+                }
             }, 9000);
         } else {
             if (firstAttack === "player") {

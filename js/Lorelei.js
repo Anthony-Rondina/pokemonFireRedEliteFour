@@ -17,8 +17,7 @@ class Lorelei {
             type: ["water", "ice"],
             weakness: ["FIRE", "ELECTRIC", "GRASS", "ROCK"],
             resist: ["ICE", "FLYING"],
-            img: "charizard.png",
-            tinyPic: "img.src",
+            img: "dewgong.png",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -28,7 +27,7 @@ class Lorelei {
             asleep: 0,
             hp: 177,
             totalHP: 177,
-            level: "54",
+            level: "Lv:54",
             combatLvl: 54,
             attack: 106,
             specialAttack: 87,
@@ -83,13 +82,12 @@ class Lorelei {
             }]
         },
         {
-            name: "VENUSAUR",
+            name: "SLOWBRO",
             type: "GRASS",
             cry: "sound.wav",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
-            img: "venusaur.png",
-            tinyPic: "img.src",
+            img: "slowbro.png",
             fainted: false,
             poisoned: false,
             paralyzed: false,
@@ -153,11 +151,10 @@ class Lorelei {
             }]
         },
         {
-            name: "BLASTOISE",
+            name: "CLOYSTER",
             type: "WATER",
             cry: "sound.wav",
-            img: "blastoise.png",
-            tinyPic: "img.src",
+            img: "cloyster.png",
             weakness: ["electric", "grass",],
             resist: ["fire", "ice", "steel", "water"],
             fainted: false,
@@ -221,11 +218,10 @@ class Lorelei {
                 accuracy: 1,
             }]
         }, {
-            name: "ALAKAZAM",
+            name: "LAPRAS",
             type: "PSYCHIC",
             cry: "sound.wav",
-            img: "alakazam.png",
-            tinyPic: "img.src",
+            img: "laprasFront.png",
             weakness: ["bug", "dark", "ghost"],
             resist: ["fighting", "psychic"],
             fainted: false,
@@ -291,11 +287,10 @@ class Lorelei {
                 accuracy: 1,
             }]
         }, {
-            name: "LAPRAS",
+            name: "JYNX",
             type: ["WATER", "ICE"],
             cry: "sound.wav",
-            img: "lapras.png",
-            tinyPic: "img.src",
+            img: "jynx.png",
             weakness: ["electric", "fighting", "grass", "rock",],
             resist: ["ice", "water"],
             fainted: false,
@@ -361,80 +356,10 @@ class Lorelei {
                 power: 110,
                 accuracy: .75,
             }]
-        }, {
-            name: "RHYDON",
-            type: ["water", "ice"],
-            cry: "sound.wav",
-            img: "rhydon.png",
-            tinyPic: "img.src",
-            weakness: ["electric", "fighting", "grass", "rock",],
-            resist: ["ice", "water"],
-            fainted: false,
-            poisoned: false,
-            paralyzed: false,
-            burned: false,
-            frozen: 0,
-            confused: 0,
-            asleep: 0,
-            hp: 209,
-            totalHP: 209,
-            level: "Lv51",
-            attack: 117,
-            specialAttack: 96,
-            defense: 102,
-            specialDefense: 117,
-            speed: 82,
-            moves: [{
-                name: "Ice Beam",
-                type: "ice",
-                physical: false,
-                special: true,
-                status: true,
-                statusType: "frozen",
-                pp: 10,
-                maxPP: 15,
-                power: 90,
-                accuracy: 1
-            },
-            {
-                name: "Sing",
-                type: "normal",
-                physical: false,
-                special: false,
-                status: true,
-                statusType: "sleep",
-                pp: 15,
-                maxPP: 15,
-                power: 0,
-                accuracy: 1,
-            },
-            {
-                name: "Surf",
-                type: "water",
-                physical: false,
-                special: true,
-                status: true,
-                pp: 5,
-                maxPP: 15,
-                power: 95,
-                accuracy: 1,
-            },
-            {
-                name: "Blizzard",
-                type: "ice",
-                physical: false,
-                special: true,
-                status: true,
-                statusType: "frozen",
-                loseTurn: false,
-                pp: 5,
-                maxPP: 15,
-                power: 110,
-                accuracy: .75,
-            }]
         }]
     }
     choosePokemon() {
+        opponentPokemon.src = this.team[this.pokemonChoice].img
         console.log(this.team[0].name, this.team[0].hp)
         enemyHPBar.style.backgroundColor = "green";
         enemyHPBar.style.width = "100%"
@@ -472,10 +397,11 @@ class Lorelei {
         this.team[0].moves[index]
     }
     preChange() {
-        if (this.pokemonChoice === 5) {
-            //surrender
+        if (this.pokemonChoice === 4) {
+            endingScreen.style.opacity = "100%"
         } else {
             this.pokemonChoice++
+            console.log(this.pokemonChoice)
             this.team[0] = this.team[this.pokemonChoice]
             msgBoxText.textContent = `Lorelei is about to send out ${this.team[this.pokemonChoice].name}, do you want to change POKEMON?`
             //remove hidden on yes or no box

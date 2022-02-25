@@ -563,6 +563,25 @@ body{
    background-color: white;
    border: white 3px solid;
    border-radius: 6%;
+}.endingScreen {
+    z-index: 100;
+    position: absolute;
+    background-color: black;
+    width: 1290px;
+    height: 728px;
+    opacity: 0%;
+    transition-property: opacity;
+    transition-duration: 3s;;
+    pointer-events: none;
+}
+.clickStart{
+    cursor: pointer;
+    position: absolute;
+    border: white solid 1px;
+    width: 500px;
+    height: 100px;
+    margin-left: 210px;
+    margin-top: 540px;
 }
 .hpBar4{
     position: absolute;
@@ -809,7 +828,7 @@ body{
     position: absolute;
     transition-property: all;
     transition-duration: .5s;
-    margin-top: -645px;
+    margin-top: -665px;
     margin-left: 800px;
 }
 .eTrainerPokemonAttack{
@@ -876,6 +895,7 @@ body{
     border-radius: 50%;
     margin-top: 300px;
     margin-left: 300px;
+    pointer-events: none;
 }
 .epokeball {
     z-index: 0;
@@ -903,6 +923,7 @@ body{
     filter: blur(1.8rem);
     border-radius: 50%;
     opacity: 0;
+    pointer-events: none;
 }
 .wrapper {
     display: flex;
@@ -917,6 +938,16 @@ body{
     min-height: 720px;
     max-width: 1280px;
     max-height: 720px;
+}
+.cheatCodePopUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P';
+    color: white;
+    height: 720px;
+    font-size: 1.5em;
+    text-align: center;
 }
 .teamCancel{
     cursor: pointer;
@@ -1103,9 +1134,10 @@ body{
     position: absolute;
     background-color: black;
     height: 720px;
-    min-width: 1280px;
-    min-height: 720px;
-    max-width: 120px;
+    margin-left: -.5px;
+    min-width: 1290px;
+    min-height: 730px;
+    max-width: 1290px;
     max-height: 720px;
     transition-property: all;
     transition-duration: 1.5s;
