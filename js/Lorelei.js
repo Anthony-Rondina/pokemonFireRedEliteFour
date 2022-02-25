@@ -7,7 +7,7 @@ class Lorelei {
         this.changePokemon = 5
         this.defeated = false
         this.img = "elite4trainers/Loreli.png"
-        this.target = ''
+        this.target = 'player.team[0]'
         this.damage = 0
         this.attackChoice = ''
         this.fullRestore = 2
@@ -29,6 +29,7 @@ class Lorelei {
             hp: 177,
             totalHP: 177,
             level: "54",
+            combatLvl: 54,
             attack: 106,
             specialAttack: 87,
             defense: 108,

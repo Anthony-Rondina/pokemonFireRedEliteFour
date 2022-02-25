@@ -79,6 +79,8 @@ const confuseHealButton = document.getElementById('confuseHeal')
 const antidoteButton = document.getElementById('antidote')
 const bagMenuButton = document.querySelector('.bagMenu')
 
+Lorelei.choosePokemon()
+
 
 //Create Global Variables
 let input = ''
@@ -316,7 +318,7 @@ const animateEnemyHP = () => {
 
 const playerPercent = (pokemon, damageReceived) => {
     let start = pokemon.hp
-    pokemon.hp -= 70 //damageRecieved
+    pokemon.hp -= damageReceived
     if (pokemon.hp <= 0) pokemon.hp = 0
     let end = pokemon.hp
     damage = Math.floor((pokemon.hp / pokemon.totalHP) * 100)
@@ -670,25 +672,334 @@ bagButton.addEventListener('click', (evt) => {
 
 const bagButtons = [fullRestoreButton, reviveButton, parHealButton, burnHealButton, unfreezeButton, awakenButton, confuseHealButton, antidoteButton]
 const moveButtons = [moveOneButton, moveTwoButton, moveThreeButton, moveFourButton]
+let firstAttack = 0
+const playerAttack = (chosenAttack, targetPokemon) => {
+    let attack = 0
+    let superEffectiveDamageMultiplyer = 1
+    console.log(chosenAttack.name)
+    if (chosenAttack.power === 0) {
+        //use a switch to go through each move
+        switch (chosenAttack.name) {
+            case "rest":
+                player.team[0].asleep = Math.floor(Math.random() * 3)
+                player.team[0].hp += player.team[0].totalHP
+                player.target.attack(player.team[0])
+                break;
+        }
+    }
+
+    //set damage if move is physical
+    if (chosenAttack.physical) {
+        console.log('phsyical')
+        // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+        player.damage += Math.floor((((((player.team[0].combatLvl / 5) + 2) * (player.team[0].attack / targetPokemon.defense) * (chosenAttack.power) + 2) / 50) + 2));
+        //set damage if move is special
+    } else if (chosenAttack.special) {
+        console.log('Specials')
+        // console.log('special')
+        // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+        player.damage += Math.floor((((((player.team[0].combatLvl / 5) + 2) * (player.team[0].specialAttack / targetPokemon.specialDefense) * (chosenAttack.power) + 2) / 50) + 2));
+        // console.log('damage is', this.damage)
+    }
+    console.log('raw damage', player.damage)
+
+    //check if move hits
+    let index = Math.random()
+    if (index < chosenAttack.accuracy) {
+        //check if move is Same Type Attack Bonus
+        if (chosenAttack.type.includes(player.team[0].type)) {
+            player.damage *= 1.5
+        }
+        //Check if target pokemon is weak or resistant to attack type
+        targetPokemon.weakness.forEach((typing) => {
+            if (typing == chosenAttack.type) {
+                superEffectiveDamageMultiplyer += 1
+            }
+        })
+        targetPokemon.resist.forEach((typing) => {
+            if (typing === chosenAttack.type) {
+                superEffectiveDamageMultiplyer -= .5
+            }
+        })
+
+        //Crit Chance is 6.25
+        let critIndex = Math.random()
+        if (critIndex > .92) {
+            console.log('CRIT!')
+            player.damage *= 2
+        }
+        console.log('multipler is at', superEffectiveDamageMultiplyer)
+        //apply super type damage
+        if (superEffectiveDamageMultiplyer > 1) {
+            console.log('greater')
+            player.damage *= superEffectiveDamageMultiplyer
+            console.log("It's super effective!")
+        } else if (superEffectiveDamageMultiplyer < 1) {
+            player.damage *= superEffectiveDamageMultiplyer
+            console.log("It's not very effective.")
+        }
+        //apply damage  
+        console.log('damage is', player.damage)
+        targetPokemon.hp = Math.floor(targetPokemon.hp - player.damage)
+        if (targetPokemon.hp <= 0) {
+            targetPokemon.hp = 0
+
+        }
+        currentPokemon.classList.add("pokemonAttack")
+        setTimeout(() => {
+            currentPokemon.classList.remove("pokemonAttack")
+        }, 750);
+        setTimeout(() => {
+            opponentPokemon.classList.add("eTrainerPokemonHit")
+            setTimeout(() => {
+                opponentPokemon.classList.remove("eTrainerPokemonHit")
+            }, 750);
+        }, 2000);
+        setTimeout(() => {
+            animateEnemyHP()
+        }, 3000);
+
+        console.log('hp now', targetPokemon.hp)
+        // this.applyStatus(chosenAttack)
+        player.damage = 0
+
+    } else {
+        console.log('you missed!')
+        player.damage = 0
+        if (firstAttack === "player") {
+            setTimeout(() => {
+                enemyAttack()
+            }, 4000);
+
+        } else {
+            firstAttack = ''
+            msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+            setTimeout(() => {
+                fightMenu()
+            }, 2050);
+
+
+        }
+        // this.target.attack(this.team[0])
+    }
+    if (firstAttack === "player") {
+        setTimeout(() => {
+            enemyAttack()
+        }, 6000);
+
+    } else {
+        firstAttack = ''
+        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+        setTimeout(() => {
+            fightMenu()
+        }, 2050);
+
+    }
+}
+const enemyAttack = () => {
+    let computerChoice = Math.floor(Math.random() * 4)
+    let computerAttack = player.targetPokemon.moves[computerChoice]
+    let superEffectiveDamageMultiplyer = 1
+    console.log(computerAttack.name)
+    console.log(player.targetTrainer.damage)
+
+    //set damage if move is physical
+    if (computerAttack.physical) {
+        console.log('phsyical')
+        // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
+        player.targetTrainer.damage += Math.floor((((((player.targetPokemon.combatLvl / 5) + 2) * (player.targetPokemon.attack / player.team[0].defense) * (computerAttack.power) + 2) / 50) + 2));
+        //set damage if move is special
+    } else if (computerAttack.special) {
+        console.log('Special')
+        // console.log('special')
+        // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
+        player.targetTrainer.damage += Math.floor((((((player.targetPokemon.combatLvl / 5) + 2) * (player.targetPokemon.specialAttack / player.team[0].specialDefense) * (computerAttack.power) + 2) / 50) + 2));
+        // console.log('damage is', this.damage)
+    }
+    console.log('raw damage', player.targetTrainer.damage)
+
+    //check if move hits
+    let index = Math.random()
+    if (index < computerAttack.accuracy) {
+        //check if move is Same Type Attack Bonus
+        if (computerAttack.type.includes(player.targetPokemon.type)) {
+            player.damage *= 1.5
+        }
+        //Check if target pokemon is weak or resistant to attack type
+        player.team[0].weakness.forEach((typing) => {
+            if (typing == computerAttack.type) {
+                superEffectiveDamageMultiplyer += 1
+            }
+        })
+        player.team[0].resist.forEach((typing) => {
+            if (typing === computerAttack.type) {
+                superEffectiveDamageMultiplyer -= .5
+            }
+        })
+
+        //Crit Chance is 6.25
+        let critIndex = Math.random()
+        if (critIndex > .92) {
+            console.log('CRIT!')
+            msgBoxText.textContent = "A critical hit!"
+            setTimeout(() => {
+                msgBoxText.textContent = ""
+            }, 2000);
+            player.damage *= 2
+        }
+        console.log('multipler is at', superEffectiveDamageMultiplyer)
+        //apply super type damage
+        if (superEffectiveDamageMultiplyer > 1) {
+            console.log('greater')
+            player.targetTrainer.damage *= superEffectiveDamageMultiplyer
+            console.log("It's super effective!")
+        } else if (superEffectiveDamageMultiplyer < 1) {
+            player.targetTrainer.damage *= superEffectiveDamageMultiplyer
+            console.log("It's not very effective.")
+        }
+        //apply damage  
+        console.log('damage is', player.targetTrainer.damage)
+        if (player.team[0].hp <= 0) {
+            player.team[0].hp = 0
+        }
+        opponentPokemon.classList.add("eTrainerPokemonAttack")
+        setTimeout(() => {
+            opponentPokemon.classList.remove("eTrainerPokemonAttack")
+        }, 750);
+        setTimeout(() => {
+            playerPercent(player.team[0], player.targetTrainer.damage)
+        }, 2000);
+        console.log('hp now', player.team[0].hp)
+        // this.applyStatus(chosenAttack)
+        setTimeout(() => {
+            player.targetTrainer.damage = 0
+        }, 4000);
+
+    } else {
+        console.log('you missed!')
+        player.targetTrainer.damage = 0
+        // setTimeout(() => {
+        //     if (firstAttack === "opponent") {
+        //         playerAttack(player.attackChoice, player.targetPokemon)
+        //     } else {
+        //         firstAttack = ''
+        //         msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
+        //         computerChoice = 0
+        //         setTimeout(() => {
+        //             fightMenu()
+        //         }, 2050);
+        //     }
+        // }, 3000);
+        // this.target.attack(this.team[0])
+    }
+   
+
+    
+    if (firstAttack === "opponent") {
+        playerAttack(player.attackChoice, player.targetPokemon)
+    } else {
+        firstAttack = ''
+        msgBoxText.textContent = `${player.team[0].name} used ${computerAttack.name}!`
+        setTimeout(() => {
+            moveBar.classList.add("hidden")
+            combatChoice.classList.remove('hidden')
+            mainMessageBox.classList.remove('hidden')
+            msgBoxText.textContent = `What will ${player.team[0].name} do?`
+        }, 5050);
+    }
+}
 
 moveButtons.forEach((chosenMove) => {
     chosenMove.addEventListener('click', (evt) => {
         switch (evt.target.id) {
             case "mv1":
-                player.attack(player.team[0].moves[0], player.targetPokemon)
+                if (player.team[0].moves[0].pp > 0) {
+                    player.team[0].moves[0].pp--
+                    msgBoxText.textContent = ''
+                    player.attackChoice = player.team[0].moves[0]
+                    moveBar.classList.add("hidden")
+                    mainMessageBox.classList.remove('hidden')
+                    menuButtonDiv.classList.add('hidden')
+                    firstAttack = "player"
+                    setTimeout(() => {
+                        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+                    }, 150);
+                    if (player.team[0].speed >= player.targetPokemon.speed) {
+                        playerAttack(player.team[0].moves[0], player.targetPokemon)
+                    } else {
+                        firstAttack = "opponent"
+                        enemyAttack()
+                    }
+
+                }
                 break;
             case "mv2":
-                player.attack(player.team[0].moves[1], player.targetPokemon)
+                if (player.team[0].moves[1].pp > 0) {
+                    player.team[0].moves[1].pp--
+                    msgBoxText.textContent = ''
+                    player.attackChoice = player.team[0].moves[1]
+                    moveBar.classList.add("hidden")
+                    mainMessageBox.classList.remove('hidden')
+                    menuButtonDiv.classList.add('hidden')
+                    firstAttack = "player"
+                    setTimeout(() => {
+                        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[1].name}!`
+                    }, 150);
+                    if (player.team[0].speed >= player.targetPokemon.speed) {
+                        playerAttack(player.team[0].moves[1], player.targetPokemon)
+                    } else {
+                        firstAttack = "opponent"
+                        enemyAttack()
+                    }
+
+                }
                 break;
             case "mv3":
-                player.attack(player.team[0].moves[2], player.targetPokemon)
+                if (player.team[0].moves[2].pp > 0) {
+                    player.team[0].moves[2].pp--
+                    msgBoxText.textContent = ''
+                    player.attackChoice = player.team[0].moves[2]
+                    moveBar.classList.add("hidden")
+                    mainMessageBox.classList.remove('hidden')
+                    menuButtonDiv.classList.add('hidden')
+                    firstAttack = "player"
+                    setTimeout(() => {
+                        msgBoxText.textContent = `${player.team[2].name} used ${player.team[0].moves[2].name}!`
+                    }, 150);
+                    if (player.team[0].speed >= player.targetPokemon.speed) {
+                        playerAttack(player.team[0].moves[2], player.targetPokemon)
+                    } else {
+                        firstAttack = "opponent"
+                        enemyAttack()
+                    }
+
+                }
                 break;
             case "mv4":
-                player.attack(player.team[0].moves[3], player.targetPokemon)
+                if (player.team[0].moves[3].pp > 0) {
+                    player.team[0].moves[3].pp--
+                    msgBoxText.textContent = ''
+                    player.attackChoice = player.team[0].moves[3]
+                    moveBar.classList.add("hidden")
+                    mainMessageBox.classList.remove('hidden')
+                    menuButtonDiv.classList.add('hidden')
+                    firstAttack = "player"
+                    setTimeout(() => {
+                        msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[3].name}!`
+                    }, 150);
+                    if (player.team[0].speed >= player.targetPokemon.speed) {
+                        playerAttack(player.team[0].moves[3], player.targetPokemon)
+                    } else {
+                        firstAttack = "opponent"
+                        enemyAttack()
+                    }
+
+                }
                 break;
         }
     })
 })
+
 bagButtons.forEach((item) => {
     item.addEventListener('mouseout', (evt) => {
         bagMsg.textContent = ''

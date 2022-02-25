@@ -78,8 +78,8 @@ body{
      font-size: 1.3em;
     font-family: 'Press Start 2P';
      position: absolute;
-     margin-left: 311px;
-     margin-top: -87px;
+     margin-left: 1085px;
+     margin-top: -130px;
      width: 100px;
      height: 60px;
  }
@@ -771,6 +771,14 @@ body{
     margin-top: -480px;
     margin-left: 300px;
 }
+.pokemonAttack{
+    z-index: 0;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    margin-top: -480px;
+    margin-left: 380px;
+}
 .eTrainerPokemon{
     z-index: 0;
     position: absolute;
@@ -778,6 +786,22 @@ body{
     transition-duration: .5s;
     margin-top: -645px;
     margin-left: 800px;
+}
+.eTrainerPokemonAttack{
+    z-index: 0;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    margin-top: -645px;
+    margin-left: 730px;
+}
+.eTrainerPokemonHit{
+    z-index: 0;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .5s;
+    margin-top: -645px;
+    margin-left: 850px;
 }
 .eTrainerPokemonFaint{
     z-index: 0;

@@ -8,6 +8,7 @@ class Player {
         this.chosenAttack = ''
         this.target = "Lorelei"
         this.damage = 0
+        this.targetTrainer = Lorelei
         this.targetPokemon = Lorelei.team[0]
         this.opponenet = "Lorelei"
         this.attackChoice = ''
@@ -23,8 +24,8 @@ class Player {
             name: "CHARIZARD",
             cry: "sound.wav",
             type: ["fire", "flying"],
-            weakness: ["rock", "electric", "rock", "water"],
-            resist: ["bug", "grass", "bug", "grass", "fairy", "fire", "fighting", "ground", "steel",],
+            weakness: ["ROCK", "ELECTRIC", "ROCK", "WATER"],
+            resist: ["BUG", "GRASS", "BUG", "GRASS", "FAIRY", "FIRE", "FIGHTING", "GROUND", "STEEL",],
             img: "charizard.png",
             tinyPic: "charizard.gif",
             fainted: false,
@@ -37,8 +38,8 @@ class Player {
             asleep: 0,
             hp: 156,
             totalHP: 156,
-            level: "Lv:51",
-            combatLvl: 60,
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 116,
             specialAttack: 117,
             defense: 100,
@@ -109,7 +110,8 @@ class Player {
             asleep: 0,
             hp: 157,
             totalHP: 157,
-            level: "Lv:51",
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 115,
             specialAttack: 96,
             defense: 122,
@@ -179,7 +181,8 @@ class Player {
             asleep: 0,
             hp: 158,
             totalHP: 158,
-            level: "Lv:51",
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 114,
             specialAttack: 109,
             defense: 105,
@@ -250,7 +253,8 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: "Lv:51",
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -322,7 +326,8 @@ class Player {
             asleep: 0,
             hp: 209,
             totalHP: 209,
-            level: "Lv:51",
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -395,7 +400,8 @@ class Player {
             asleep: 0,
             hp: 132,
             totalHP: 132,
-            level: "Lv:51",
+            level: "Lv:65",
+            combatLvl: 65,
             attack: 78,
             specialAttack: 142,
             defense: 66,
@@ -778,14 +784,17 @@ class Player {
         switch (this.target) {
             case "Lorelei":
                 this.target = "Bruno"
+                this.targetTrainer = Bruno
                 this.targetPokemon = Bruno.team[0]
                 break;
             case "Bruno":
                 this.target = "Agatha"
+                this.targetTrainer = Agatha
                 this.targetPokemon = Agatha.team[0]
                 break;
             case "Agatha":
                 this.target = "Lance"
+                this.targetTrainer = Lance
                 this.targetPokemon = Lance.team[0]
                 break;
         }
