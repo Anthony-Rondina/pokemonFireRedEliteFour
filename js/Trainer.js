@@ -22,7 +22,7 @@ class Player {
         this.antidote = 5
         this.team = [{
             name: "CHARIZARD",
-            cry: "sound.wav",
+            cry: "charizardcry.mp3",
             type: ["fire", "flying"],
             weakness: ["ROCK", "ELECTRIC", "ROCK", "WATER"],
             resist: ["BUG", "GRASS", "BUG", "GRASS", "FAIRY", "FIRE", "FIGHTING", "GROUND", "STEEL",],
@@ -95,7 +95,7 @@ class Player {
         {
             name: "BLASTOISE",
             type: "WATER",
-            cry: "sound.wav",
+            cry: "blastoisecry.mp3",
             img: "blastoise.png",
             tinyPic: "blastoise.gif",
             weakness: ["electric", "grass",],
@@ -166,7 +166,7 @@ class Player {
         {
             name: "VENUSAUR",
             type: "GRASS",
-            cry: "sound.wav",
+            cry: "venusaurcry.mp3",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
             img: "venusaur.png",
@@ -238,11 +238,11 @@ class Player {
         {
             name: "LAPRAS",
             type: "GRASS",
-            cry: "sound.wav",
+            cry: "laprascry.mp3",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
             img: "lapras.png",
-            tinyPic: "venusaur.gif",
+            tinyPic: "lapras.gif",
             fainted: false,
             poisoned: false,
             inCombat: false,
@@ -262,7 +262,7 @@ class Player {
             speed: 102,
             moves: [{
                 name: "Ice Beam",
-                type: "ice",
+                type: "ICE",
                 physical: false,
                 special: true,
                 status: true,
@@ -312,11 +312,11 @@ class Player {
         {
             name: "RHYDON",
             type: "GRASS",
-            cry: "sound.wav",
+            cry: "rhydoncry.mp3",
             weakness: ["fire", "flying", "ice", "psychic",],
             resist: ["grass", "water", "fighting", "fairy", "electric",],
             img: "rhydon.png",
-            tinyPic: "venusaur.gif",
+            tinyPic: "rhydon.gif",
             fainted: false,
             poisoned: false,
             inCombat: false,
@@ -386,7 +386,7 @@ class Player {
         {
             name: "ALAKAZAM",
             type: "PSYCHIC",
-            cry: "sound.wav",
+            cry: "alakazamcry.mp3",
             img: "alakazam.png",
             tinyPic: "alakazam.gif",
             weakness: ["bug", "dark", "ghost"],

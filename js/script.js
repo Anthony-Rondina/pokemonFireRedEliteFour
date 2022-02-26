@@ -54,7 +54,12 @@ const beginGame = document.querySelector('.beginGame')
 const opponent = document.querySelector('.enemyTrainer')
 const combatIntro = document.querySelector('.battleIntro')
 const victoryRoadTheme = document.getElementById("road")
+const throwBallSound = document.getElementById("throwBall")
+const click1Sound = document.getElementById("click1")
+const click2Sound = document.getElementById("click2")
+const click3Sound = document.getElementById("click3")
 const introTheme = document.getElementById('introTheme')
+const ballOpenSound = document.getElementById('ballOpen')
 const combat1Theme = document.getElementById('combat1')
 const powerOnButton = document.querySelector('.power')
 const powerOnScreen = document.querySelector('.powerOn')
@@ -83,8 +88,11 @@ const yesButton = document.querySelector('.yesButton')
 const noButton = document.querySelector('.noButton')
 const endingScreen = document.querySelector('.endingScreen')
 const clickStartButton = document.querySelector('.clickStart')
+const playerPokemonCry = document.getElementById("playerPokemonCry")
+const attackSound = document.getElementById("attackSound")
 
-Lorelei.choosePokemon()
+
+// Lorelei.choosePokemon()
 
 
 //Create Global Variables
@@ -96,12 +104,14 @@ let swapChoice = 0
 genderChoice.style.display = "none"
 let usingItem = false
 const setChoice = (evt) => {
+    clickSound()
     resetBall()
     switch (evt.target.id) {
         case "pokemon1":
             swapChoice = 0
             if (usingItem) {
                 player.useItem(player.item, player.team[swapChoice])
+
             } else {
                 swapPokemon()
             }
@@ -110,6 +120,7 @@ const setChoice = (evt) => {
             swapChoice = 1
             if (usingItem) {
                 player.useItem(player.item, player.team[swapChoice])
+
             } else {
                 swapPokemon()
             }
@@ -126,6 +137,7 @@ const setChoice = (evt) => {
             swapChoice = 3
             if (usingItem) {
                 player.useItem(player.item, player.team[swapChoice])
+
             } else {
                 swapPokemon()
             }
@@ -134,6 +146,7 @@ const setChoice = (evt) => {
             swapChoice = 4
             if (usingItem) {
                 player.useItem(player.item, player.team[swapChoice])
+
             } else {
                 swapPokemon()
             }
@@ -142,6 +155,7 @@ const setChoice = (evt) => {
             swapChoice = 5
             if (usingItem) {
                 player.useItem(player.item, player.team[swapChoice])
+
             } else {
                 swapPokemon()
             }
@@ -149,6 +163,14 @@ const setChoice = (evt) => {
     }
 }
 
+
+const attackSoundChoice = (pokemon) => {
+    switch (pokemon.moves[0].type) {
+        case "ICE":
+            attackSound.src = "iceattacksound.mp3"
+            attackSound.play()
+    }
+}
 
 const swapPokemon = () => {
     pokeBallThrown.style.opacity = '100'
@@ -173,6 +195,7 @@ const swapPokemon = () => {
     teamScreen.classList.add('hidden')
     combatScreen.classList.remove("hidden")
     moveTrainer()
+    playerPokemonCry.src = player.team[0].cry
     hpNumbers.textContent = player.team[0].hp
     maxHP.textContent = player.team[0].totalHP
     pokemonName.textContent = player.team[0].name
@@ -303,12 +326,14 @@ const cheatCode = (evt) => {
         }
     } else {
         characterCreate()
+        clickSound()
     }
 }
 if (codeTime) {
     startButton.onclick = cheatCode
 } else {
     startButton.onclick = characterCreate
+    clickSound()
 }
 
 const animateNumbers = (start, end, duration) => {
@@ -428,12 +453,14 @@ movesButtons.forEach((button) => {
 })
 
 menuButton.addEventListener('click', (evt) => {
+    clickSound()
     moveBar.classList.add("hidden")
     combatChoice.classList.remove('hidden')
     mainMessageBox.classList.remove('hidden')
     menuButtonDiv.classList.add('hidden')
 })
 runButton.addEventListener('click', (evt) => {
+    clickSound()
     msgBoxText.textContent = "Can't Escape!"
     updateTeam()
     setTimeout(() => {
@@ -442,6 +469,7 @@ runButton.addEventListener('click', (evt) => {
 })
 
 fightButton.addEventListener('click', (evt) => {
+    clickSound()
     updateTeam()
     fightMenu()
     menuButtonDiv.classList.remove('hidden')
@@ -454,11 +482,14 @@ const moveTrainer = () => {
     animateThrow()
     setTimeout(() => {
         moveBall()
+        throwBallSound.play()
     }, 500);
     setTimeout(() => {
         animateBall()
     }, 800);
     setTimeout(() => {
+        playerPokemonCry.play()
+        ballOpenSound.play()
         pokemonImage.classList.remove('faint')
         pokemonImage.src = player.team[0].img
     }, 1200);
@@ -544,6 +575,7 @@ const animateThrow = () => {
 
 
 const characterCreate = () => {
+    clickSound()
     introTheme.pause()
     welcomeScreen.classList.add('hidden')
     introScreen.classList.remove('hidden')
@@ -552,6 +584,7 @@ const characterCreate = () => {
 
 
 const gender = () => {
+    clickSound()
     if (playerInput.value.length > 0) {
         player.name = playerInput.value
     }
@@ -561,6 +594,7 @@ const gender = () => {
 }
 
 const genderDecision = (evt) => {
+    clickSound()
     switch (evt.target.id) {
         case "boy":
             trainer.src = "/trainers/maleTrainer1.png"
@@ -654,11 +688,13 @@ const updateTeam = () => {
 }
 
 const victorySwap = () => {
+    clickSound()
     yesNoMenu.classList.add('hidden')
     combatScreen.classList.add('hidden')
     teamScreen.classList.remove('hidden')
 }
 const keepPokemon = () => {
+    clickSound()
     yesNoMenu.classList.add('hidden')
     setTimeout(() => {
         player.targetTrainer.choosePokemon()
@@ -685,11 +721,13 @@ buttonA.addEventListener('click', (evt) => {
     playerPercent(player.team[0])
 })
 pokemonButton.addEventListener('click', (evt) => {
+    clickSound()
     teamScreen.classList.remove('hidden')
     combatScreen.classList.add("hidden")
     updateTeam()
 })
 teamCancel.addEventListener('click', (evt) => {
+    clickSound()
     updateTeam()
     usingItem = false
     pokeBallThrown.style.opacity = '0'
@@ -701,6 +739,7 @@ teamCancel.addEventListener('click', (evt) => {
     }
 })
 bagButton.addEventListener('click', (evt) => {
+    clickSound()
     updateTeam()
     bagScreen.classList.remove('hidden')
     combatScreen.classList.add('hidden')
@@ -783,6 +822,7 @@ const playerAttack = (chosenAttack, targetPokemon) => {
         currentPokemon.classList.add("pokemonAttack")
         setTimeout(() => {
             currentPokemon.classList.remove("pokemonAttack")
+            attackSoundChoice(player.team[0])
         }, 750);
         setTimeout(() => {
             opponentPokemon.classList.add("eTrainerPokemonHit")
@@ -977,6 +1017,7 @@ const enemyAttack = () => {
 
 moveButtons.forEach((chosenMove) => {
     chosenMove.addEventListener('click', (evt) => {
+        clickSound()
         switch (evt.target.id) {
             case "mv1":
                 if (player.team[0].moves[0].pp > 0) {
@@ -1066,6 +1107,29 @@ moveButtons.forEach((chosenMove) => {
     })
 })
 
+let clickSoundChoice = 1
+//creates function for cycling click sounds
+const clickSound = () => {
+    switch (clickSoundChoice) {
+        case 1:
+            click1Sound.play()
+            clickSoundChoice++
+            break;
+        case 2:
+            click2Sound.play()
+            clickSoundChoice++
+            break;
+        case 3:
+            click3Sound.play()
+            clickSoundChoice++
+            break;
+        case 4:
+            clickSoundChoice = 1
+            clickSound()
+            break;
+    }
+}
+
 bagButtons.forEach((item) => {
     item.addEventListener('mouseout', (evt) => {
         bagMsg.textContent = ''
@@ -1115,6 +1179,7 @@ antidoteButton.addEventListener('mouseenter', (evt) => {
 buttonB.onclick = swapPokemon
 
 bagMenuButton.addEventListener('click', (evt) => {
+    clickSound()
     bagScreen.classList.add("hidden")
     combatScreen.classList.remove('hidden')
 })

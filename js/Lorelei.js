@@ -369,6 +369,9 @@ class Lorelei {
             enemyLevel.textContent = this.team[this.pokemonChoice].level
             enemyName.textContent = this.team[this.pokemonChoice].name
             animateEnemyBall()
+            setTimeout(() => {
+                ballOpenSound.play() 
+            }, 500);
             opponent.classList.add("enemyTrainerLeave")
         }, 1000);
         setTimeout(() => {
