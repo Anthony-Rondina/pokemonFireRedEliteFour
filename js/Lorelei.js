@@ -98,55 +98,56 @@ class Lorelei {
             hp: 158,
             totalHP: 158,
             level: "Lv51",
+            combatLvl: 51,
             attack: 114,
             specialAttack: 109,
             defense: 105,
             specialDefense: 122,
             speed: 102,
             moves: [{
-                name: "RAZOR LEAF",
-                type: "GRASS",
-                physical: true,
-                special: false,
+                name: "AURORA BEAM",
+                type: "ICE",
+                physical: false,
+                special: true,
                 status: false,
-                pp: 25,
-                maxPP: 25,
-                power: 55,
-                accuracy: 95
+                statusType: "burn",
+                pp: 20,
+                maxPP: 20,
+                power: 65,
+                accuracy: 1
             },
             {
-                name: "POISON POWDER",
-                type: "POISON",
+                name: "ICE BEAM",
+                type: "ICE",
                 physical: false,
-                special: false,
-                status: true,
-                statusType: "poison",
-                pp: 35,
-                maxPP: 35,
-                power: 0,
-                accuracy: .75,
-            },
-            {
-                name: "LEECH SEED",
-                type: "GRASS",
-                physical: false,
-                special: false,
-                status: true,
+                special: true,
+                status: false,
                 pp: 10,
                 maxPP: 10,
-                power: 0,
-                accuracy: .9,
+                power: 90,
+                accuracy: 1,
             },
             {
-                name: "VINE WHIP",
-                type: "GRASS",
-                physical: true,
-                special: false,
+                name: "SURF",
+                type: "WATER",
+                physical: false,
+                special: true,
+                status: false,
+                pp: 15,
+                maxPP: 15,
+                power: 90,
+                accuracy: 1,
+            },
+            {
+                name: "WATER GUN",
+                type: "WATER",
+                physical: false,
+                special: true,
                 status: false,
                 loseTurn: false,
                 pp: 25,
                 maxPP: 25,
-                power: 45,
+                power: 40,
                 accuracy: 1,
             }]
         },
@@ -167,6 +168,7 @@ class Lorelei {
             hp: 157,
             totalHP: 157,
             level: "Lv51",
+            combatLvl: 51,
             attack: 115,
             specialAttack: 96,
             defense: 122,
@@ -234,6 +236,7 @@ class Lorelei {
             hp: 132,
             totalHP: 132,
             level: "Lv51",
+            combatLvl: 51,
             attack: 78,
             specialAttack: 142,
             defense: 66,
@@ -303,6 +306,7 @@ class Lorelei {
             hp: 209,
             totalHP: 209,
             level: "Lv51",
+            combatLvl: 51,
             attack: 117,
             specialAttack: 96,
             defense: 102,
@@ -370,7 +374,7 @@ class Lorelei {
             enemyName.textContent = this.team[this.pokemonChoice].name
             animateEnemyBall()
             setTimeout(() => {
-                ballOpenSound.play() 
+                ballOpenSound.play()
             }, 500);
             opponent.classList.add("enemyTrainerLeave")
         }, 1000);
@@ -473,7 +477,7 @@ class Lorelei {
         }
 
         //check if move hits
-        index = Math.random()
+        let index = Math.random()
         if (index > chosenAttack.accuracy) {
             //check if move is Same Type Attack Bonus
             if (chosenAttack.type.includes(this.team[0].type)) {
@@ -515,7 +519,7 @@ class Lorelei {
 
         } else {
             console.log('you missed!')
-            this.target.attack(this.team[0])
+            player.attack(this.team[0])
         }
     }
     applyStatus(chosenMove) {

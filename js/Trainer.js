@@ -179,8 +179,8 @@ class Player {
             frozen: 0,
             confused: 0,
             asleep: 0,
-            hp: 158,
-            totalHP: 158,
+            hp: 8,
+            totalHP: 8,
             level: "Lv:65",
             combatLvl: 65,
             attack: 114,
@@ -554,8 +554,14 @@ class Player {
                     setTimeout(() => {
                         teamScreen.classList.add('hidden')
                         combatScreen.classList.remove('hidden')
+                        combatChoice.classList.add('hidden')
+                        updateTeam()
+                        hpBar.style.width = "100%"
+                        hpNumbers.textContent = this.team[0].hp
+                    }, 2500);
+                    setTimeout(() => {
+                        enemyAttack(this.team[0])
                     }, 3000);
-                    this.target.attack(this.team[0])
                 }
                 break;
             case "parHeal":
