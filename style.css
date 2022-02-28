@@ -171,6 +171,7 @@ body{
     margin-top: 50px;
     margin-left: 68px; 
     margin-bottom: -300px;
+    z-index: 5;
     display: inline-block;
  }
 .playerHpBar{
@@ -853,6 +854,38 @@ body{
     opacity: 0;
     margin-top: -550px;
     margin-left: 800px;
+}
+.combatAttack{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 250px;
+    z-index: 0;
+    height: 350px;
+    opacity: 100;
+    transition-property: all;
+    transition-duration: 2s;
+    pointer-events: none;
+}
+/* .combatAttackMid{
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 370px;
+    z-index: 0;
+    height: 300px;
+    opacity: 100;
+    transition-property: all;
+    transition-duration: 1s;
+} */
+.combatAttackEnd{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 470px;
+    z-index: 0;
+    height: 350px;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 2s;
+    pointer-events: none; 
 }
 .pokemonHit{
     z-index: 1;

@@ -39,7 +39,7 @@ class Player {
             hp: 156,
             totalHP: 156,
             level: "Lv:65",
-            combatLvl: 11265,
+            combatLvl: 65,
             attack: 116,
             specialAttack: 117,
             defense: 100,
@@ -179,8 +179,8 @@ class Player {
             frozen: 0,
             confused: 0,
             asleep: 0,
-            hp: 8,
-            totalHP: 8,
+            hp: 128,
+            totalHP: 128,
             level: "Lv:65",
             combatLvl: 65,
             attack: 114,
@@ -490,6 +490,7 @@ class Player {
     useItem(item, pokemon) {
         switch (item) {
             case "antidote":
+                healSound.play()
                 if (this.antidote === 0) {
                     console.log('none')
                 } else {
@@ -506,9 +507,10 @@ class Player {
                 } else if (pokemon.hp === this.team[swapChoice].totalHP) {
                     console.log('you are already full HP')
                 } else {
+                    healSound.play()
                     pokemon.hp = this.team[swapChoice].totalHP
                     console.log("you are healed!")
-                    playerPercent(pokemon.hp)
+                    // playerPercent(pokemon.hp)
                     this.fullRestore--
                     fullRestoreButton.textContent = `Full Restore x0${this.fullRestore}`
                     usingItem = false
@@ -521,15 +523,24 @@ class Player {
                         teamScreen.classList.add('hidden')
                         combatScreen.classList.remove('hidden')
                     }, 3000);
-                    this.target.attack(this.team[0])
+                    combatChoice.classList.add('hidden')
+                    setTimeout(() => {
+                        enemyAttack(this.team[0])
+                    }, 4000);
+                    updateTeam()
+                    hpNumbers.textContent = this.team[0].hp
+                    hpBar.style.backgroundColor = document.querySelector(`.hp${swapChoice}`).style.backgroundColor
+                    hpBar.style.width = document.querySelector(`.hp${swapChoice}`).style.width
                 }
                 break;
             case "revive":
+
                 if (this.revives === 0) {
                     console.log('none')
                 } else if (this.team[swapChoice].hp >= 1) {
                     console.log('your pokemon has not fainted!')
                 } else {
+                    healSound.play()
                     pokemon.fainted = false
                     pokemon.hp = (this.team[swapChoice].totalHP / 2)
                     console.log("you are no longer poisoned!")
@@ -658,88 +669,6 @@ class Player {
         }
     }
     //method to switch to next elite 4 member when previous is defeated
-    attack(chosenAttack, targetPokemon) {
-        let attack = 0
-        let superEffectiveDamageMultiplyer = 1
-        console.log(chosenAttack.name)
-        if (chosenAttack.power === 0) {
-            //use a switch to go through each move
-            switch (chosenAttack.name) {
-                case "rest":
-                    this.team[0].asleep = Math.floor(Math.random() * 3)
-                    this.team[0].hp += this.team[0].totalHP
-                    this.target.attack(this.team[0])
-                    break;
-            }
-        }
-
-        //set damage if move is physical
-        if (chosenAttack.physical) {
-            console.log('phsyical')
-            // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].attack / targetPokemon.defense) / 50 + 2)
-            this.damage += Math.floor((((((this.team[0].combatLvl / 5) + 2) * (this.team[0].attack / targetPokemon.defense) * (chosenAttack.power) + 2) / 50) + 2));
-            //set damage if move is special
-        } else if (chosenAttack.special) {
-            console.log('Specials')
-            // console.log('special')
-            // this.damage += Math.floor((this.team[0].combatLvl / 5) + 2 * this.team[0].moves[0].power * (this.team[0].specialAttack / targetPokemon.specialDefense) / 50 + 2)
-            this.damage += Math.floor((((((this.team[0].combatLvl / 5) + 2) * (this.team[0].specialAttack / targetPokemon.specialDefense) * (chosenAttack.power) + 2) / 50) + 2));
-            // console.log('damage is', this.damage)
-        }
-        console.log('raw damage', this.damage)
-
-        //check if move hits
-        let index = Math.random()
-        if (index < chosenAttack.accuracy) {
-            //check if move is Same Type Attack Bonus
-            if (chosenAttack.type.includes(this.team[0].type)) {
-                this.damage *= 1.5
-            }
-            //Check if target pokemon is weak or resistant to attack type
-            targetPokemon.weakness.forEach((typing) => {
-                if (typing == chosenAttack.type) {
-                    superEffectiveDamageMultiplyer += 1
-                }
-            })
-            targetPokemon.resist.forEach((typing) => {
-                if (typing === chosenAttack.type) {
-                    superEffectiveDamageMultiplyer -= .5
-                }
-            })
-
-            //Crit Chance is 6.25
-            let critIndex = Math.random()
-            if (critIndex > .92) {
-                console.log('CRIT!')
-                this.damage *= 2
-            }
-            console.log('multipler is at', superEffectiveDamageMultiplyer)
-            //apply super type damage
-            if (superEffectiveDamageMultiplyer > 1) {
-                console.log('greater')
-                this.damage *= superEffectiveDamageMultiplyer
-                console.log("It's super effective!")
-            } else if (superEffectiveDamageMultiplyer < 1) {
-                this.damage *= superEffectiveDamageMultiplyer
-                console.log("It's not very effective.")
-            }
-            //apply damage  
-            console.log('damage is', this.damage)
-            targetPokemon.hp = Math.floor(targetPokemon.hp - this.damage)
-            if (targetPokemon.hp <= 0) {
-                targetPokemon.hp = 0
-            }
-            animateEnemyHP()
-            console.log('hp now', targetPokemon.hp)
-            // this.applyStatus(chosenAttack)
-            this.damage = 0
-
-        } else {
-            console.log('you missed!')
-            this.damage = 0
-            // this.target.attack(this.team[0])
-        }
-    }
     applyStatus(chosenMove) {
         if (chosenMove.status) {
             switch (chosenMove.statusType) {

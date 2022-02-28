@@ -58,6 +58,7 @@ const throwBallSound = document.getElementById("throwBall")
 const click1Sound = document.getElementById("click1")
 const click2Sound = document.getElementById("click2")
 const click3Sound = document.getElementById("click3")
+const lowHPSound = document.getElementById("lowHP")
 const introTheme = document.getElementById('introTheme')
 const ballOpenSound = document.getElementById('ballOpen')
 const combat1Theme = document.getElementById('combat1')
@@ -90,9 +91,11 @@ const endingScreen = document.querySelector('.endingScreen')
 const clickStartButton = document.querySelector('.clickStart')
 const playerPokemonCry = document.getElementById("playerPokemonCry")
 const attackSound = document.getElementById("attackSound")
+const hitSound = document.getElementById("hitSound")
+const healSound = document.getElementById("heal")
+const attackVisual = document.querySelector('.combatAttack')
 
-
-Lorelei.choosePokemon()
+// Lorelei.choosePokemon()
 
 
 //Create Global Variables
@@ -103,6 +106,7 @@ Lorelei.target = player.team[0]
 let swapChoice = 0
 genderChoice.style.display = "none"
 let usingItem = false
+let playerAttackChoice = ''
 const setChoice = (evt) => {
     clickSound()
     resetBall()
@@ -189,43 +193,61 @@ const setChoice = (evt) => {
 }
 
 
-const attackSoundChoice = (pokemon) => {
-    switch (pokemon.moves[0].type) {
+const attackSoundChoice = (pokemonMove) => {
+    switch (pokemonMove) {
         case "ICE":
             attackSound.src = "iceattacksound.mp3"
             attackSound.play()
+            attackVisual.src = "iceAttack.png"
             break;
         case "WATER":
             attackSound.src = "surf.mp3"
             attackSound.play()
+            attackVisual.src = "waterAttack.png"
             break;
         case "FIRE":
-            attackSound.src = "flamethrower.mp3"
+            attackSound.src = "fireAttack.mp3"
             attackSound.play()
+            attackVisual.src = "fireAttack.png"
             break;
         case "GRASS":
-            attackSound.src = "surf.mp3"
+            attackSound.src = "grassAttack.mp3"
             attackSound.play()
+            attackVisual.src = "grassAttack.png"
             break;
         case "PSYCHIC":
             attackSound.src = "psybeam.mp3"
             attackSound.play()
+            attackVisual.src = "psychicAttack.png"
             break;
         case "GROUND":
-            attackSound.src = "surf.mp3"
+            attackSound.src = "groundAttack.mp3"
             attackSound.play()
+            attackVisual.src = "groundAttack.png"
             break;
         case "DRAGON":
-            attackSound.src = "surf.mp3"
+            attackSound.src = "dragonAttack.mp3"
             attackSound.play()
+            attackVisual.src = "psychicAttack.png"
             break;
         case "FLYING":
-            attackSound.src = "surf.mp3"
+            attackSound.src = "flyingAttack.mp3"
             attackSound.play()
+            attackVisual.src = "flyingAttack.png"
             break;
     }
 }
-
+attackVisual.style.opacity = "0"
+const animateAttack = () => {
+    attackVisual.style.opacity = "100"
+    attackVisual.classList.add('combatAttackEnd')
+    setTimeout(() => {
+        attackVisual.style.opacity = "0"
+    }, 1000);
+    setTimeout(() => {
+        attackVisual.classList.remove('combatAttackEnd')
+    }, 3000);
+}
 const swapPokemon = () => {
     combatChoice.classList.add('hidden')
     pokeBallThrown.style.opacity = '100'
@@ -242,6 +264,7 @@ const swapPokemon = () => {
         hpBar.style.backgroundColor = "darkorange";
     } else if (width <= 20) {
         hpBar.style.backgroundColor = "darkred";
+        lowHPSound.play()
     } else {
         hpBar.style.backgroundColor = "green";
     }
@@ -429,6 +452,7 @@ const playerPercent = (pokemon, damageReceived) => {
     let end = pokemon.hp
     damage = Math.floor((pokemon.hp / pokemon.totalHP) * 100)
     currentPokemon.classList.add("pokemonHit")
+    hitSound.play()
     setTimeout(() => {
         currentPokemon.classList.remove("pokemonHit")
     }, 750);
@@ -437,6 +461,7 @@ const playerPercent = (pokemon, damageReceived) => {
             hpBar.style.backgroundColor = "darkorange";
         } else if (damage <= 20) {
             hpBar.style.backgroundColor = "darkred";
+            lowHPSound.play()
         } else {
             hpBar.style.backgroundColor = "green";
         }
@@ -865,6 +890,14 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             }
         })
 
+        if (superEffectiveDamageMultiplyer === 1) {
+            hitSound.src = "normalAttack.mp3"
+        } else if (superEffectiveDamageMultiplyer < 1) {
+            hitSound.src = "notEffective.mp3"
+        } else if (superEffectiveDamageMultiplyer > 1) {
+            hitSound.src = "superEffective.mp3"
+        }
+
         //Crit Chance is 6.25
         let critIndex = Math.random()
         if (critIndex > .92) {
@@ -888,12 +921,15 @@ const playerAttack = (chosenAttack, targetPokemon) => {
 
         }
         currentPokemon.classList.add("pokemonAttack")
+        animateAttack()
+        attackSoundChoice(player.team[0].moves[playerAttackChoice].type)
         setTimeout(() => {
             currentPokemon.classList.remove("pokemonAttack")
-            attackSoundChoice(player.team[0])
+
         }, 750);
         setTimeout(() => {
             opponentPokemon.classList.add("eTrainerPokemonHit")
+            hitSound.play()
             setTimeout(() => {
                 opponentPokemon.classList.remove("eTrainerPokemonHit")
             }, 750);
@@ -1026,11 +1062,19 @@ const enemyAttack = () => {
             player.targetTrainer.damage *= superEffectiveDamageMultiplyer
             console.log("It's not very effective.")
         }
-
+        if (superEffectiveDamageMultiplyer === 1) {
+            hitSound.src = "normalAttack.mp3"
+        } else if (superEffectiveDamageMultiplyer < 1) {
+            hitSound.src = "notEffective.mp3"
+        } else if (superEffectiveDamageMultiplyer > 1) {
+            hitSound.src = "superEffective.mp3"
+        }
         //apply damage  
         console.log('damage is', player.targetTrainer.damage)
 
         opponentPokemon.classList.add("eTrainerPokemonAttack")
+        animateAttack()
+        attackSoundChoice(player.targetPokemon.moves[computerChoice].type)
         setTimeout(() => {
             opponentPokemon.classList.remove("eTrainerPokemonAttack")
         }, 750);
@@ -1043,23 +1087,19 @@ const enemyAttack = () => {
             console.log(`running player percent subracting ${player.targetTrainer.damage} to ${player.team[0].hp}`)
             playerPercent(player.team[0], player.targetTrainer.damage)
             setTimeout(() => {
-                player.team[0].hp -= player.targetTrainer.damage
+                // player.team[0].hp -= player.targetTrainer.damage
                 if (player.team[0].hp <= 0) {
                     player.team[0].hp = 0
                 }
             }, 100);
         }, 1000);
-
-
-
-        console.log('hp now', player.team[0].hp)
         // this.applyStatus(chosenAttack)
         setTimeout(() => {
             player.targetTrainer.damage = 0
         }, 4000);
-
-        console.log('checking faint, hp is', player.team[0].hp)
+        
         setTimeout(() => {
+            console.log('checking faint, hp is', player.team[0].hp)
             if (player.team[0].hp <= 0) {
                 console.log(' fainted')
                 currentPokemon.classList.add('faint')
@@ -1074,23 +1114,10 @@ const enemyAttack = () => {
                     teamScreen.classList.remove('hidden')
                 }, 3000);
             }
-        }, 5000);
+        }, 3000);
     } else {
         console.log('you missed!')
         player.targetTrainer.damage = 0
-        // setTimeout(() => {
-        //     if (firstAttack === "opponent") {
-        //         playerAttack(player.attackChoice, player.targetPokemon)
-        //     } else {
-        //         firstAttack = ''
-        //         msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
-        //         computerChoice = 0
-        //         setTimeout(() => {
-        //             fightMenu()
-        //         }, 2050);
-        //     }
-        // }, 3000);
-        // this.target.attack(this.team[0])
     }
 
     setTimeout(() => {
@@ -1123,6 +1150,7 @@ moveButtons.forEach((chosenMove) => {
         clickSound()
         switch (evt.target.id) {
             case "mv1":
+                playerAttackChoice = 0
                 if (player.team[0].moves[0].pp > 0) {
                     player.team[0].moves[0].pp--
                     msgBoxText.textContent = ''
@@ -1146,6 +1174,7 @@ moveButtons.forEach((chosenMove) => {
                 }
                 break;
             case "mv2":
+                playerAttackChoice = 1
                 if (player.team[0].moves[1].pp > 0) {
                     player.team[0].moves[1].pp--
                     msgBoxText.textContent = ''
@@ -1167,6 +1196,7 @@ moveButtons.forEach((chosenMove) => {
                 }
                 break;
             case "mv3":
+                playerAttackChoice = 2
                 if (player.team[0].moves[2].pp > 0) {
                     player.team[0].moves[2].pp--
                     msgBoxText.textContent = ''
@@ -1188,6 +1218,7 @@ moveButtons.forEach((chosenMove) => {
                 }
                 break;
             case "mv4":
+                playerAttackChoice = 3
                 if (player.team[0].moves[3].pp > 0) {
                     player.team[0].moves[3].pp--
                     msgBoxText.textContent = ''
