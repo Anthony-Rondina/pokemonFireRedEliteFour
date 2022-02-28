@@ -1116,7 +1116,8 @@ const enemyAttack = () => {
             }
         }, 3000);
     } else {
-        console.log('you missed!')
+        console.log('they missed!')
+        msgBoxText.textContent = `${player.targetPokemon.name} missed!`
         player.targetTrainer.damage = 0
     }
 
