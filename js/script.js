@@ -805,9 +805,6 @@ yesButton.onclick = victorySwap
 noButton.onclick = keepPokemon
 teamChoice6.onclick = setChoice
 powerOnButton.onclick = turnOn
-buttonA.addEventListener('click', (evt) => {
-    playerPercent(player.team[0])
-})
 pokemonButton.addEventListener('click', (evt) => {
     clickSound()
     teamScreen.classList.remove('hidden')
@@ -1096,7 +1093,7 @@ const enemyAttack = () => {
         setTimeout(() => {
             player.targetTrainer.damage = 0
         }, 4000);
-        
+
         setTimeout(() => {
             console.log('checking faint, hp is', player.team[0].hp)
             if (player.team[0].hp <= 0) {
@@ -1312,7 +1309,6 @@ confuseHealButton.addEventListener('mouseenter', (evt) => {
 antidoteButton.addEventListener('mouseenter', (evt) => {
     bagMsg.textContent = " Heals a pokemon who is suffering from poison."
 })
-buttonB.onclick = swapPokemon
 
 bagMenuButton.addEventListener('click', (evt) => {
     clickSound()

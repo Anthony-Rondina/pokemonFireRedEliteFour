@@ -105,27 +105,27 @@ class Lorelei {
             specialDefense: 122,
             speed: 102,
             moves: [{
-                name: "CONFUSION",
-                type: "PSYCHIC",
+                name: "AURORA BEAM",
+                type: "ICE",
                 physical: false,
                 special: true,
-                status: true,
-                statusType: "confusion",
+                status: false,
+                statusType: "burn",
                 pp: 20,
                 maxPP: 20,
-                power: 50,
-                accuracy: 1,
+                power: 65,
+                accuracy: 1
             },
             {
-                name: "PSYCHIC",
-                type: "PSYCHIC",
+                name: "ICE BEAM",
+                type: "ICE",
                 physical: false,
                 special: true,
                 status: false,
                 pp: 10,
                 maxPP: 10,
                 power: 90,
-                accuracy: 1
+                accuracy: 1,
             },
             {
                 name: "SURF",
@@ -403,6 +403,7 @@ class Lorelei {
     }
     preChange() {
         if (this.pokemonChoice === 4) {
+            combat1Theme.pause()
             endingScreen.style.opacity = "100%"
         } else {
             this.pokemonChoice++
