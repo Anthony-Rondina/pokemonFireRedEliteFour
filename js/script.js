@@ -624,39 +624,39 @@ const animateThrow = () => {
 
 
     if (player.boy) {
-        trainer.src = "/trainers/maleTrainer1.png"
+        trainer.src = "https://i.imgur.com/ZPZlnDS.png"
         setTimeout(() => {
-            trainer.src = "/trainers/maleTrainer2.png"
+            trainer.src = "https://i.imgur.com/otrfhop.png"
         }, 200);
         setTimeout(() => {
-            trainer.src = "/trainers/maleTrainer3.png"
+            trainer.src = "https://i.imgur.com/RJ5P7KV.png"
         }, 400);
 
         setTimeout(() => {
-            trainer.src = "/trainers/maleTrainer4.png"
+            trainer.src = "https://i.imgur.com/KDphHpz.png"
         }, 500);
         setTimeout(() => {
-            trainer.src = "/trainers/maleTrainer5.png"
+            trainer.src = "https://i.imgur.com/g5VTerY.png"
         }, 600);
         setTimeout(() => {
-            trainer.src = "/trainers/maleTrainer1.png"
+            trainer.src = "https://i.imgur.com/ZPZlnDS.png"
         }, 2000);
     } else {
-        trainer.src = "/trainers/femaleTrainer1.png"
+        trainer.src = "https://i.imgur.com/BadPQDZ.png"
         setTimeout(() => {
-            trainer.src = "/trainers/femaleTrainer2.png"
+            trainer.src = "https://i.imgur.com/yXaArUP.png"
         }, 200);
         setTimeout(() => {
-            trainer.src = "/trainers/femaleTrainer3.png"
+            trainer.src = "https://i.imgur.com/x6UEEa4.png"
         }, 400);
         setTimeout(() => {
-            trainer.src = "/trainers/femaleTrainer4.png"
+            trainer.src = "https://i.imgur.com/G96JcwS.png"
         }, 500);
         setTimeout(() => {
-            trainer.src = "/trainers/femaleTrainer5.png"
+            trainer.src = "https://i.imgur.com/PWFqkn9.png"
         }, 600);
         setTimeout(() => {
-            trainer.src = "/trainers/femaleTrainer1.png"
+            trainer.src = "https://i.imgur.com/BadPQDZ.png"
         }, 2000);
     }
 }
