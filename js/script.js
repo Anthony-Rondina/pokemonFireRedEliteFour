@@ -297,7 +297,6 @@ const swapPokemon = () => {
             combatChoice.classList.add('hidden')
         }, 3000);
     }
-    console.log(player.team[0])
 }
 
 let codeTime = true
