@@ -685,7 +685,7 @@ const genderDecision = (evt) => {
     clickSound()
     switch (evt.target.id) {
         case "boy":
-            trainer.src = "/trainers/maleTrainer1.png"
+            trainer.src = "https://i.imgur.com/ZPZlnDS.png"
             player.boy = true
             player.girl = false
             battlePic()
@@ -694,7 +694,7 @@ const genderDecision = (evt) => {
             beginGame.classList.remove('hidden')
             break;
         case "girl":
-            trainer.src = "/trainers/femaleTrainer1.png"
+            trainer.src = "https://i.imgur.com/BadPQDZ.png"
             player.boy = false
             player.girl = true
             battlePic()

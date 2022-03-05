@@ -40,7 +40,6 @@ class Lorelei {
                 physical: false,
                 special: true,
                 status: false,
-                statusType: "burn",
                 pp: 20,
                 maxPP: 20,
                 power: 65,
