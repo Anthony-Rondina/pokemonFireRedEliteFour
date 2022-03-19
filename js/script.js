@@ -624,39 +624,43 @@ const animateThrow = () => {
 
 
     if (player.boy) {
-        trainer.src = "https://i.imgur.com/ZPZlnDS.png"
+        trainer.setAttribute("src", "/trainers/maleTrainer1.png")
+        console.log(player.boy)
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/otrfhop.png"
+            //
+            trainer.setAttribute("src", "/trainers/maleTrainer2.png")
         }, 200);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/RJ5P7KV.png"
+            trainer.setAttribute("src", "/trainers/maleTrainer3.png")
         }, 400);
 
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/KDphHpz.png"
+            trainer.setAttribute("src", "/trainers/maleTrainer4.png")
         }, 500);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/g5VTerY.png"
+            trainer.setAttribute("src", "/trainers/maleTrainer5.png")
         }, 600);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/ZPZlnDS.png"
+            trainer.setAttribute("src", "/trainers/maleTrainer5.png")
         }, 2000);
     } else {
-        trainer.src = "https://i.imgur.com/BadPQDZ.png"
+        trainer.setAttribute("src", "/trainers/femaleTrainer1.png")
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/yXaArUP.png"
+            //
+            trainer.setAttribute("src", "/trainers/femaleTrainer2.png")
         }, 200);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/x6UEEa4.png"
+            trainer.setAttribute("src", "/trainers/femaleTrainer3.png")
         }, 400);
+
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/G96JcwS.png"
+            trainer.setAttribute("src", "/trainers/femaleTrainer4.png")
         }, 500);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/PWFqkn9.png"
+            trainer.setAttribute("src", "/trainers/femaleTrainer5.png")
         }, 600);
         setTimeout(() => {
-            trainer.src = "https://i.imgur.com/BadPQDZ.png"
+            trainer.setAttribute("src", "/trainers/femaleTrainer5.png")
         }, 2000);
     }
 }
@@ -685,22 +689,24 @@ const genderDecision = (evt) => {
     clickSound()
     switch (evt.target.id) {
         case "boy":
-            trainer.src = "https://i.imgur.com/ZPZlnDS.png"
+            trainer.setAttribute("src", "/trainers/maleTrainer1.png")
             player.boy = true
             player.girl = false
             battlePic()
             genderChoice.style.display = "none"
             introMessage.textContent = `You have done well trainer ${player.name}! You have traveled all over the Kanto region collecting various types of POKEMON. After defeating all the gym leaders and collecting every badge you now face the region's toughest challenge...The Elite Four! You are ready, your pokemon are ready, you step into the arena and take on your toughest foes yet...`
             beginGame.classList.remove('hidden')
+            console.log(player)
             break;
         case "girl":
-            trainer.src = "https://i.imgur.com/BadPQDZ.png"
+            trainer.setAttribute("src", "/trainers/femaleTrainer1.png")
             player.boy = false
             player.girl = true
             battlePic()
             genderChoice.style.display = "none"
             introMessage.textContent = `You have done well trainer ${player.name}! You have traveled all over the Kanto region collecting various types of POKEMON. After defeating all the gym leaders and collecting every badge you now face the region's toughest challenge...The Elite Four! You are ready, your pokemon are ready, you step into the arena and take on your toughest foes yet...`
             beginGame.classList.remove('hidden')
+            console.log(player)
     }
 }
 const beginCombat = () => {
