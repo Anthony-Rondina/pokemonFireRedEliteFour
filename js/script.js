@@ -94,9 +94,9 @@ const attackSound = document.getElementById("attackSound")
 const hitSound = document.getElementById("hitSound")
 const healSound = document.getElementById("heal")
 const attackVisual = document.querySelector('.combatAttack')
-
+const smallWinTheme = document.getElementById("smallWin")
 // Lorelei.choosePokemon()
-
+smallWinTheme.play()
 
 //Create Global Variables
 let afterBattleSwap = false

@@ -404,6 +404,7 @@ class Lorelei {
         if (this.pokemonChoice === 4) {
             combat1Theme.pause()
             endingScreen.style.opacity = "100%"
+            smallWinTheme.play()
         } else {
             this.pokemonChoice++
             console.log(this.pokemonChoice)
