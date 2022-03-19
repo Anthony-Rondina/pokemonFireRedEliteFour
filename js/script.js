@@ -423,10 +423,13 @@ const animateNumbers = (start, end, duration) => {
     let increment = end > start ? 1 : -1;
     let stepTime = Math.abs(Math.floor(duration / range));
     let timer = setInterval(function () {
+        console.log(`current is ${current} end is ${end}`)
         current += increment;
         hpNumbers.textContent = current;
         if (current == end) {
+            console.log('cleared the interval')
             clearInterval(timer);
+            
         }
     }, stepTime);
 }
@@ -1072,7 +1075,7 @@ const enemyAttack = () => {
             hitSound.src = "superEffective.mp3"
         }
         //apply damage  
-        console.log('damage is', player.targetTrainer.damage)
+        console.log('damage is', player.targetTrainer.damage, "rounded to ", Math.round(player.targetTrainer.damage))
 
         opponentPokemon.classList.add("eTrainerPokemonAttack")
         animateAttack()
@@ -1087,7 +1090,7 @@ const enemyAttack = () => {
                 msgBoxText.textContent = "It's not very effective."
             }
             console.log(`running player percent subracting ${player.targetTrainer.damage} to ${player.team[0].hp}`)
-            playerPercent(player.team[0], player.targetTrainer.damage)
+            playerPercent(player.team[0], Math.round(player.targetTrainer.damage))
             setTimeout(() => {
                 // player.team[0].hp -= player.targetTrainer.damage
                 if (player.team[0].hp <= 0) {
