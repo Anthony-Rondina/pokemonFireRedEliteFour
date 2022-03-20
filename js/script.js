@@ -96,7 +96,7 @@ const healSound = document.getElementById("heal")
 const attackVisual = document.querySelector('.combatAttack')
 const smallWinTheme = document.getElementById("smallWin")
 // Lorelei.choosePokemon()
-
+console.log()
 //Create Global Variables
 let afterBattleSwap = false
 let firstTime = true
@@ -428,7 +428,7 @@ const animateNumbers = (start, end, duration) => {
         if (current == end) {
             console.log('cleared the interval')
             clearInterval(timer);
-            
+
         }
     }, stepTime);
 }
