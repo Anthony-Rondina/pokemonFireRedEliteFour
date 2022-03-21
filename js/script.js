@@ -724,7 +724,7 @@ const genderDecision = (evt) => {
     clickSound()
     switch (evt.target.id) {
         case "boy":
-            trainer.setAttribute("src", "/trainers/maleTrainer1.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer1.png")
             player.boy = true
             player.girl = false
             battlePic()
