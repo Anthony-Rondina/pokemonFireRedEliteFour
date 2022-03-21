@@ -30,6 +30,9 @@ const pokemonImage = document.querySelector('.pokemon')
 const buttonA = document.querySelector('.buttonA')
 const buttonB = document.querySelector('.buttonB')
 const upButton = document.querySelector('.up')
+const downButton = document.querySelector('.down')
+const leftButton = document.querySelector('.left')
+const rightButton = document.querySelector('.right')
 const hpBar = document.querySelector('.playerHPanimated')
 const enemyHPBar = document.querySelector('.enemyHPanimated')
 const hpNumbers = document.querySelector('.inputHPNumbers')
@@ -95,6 +98,7 @@ const hitSound = document.getElementById("hitSound")
 const healSound = document.getElementById("heal")
 const attackVisual = document.querySelector('.combatAttack')
 const smallWinTheme = document.getElementById("smallWin")
+const cheatDisplay = document.querySelector(".cheatDisplay")
 // Lorelei.choosePokemon()
 
 
@@ -305,100 +309,126 @@ const cheatCode = (evt) => {
     if (codeTime) {
         switch (codeCheck) {
             case 0:
-                if (evt.textContent === "u") {
+                if (evt.target.textContent === "u") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 1:
-                if (evt.textContent === "u") {
+                if (evt.target.textContent === "u") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 2:
-                if (evt.textContent === "d") {
+                if (evt.target.textContent === "d") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 3:
-                if (evt.textContent === "d") {
+                if (evt.target.textContent === "d") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 4:
-                if (evt.textContent === "l") {
+                if (evt.target.textContent === "l") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 5:
-                if (evt.textContent === "r") {
+                if (evt.target.textContent === "r") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 6:
-                if (evt.textContent === "l") {
+                if (evt.target.textContent === "l") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 7:
-                if (evt.textContent === "r") {
+                if (evt.target.textContent === "r") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 8:
-                if (evt.textContent === "b") {
+                if (evt.target.textContent === "b") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 9:
-                if (evt.textContent === "a") {
+                if (evt.target.textContent === "a") {
                     codeCheck++
+                    cheatDisplay.textContent += " * "
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
                 break;
             case 10:
-                if (evt.textContent === "s") {
-                    // specialUnlock()
+                if (evt.target.textContent === "s") {
+                    codeCheck++
+                    cheatDisplay.textContent = "Secret Team Unlocked!"
+                    healSound.play()
+                    setTimeout(() => {
+                        cheatDisplay.textContent = ""
+                    }, 2500);
                     //update lock on DOM
                 } else {
+                    cheatDisplay.textContent = ""
                     //update lock on DOM
                     codeCheck = 0
                 }
@@ -804,7 +834,12 @@ beginGame.onclick = beginCombat
 girlButton.onclick = genderDecision
 boyButton.onclick = genderDecision
 continueButton.onclick = gender
-// upButton.onclick = 
+upButton.onclick = cheatCode
+downButton.onclick = cheatCode
+leftButton.onclick = cheatCode
+buttonA.onclick = cheatCode
+buttonB.onclick = cheatCode
+rightButton.onclick = cheatCode
 teamChoice1.onclick = setChoice
 teamChoice2.onclick = setChoice
 teamChoice3.onclick = setChoice
