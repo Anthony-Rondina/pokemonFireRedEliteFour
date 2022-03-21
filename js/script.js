@@ -659,43 +659,43 @@ const animateThrow = () => {
 
 
     if (player.boy) {
-        trainer.setAttribute("src", "/trainers/maleTrainer1.png")
+        trainer.setAttribute("src", "./trainers/maleTrainer1.png")
         console.log(player.boy)
         setTimeout(() => {
             //
-            trainer.setAttribute("src", "/trainers/maleTrainer2.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer2.png")
         }, 200);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/maleTrainer3.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer3.png")
         }, 400);
 
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/maleTrainer4.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer4.png")
         }, 500);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/maleTrainer5.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer5.png")
         }, 600);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/maleTrainer5.png")
+            trainer.setAttribute("src", "./trainers/maleTrainer5.png")
         }, 2000);
     } else {
-        trainer.setAttribute("src", "/trainers/femaleTrainer1.png")
+        trainer.setAttribute("src", "./trainers/femaleTrainer1.png")
         setTimeout(() => {
             //
-            trainer.setAttribute("src", "/trainers/femaleTrainer2.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer2.png")
         }, 200);
         setTimeout(() => {
             trainer.setAttribute("src", "/trainers/femaleTrainer3.png")
         }, 400);
 
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/femaleTrainer4.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer4.png")
         }, 500);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/femaleTrainer5.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer5.png")
         }, 600);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/femaleTrainer5.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer5.png")
         }, 2000);
     }
 }
@@ -734,7 +734,7 @@ const genderDecision = (evt) => {
             console.log(player)
             break;
         case "girl":
-            trainer.setAttribute("src", "/trainers/femaleTrainer1.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer1.png")
             player.boy = false
             player.girl = true
             battlePic()
