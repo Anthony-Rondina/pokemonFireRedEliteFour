@@ -422,6 +422,8 @@ const cheatCode = (evt) => {
                 if (evt.target.textContent === "s") {
                     codeCheck++
                     cheatDisplay.textContent = "Secret Team Unlocked!"
+                    player.team = cheatCodeTeam
+                    pokemonImage.src = player.team[0].img
                     healSound.play()
                     setTimeout(() => {
                         cheatDisplay.textContent = ""
@@ -801,6 +803,7 @@ const updateTeam = () => {
         document.querySelector(`.smallLvPrint${(i + 1)}`).textContent = player.team[i].level
         document.querySelector(`.poke${(i + 1)}HP`).textContent = player.team[i].hp
         document.querySelector(`.poke${(i + 1)}MaxHP`).textContent = player.team[i].totalHP
+        document.querySelector(`.smallpic${(i + 1)}`).src = player.team[i].tinyPic
         // playerPercent(player.team[i])
         width = Math.floor((player.team[i].hp / player.team[i].totalHP) * 100)
         if (width < 50 && width >= 21) {
