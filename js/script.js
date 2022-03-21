@@ -982,8 +982,14 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             setTimeout(() => {
                 if (superEffectiveDamageMultiplyer > 1) {
                     msgBoxText.textContent = "It's super effective!"
+                    setTimeout(() => {
+                        msgBoxText.textContent = ''
+                    }, 1500);
                 } else if (superEffectiveDamageMultiplyer < 1) {
                     msgBoxText.textContent = "It's not very effective."
+                    setTimeout(() => {
+                        msgBoxText.textContent = ''
+                    }, 1500);
                 }
             }, 200);
         }, 3000);
@@ -1014,7 +1020,7 @@ const playerAttack = (chosenAttack, targetPokemon) => {
                 console.log("now its enemy turn")
                 setTimeout(() => {
                     enemyAttack()
-                }, 6000);
+                }, 5000);
 
             } else {
                 console.log("bringing back fight menu")
@@ -1035,7 +1041,7 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             console.log("now its enemy turn")
             setTimeout(() => {
                 enemyAttack()
-            }, 4000);
+            }, 2000);
 
         } else {
             firstAttack = ''
@@ -1043,8 +1049,6 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             setTimeout(() => {
                 fightMenu()
             }, 2050);
-
-
         }
     }
 }
@@ -1100,7 +1104,6 @@ const enemyAttack = () => {
         if (superEffectiveDamageMultiplyer > 1) {
             console.log('greater')
             player.targetTrainer.damage *= superEffectiveDamageMultiplyer
-            console.log("It's super effective!")
         } else if (superEffectiveDamageMultiplyer < 1) {
             player.targetTrainer.damage *= superEffectiveDamageMultiplyer
             console.log("It's not very effective.")
@@ -1124,8 +1127,14 @@ const enemyAttack = () => {
         setTimeout(() => {
             if (superEffectiveDamageMultiplyer > 1) {
                 msgBoxText.textContent = "It's super effective!"
+                setTimeout(() => {
+                    msgBoxText.textContent = ''
+                }, 3500);
             } else if (superEffectiveDamageMultiplyer < 1) {
                 msgBoxText.textContent = "It's not very effective."
+                setTimeout(() => {
+                    msgBoxText.textContent = ''
+                }, 2500);
             }
             console.log(`running player percent subracting ${player.targetTrainer.damage} to ${player.team[0].hp}`)
             playerPercent(player.team[0], Math.round(player.targetTrainer.damage))
@@ -1171,22 +1180,30 @@ const enemyAttack = () => {
         } else if (firstAttack === "opponent") {
             msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
             setTimeout(() => {
+                msgBoxText.textContent = ''
+            }, 1500);
+            setTimeout(() => {
                 msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+                setTimeout(() => {
+                    msgBoxText.textContent = ''
+                }, 1500);
                 playerAttack(player.attackChoice, player.targetPokemon)
             }, 5000);
         } else {
             firstAttack = ''
             msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
             setTimeout(() => {
+                msgBoxText.textContent = ''
+            }, 1500);
+            setTimeout(() => {
                 console.log('this shouldnt run if fainted')
                 moveBar.classList.add("hidden")
                 combatChoice.classList.remove('hidden')
                 mainMessageBox.classList.remove('hidden')
                 msgBoxText.textContent = `What will ${player.team[0].name} do?`
-            }, 5050);
+            }, 2550);
         }
-    }, 1100);
-
+    }, 100);
 }
 
 moveButtons.forEach((chosenMove) => {
@@ -1207,6 +1224,9 @@ moveButtons.forEach((chosenMove) => {
                         playerAttack(player.team[0].moves[0], player.targetPokemon)
                         setTimeout(() => {
                             msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[0].name}!`
+                            setTimeout(() => {
+                                msgBoxText.textContent = ''
+                            }, 1500);
                         }, 150);
                         console.log('my speed is greater')
                     } else {
@@ -1229,6 +1249,9 @@ moveButtons.forEach((chosenMove) => {
                     firstAttack = "player"
                     setTimeout(() => {
                         msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[1].name}!`
+                        setTimeout(() => {
+                            msgBoxText.textContent = ''
+                        }, 1500);
                     }, 150);
                     if (player.team[0].speed >= player.targetPokemon.speed) {
                         playerAttack(player.team[0].moves[1], player.targetPokemon)
@@ -1251,6 +1274,9 @@ moveButtons.forEach((chosenMove) => {
                     firstAttack = "player"
                     setTimeout(() => {
                         msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[2].name}!`
+                        setTimeout(() => {
+                            msgBoxText.textContent = ''
+                        }, 1500);
                     }, 150);
                     if (player.team[0].speed >= player.targetPokemon.speed) {
                         playerAttack(player.team[0].moves[2], player.targetPokemon)
@@ -1273,6 +1299,9 @@ moveButtons.forEach((chosenMove) => {
                     firstAttack = "player"
                     setTimeout(() => {
                         msgBoxText.textContent = `${player.team[0].name} used ${player.team[0].moves[3].name}!`
+                        setTimeout(() => {
+                            msgBoxText.textContent = ''
+                        }, 1500);
                     }, 150);
                     if (player.team[0].speed >= player.targetPokemon.speed) {
                         playerAttack(player.team[0].moves[3], player.targetPokemon)
