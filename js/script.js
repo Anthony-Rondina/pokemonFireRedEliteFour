@@ -1096,7 +1096,7 @@ const enemyAttack = () => {
             console.log('CRIT!')
             setTimeout(() => {
                 msgBoxText.textContent = ""
-            }, 2000);
+            }, 1000);
             player.damage *= 2
         }
         console.log('multipler is at', superEffectiveDamageMultiplyer)
@@ -1194,7 +1194,7 @@ const enemyAttack = () => {
             msgBoxText.textContent = `${player.targetPokemon.name} used ${computerAttack.name}!`
             setTimeout(() => {
                 msgBoxText.textContent = ''
-            }, 1500);
+            }, 2500);
             setTimeout(() => {
                 console.log('this shouldnt run if fainted')
                 moveBar.classList.add("hidden")
