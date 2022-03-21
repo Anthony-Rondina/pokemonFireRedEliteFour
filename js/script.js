@@ -685,7 +685,7 @@ const animateThrow = () => {
             trainer.setAttribute("src", "./trainers/femaleTrainer2.png")
         }, 200);
         setTimeout(() => {
-            trainer.setAttribute("src", "/trainers/femaleTrainer3.png")
+            trainer.setAttribute("src", "./trainers/femaleTrainer3.png")
         }, 400);
 
         setTimeout(() => {
