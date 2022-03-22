@@ -297,7 +297,7 @@ const swapPokemon = () => {
         firstTime = false
     } else {
         setTimeout(() => {
-            enemyAttack()
+            preEnemyAttack()
             combatChoice.classList.add('hidden')
         }, 3000);
     }
@@ -928,6 +928,28 @@ const moveButtons = [moveOneButton, moveTwoButton, moveThreeButton, moveFourButt
 let firstAttack = 0
 
 const playerAttack = (chosenAttack, targetPokemon) => {
+    let enemyHP = ((player.targetPokemon.hp / player.targetPokemon.totalHP) * 100)
+    console.log(`enemyHP is ${enemyHP}`)
+    if (enemyHP <= 20) {
+        console.log('check one')
+        console.log(`${player.targetTrainer.fullRestore}`)
+        if (player.targetTrainer.fullRestore > 0) {
+            setTimeout(() => {
+                console.log(`computer should go through`)
+                player.targetTrainer.fullRestore--
+                console.log(`minus 1`)
+                player.targetPokemon.hp = player.targetPokemon.totalHP
+                console.log(`${player.targetPokemon.hp}`)
+                animateEnemyHP()
+                msgBoxText.textContent = `${player.target} used a Full Restore!`
+                setTimeout(() => {
+                    combatChoice.classList.remove('hidden')
+                    mainMessageBox.classList.remove('hidden')
+                    msgBoxText.textContent = `What will ${player.team[0].name} do?`
+                }, 2000);
+            }, 1000);
+        }
+    }
     combatChoice.classList.add('hidden')
     let attack = 0
     let superEffectiveDamageMultiplyer = 1
@@ -1063,7 +1085,7 @@ const playerAttack = (chosenAttack, targetPokemon) => {
             if (firstAttack === "player") {
                 console.log("now its enemy turn")
                 setTimeout(() => {
-                    enemyAttack()
+                    preEnemyAttack()
                 }, 5000);
 
             } else {
@@ -1084,7 +1106,7 @@ const playerAttack = (chosenAttack, targetPokemon) => {
         if (firstAttack === "player") {
             console.log("now its enemy turn")
             setTimeout(() => {
-                enemyAttack()
+                preEnemyAttack()
             }, 2000);
 
         } else {
@@ -1094,6 +1116,34 @@ const playerAttack = (chosenAttack, targetPokemon) => {
                 fightMenu()
             }, 2050);
         }
+    }
+}
+const preEnemyAttack = () => {
+    let enemyHP = ((player.targetPokemon.hp / player.targetPokemon.totalHP) * 100)
+    console.log(`enemyHP is ${enemyHP}`)
+    if (enemyHP <= 20) {
+        console.log('check one')
+        console.log(`${player.targetTrainer.fullRestore}`)
+        if (player.targetTrainer.fullRestore > 0) {
+            setTimeout(() => {
+                console.log(`computer should go through`)
+                player.targetTrainer.fullRestore--
+                console.log(`minus 1`)
+                player.targetPokemon.hp = player.targetPokemon.totalHP
+                console.log(`${player.targetPokemon.hp}`)
+                animateEnemyHP()
+                msgBoxText.textContent = `${player.target} used a Full Restore!`
+                setTimeout(() => {
+                    combatChoice.classList.remove('hidden')
+                    mainMessageBox.classList.remove('hidden')
+                    msgBoxText.textContent = `What will ${player.team[0].name} do?`
+                }, 2000);
+            }, 1000);
+        } else {
+            enemyAttack()
+        }
+    } else {
+        enemyAttack()
     }
 }
 const enemyAttack = () => {
@@ -1250,6 +1300,7 @@ const enemyAttack = () => {
     }, 100);
 }
 
+
 moveButtons.forEach((chosenMove) => {
     chosenMove.addEventListener('click', (evt) => {
         clickSound()
@@ -1276,7 +1327,7 @@ moveButtons.forEach((chosenMove) => {
                     } else {
                         console.log('their speed is greater')
                         firstAttack = "opponent"
-                        enemyAttack()
+                        preEnemyAttack()
                     }
 
                 }
@@ -1301,7 +1352,7 @@ moveButtons.forEach((chosenMove) => {
                         playerAttack(player.team[0].moves[1], player.targetPokemon)
                     } else {
                         firstAttack = "opponent"
-                        enemyAttack()
+                        preEnemyAttack()
                     }
 
                 }
@@ -1326,7 +1377,7 @@ moveButtons.forEach((chosenMove) => {
                         playerAttack(player.team[0].moves[2], player.targetPokemon)
                     } else {
                         firstAttack = "opponent"
-                        enemyAttack()
+                        preEnemyAttack()
                     }
 
                 }
@@ -1351,7 +1402,7 @@ moveButtons.forEach((chosenMove) => {
                         playerAttack(player.team[0].moves[3], player.targetPokemon)
                     } else {
                         firstAttack = "opponent"
-                        enemyAttack()
+                        preEnemyAttack()
                     }
 
                 }
