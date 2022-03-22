@@ -316,6 +316,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -327,6 +331,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -338,6 +346,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -349,6 +361,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -360,6 +376,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -371,6 +391,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -382,6 +406,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -393,6 +421,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -404,6 +436,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -415,6 +451,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
@@ -432,6 +472,10 @@ const cheatCode = (evt) => {
                 } else {
                     cheatDisplay.textContent = ""
                     //update lock on DOM
+                    cheatDisplay.style.background = "red"
+                    setTimeout(() => {
+                        cheatDisplay.style.background = "none"
+                    }, 500);
                     codeCheck = 0
                 }
                 break;
